@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +14,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('utilisateurmodel', 'UtilisateurModelController');
+Route::resource('favorismodel', 'FavorisModelController');
+Route::resource('relationmodel', 'RelationModelController');
+Route::resource('type_relationmodel', 'Type_relationModelController');
+Route::resource('commentairemodel', 'CommentaireModelController');
+Route::resource('ressourcesmodel', 'RessourcesModelController');
+Route::resource('typemodel', 'TypeModelController');
+Route::resource('categoriemodel', 'CategorieModelController');
