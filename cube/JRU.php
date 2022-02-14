@@ -5,10 +5,10 @@ namespace Cube;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RessourcesModel extends Model 
+class JRU extends Model 
 {
 
-    protected $table = 'Ressources';
+    protected $table = 'Jointure_Ress_Utilisateur';
     public $timestamps = true;
 
     use SoftDeletes;

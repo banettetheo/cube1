@@ -22,5 +22,5 @@ Route::resource('relationmodel', 'RelationModelController');
 Route::resource('type_relationmodel', 'Type_relationModelController');
 Route::resource('commentairemodel', 'CommentaireModelController');
 Route::resource('ressourcesmodel', 'RessourcesModelController');
-Route::resource('typemodel', 'TypeModelController');
 Route::resource('categoriemodel', 'CategorieModelController');
+Route::resource('jru', 'JRUController');
