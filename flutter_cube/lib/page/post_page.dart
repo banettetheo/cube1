@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FriendsPage extends StatelessWidget {
+class PostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Mes Amis'),
+          title: const Text('Mes publications'),
           centerTitle: true,
           backgroundColor: Colors.green,
         ),
