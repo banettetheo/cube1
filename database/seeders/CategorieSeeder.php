@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categorie;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
-class CreateCategorieTable extends Seeder
+
+class CategorieSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +16,9 @@ class CreateCategorieTable extends Seeder
      */
     public function run()
     {
-        'Nom' => test
         //
+        Categorie::create([
+            'Nom' => 'test:'.Str::random(5),
+        ]);
     }
 }
