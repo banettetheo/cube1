@@ -12,7 +12,9 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
 
 		$this->call([
-			CategorieSeeder::class //here you need the seeder class, not the model class
+						//here you need the seeder class, not the model class
+			CategorieSeeder::class ,
+			UtilisateurSeeder::class,
 		 ]);
 	}
 }
