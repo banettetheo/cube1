@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jointure_ress_utilisateur extends Model
+class Favoris extends Model
 {
-    protected $table='jointure_ress_utilisateur';
+    protected $table='favoris';
     protected $primaryKey='id';
 
     use HasFactory;
 
     public function Utilisateur() {
-       return $this->hasMany('App\Models\Utilisateur', 'IdUtilisateur');
+       return $this->hasOne('App\Models\Utilisateur', 'Utilisateur_id');
      }
      
      public function Ressources() {

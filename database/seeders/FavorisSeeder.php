@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Type_Relation as ModelsType_Relation;
+use App\Models\Favoris;
 use Illuminate\Database\Seeder;
 
-class Type_Relation extends Seeder
+class FavorisSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,9 @@ class Type_Relation extends Seeder
     public function run()
     {
         //
-        ModelsType_Relation::create([
-            'Nom' => 'Etranger',
+        Favoris::create([
+            'Utilisateur_id' => 1,
+            'IdRessources' => 1,
         ]);
     }
 }
