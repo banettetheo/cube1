@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder {
 			CategorieSeeder::class ,
 			UtilisateurSeeder::class,
 			Type_Relation::class,
+			Ressources::class,
 		 ]);
 	}
 }
