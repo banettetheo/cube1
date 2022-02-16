@@ -18,32 +18,32 @@
         <div class="ressources">
             <h3>le titre</h3>
             <p>le contenu</p>
-            <p>le footer</p>
+            <p>le footer avec les commentaires</p>
         </div>
         <div class="ressources">
             <h3>le titre</h3>
             <p>le contenu</p>
-            <p>le footer</p>
+            <p>le footer avec les commentaires</p>
         </div>
         <div class="ressources">
             <h3>le titre</h3>
             <p>le contenu</p>
-            <p>le footer</p>
+            <p>le footer avec les commentaires</p>
         </div>
         <div class="ressources">
             <h3>le titre</h3>
             <p>le contenu</p>
-            <p>le footer</p>
+            <p>le footer avec les commentaires</p>
         </div>
         <div class="ressources">
             <h3>le titre</h3>
             <p>le contenu</p>
-            <p>le footer</p>
+            <p>le footer avec les commentaires</p>
         </div>
         <div class="ressources">
             <h3>le titre</h3>
             <p>le contenu</p>
-            <p>le footer</p>
+            <p>le footer avec les commentaires</p>
         </div>
     </div>
 
