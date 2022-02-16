@@ -58,6 +58,10 @@ Widget feedBox(String avatarUrl, String userName, String date,
             SizedBox(
               height: 10.0,
             ),
+            if (contentImg != "") Image.network(contentImg),
+            SizedBox(
+              height: 10.0,
+            ),
             Divider(
               thickness: 1.5,
               color: Color(0xFF505050),

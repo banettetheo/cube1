@@ -37,6 +37,99 @@ class _HomePageState extends State<HomePage> {
   Color cubeBlue = Color(0xFF2D88FF);
   Color mainGrey = Color(0xFF505050);
 
+  var feed = [
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+    {
+      "avatarUrl":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      "username": "Théo",
+      "date": "maintenant",
+      "description": "du jij",
+      "image":
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,12 +219,13 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 20.0,
                 ),
-                feedBox(
-                    "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-                    "Théo_Cube",
-                    "6 min",
-                    "Un essaie wola",
-                    "")
+                for (var post in feed)
+                  feedBox(
+                      post["avatarUrl"].toString(),
+                      post["username"].toString(),
+                      post["date"].toString(),
+                      post["description"].toString(),
+                      post["image"].toString())
               ],
             ),
           ),
