@@ -6,7 +6,7 @@ use App\Models\Ressources as ModelsRessources;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class Ressources extends Seeder
+class RessourcesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
