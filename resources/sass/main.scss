@@ -1,5 +1,8 @@
+//variables
+$color-primary: #03989e;
+
 .body-main{
-    background-color: green;
+    background-color: $color-primary;
     margin: 0px;
 }
 #titre-logo{
@@ -18,7 +21,6 @@
 }
 
 /* page d'accueil */
-
 #accueil{
     display: flex;
     justify-content: center;
