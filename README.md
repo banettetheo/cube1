@@ -22,7 +22,7 @@ De plus les citoyens auront la possibilité de partager leurs ressources avec le
 
 [Lien vers la doc ici ]
 
-## Crée la base de donnée
+## Créer la base de donnée
 
 ```bash
 php artisan migrate:fresh --seed 
