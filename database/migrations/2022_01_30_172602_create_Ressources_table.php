@@ -12,6 +12,9 @@ class CreateRessourcesTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->integer('IdCategorie')->unsigned();
+			$table->integer('IdUtilisateur_createur')->unsigned();
+			$table->integer('IdType')->unsigned();
+			$table->integer('IdEtat')->unsigned();
 			$table->string('Lien_ressources');
 			$table->string('Type');
 		});

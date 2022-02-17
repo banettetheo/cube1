@@ -13,6 +13,7 @@ class CreateFavorisTable extends Migration {
 			$table->softDeletes();
 			$table->integer('Utilisateur_id')->unsigned();
 			$table->integer('IdRessources')->unsigned();
+			$table->integer('Type_favoris_id')->unsigned();
 		});
 	}
 
