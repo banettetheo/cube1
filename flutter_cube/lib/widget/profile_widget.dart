@@ -30,11 +30,11 @@ class ProfileWidget extends StatelessWidget {
     return ClipOval(
       child: Material(
         child: Ink.image(
-          image: image,
-          fit: BoxFit.cover,
-          width: 125,
-          height: 125,
-        ),
+            image: image,
+            fit: BoxFit.cover,
+            width: 125,
+            height: 125,
+            child: InkWell(onTap: onClicked)),
       ),
     );
   }

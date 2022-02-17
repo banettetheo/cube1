@@ -4,8 +4,9 @@
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/model/user.dart';
 import 'package:flutter_cube/widget/feedbox.dart';
-import 'package:flutter_cube/widget/navigation_drawer_widget.dart';
+import 'package:flutter_cube/widget/navigation_widget_drawer.dart';
 import 'widget/actionbtn.dart';
 
 void main() {
@@ -27,6 +28,13 @@ class MyApp extends StatelessWidget {
 // #enddocregion MyApp
 
 class HomePage extends StatefulWidget {
+  final User user = const User(
+      imagePath:
+          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+      name: "Théo",
+      email: "theobanette@icloud.com",
+      about: "Giga bg de la street tu coco",
+      isDarkMode: false);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -74,72 +82,18 @@ class _HomePageState extends State<HomePage> {
       "image":
           "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
     },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: bgBlack,
-        drawer: NavigationWidgetDrawer(),
+        drawer: NavigationWidgetDrawer(user: widget.user),
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: mainBlack,
           title: Text(
-            "Ressources Humaines",
+            "(Re)sources Relationnelles",
             style: TextStyle(
               color: cubeBlue,
             ),
@@ -173,8 +127,8 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               CircleAvatar(
                                 radius: 25.0,
-                                backgroundImage: NetworkImage(
-                                    "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"),
+                                backgroundImage:
+                                    NetworkImage(widget.user.imagePath),
                               ),
                               SizedBox(
                                 width: 10.0,

@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/model/user.dart';
 import 'package:flutter_cube/page/account_page.dart';
 import 'package:flutter_cube/page/friends_page.dart';
 import 'package:flutter_cube/page/liked_post_page.dart';
@@ -9,11 +10,15 @@ import 'package:flutter_cube/page/post_page.dart';
 
 class NavigationWidgetDrawer extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20.0);
+  final User user;
+
+  const NavigationWidgetDrawer({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    const userName = 'Théo Banette';
-    const email = 'theobanette@icloud.com';
-    const urlImage = "https://avatars.githubusercontent.com/u/90037413?v=4";
     return Drawer(
       child: Material(
         color: const Color.fromRGBO(50, 75, 205, 1),
@@ -21,13 +26,12 @@ class NavigationWidgetDrawer extends StatelessWidget {
           padding: padding,
           children: <Widget>[
             buildHeader(
-                urlImage: urlImage,
-                userName: userName,
-                email: email,
+                urlImage: user.imagePath,
+                userName: user.name,
+                email: user.email,
                 onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AccountPage(
-                          userName: userName,
-                          urlImage: urlImage,
+                    builder: (context) => AccountPage(
+                          user: user,
                         )))),
             const SizedBox(height: 16),
             buildMenuItem(

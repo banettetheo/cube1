@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/model/user.dart';
+import 'package:flutter_cube/page/edit_account_page.dart';
 import 'package:flutter_cube/widget/profile_widget.dart';
 
 class AccountPage extends StatelessWidget {
-  final String userName;
-  final String urlImage;
+  final User user;
 
   const AccountPage({
     Key? key,
-    required this.userName,
-    required this.urlImage,
+    required this.user,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    User user = new User(
-        imagePath:
-            "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-        name: "Théo",
-        email: "theobanette@icloud.com",
-        about: "Giga bg de la street tu coco",
-        isDarkMode: false);
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(
+          color: Colors.black,
+        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          ProfileWidget(imagePath: urlImage, onClicked: () async {}),
+          ProfileWidget(
+              imagePath: user.imagePath,
+              onClicked: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EditAccountPage(
+                          user: user,
+                        )));
+              }),
           const SizedBox(height: 24),
           buildName(user),
           const SizedBox(height: 24),
