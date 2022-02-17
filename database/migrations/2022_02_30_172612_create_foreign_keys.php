@@ -54,7 +54,7 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('Ressources', function(Blueprint $table) {
-			$table->foreign('IdType')->references('id')->on('type')
+			$table->foreign('IdType')->references('id')->on('type_ressource')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
