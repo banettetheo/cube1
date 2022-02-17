@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 class AuthentificationController extends Controller
 {
     public function connexion(){
-        return view('connexion');
+        return view('user/connexionUser');
     }
 
     public function inscription(){
-        return view('inscription');
+        return view('user/inscriptionUser');
     }
 
     public function deconnexion(){
-        return view ('accueil');
+        return view ('/');
     }
+    
 }

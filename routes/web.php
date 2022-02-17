@@ -22,27 +22,32 @@ use App\Http\Controllers\RessourcesController;
 //});
     
 //Accueil
-Route::get('/',[AccueilController::class, 'accueil']);
+Route::get('/',[AccueilController::class, 'index']);
     
 //Authentification
 Route::get('/inscription',[AuthentificationController::class, 'inscription']);
 Route::get('/connexion',[AuthentificationController::class, 'connexion']);
 Route::get('/deconnexion',[AuthentificationController::class, 'deconnexion']);
 
+
+//Comptes
+Route::get('/compte/mon-profil',[CompteController::class, 'monProfil']);
+
+
 //Ressources
-Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
+// Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
 Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource']);
 Route::get('/ressources/creer',[RessourcesController::class, 'creer']);
-Route::get('/ressources/{id}/modifier',[RessourcesController::class, 'modifier']);
-Route::get('/ressources/{id}/supprimer',[RessourcesController::class, 'supprimer']);
+Route::get('/ressources/modifier/{id}',[RessourcesController::class, 'modifier']);
+Route::get('/ressources/supprimer/{id}',[RessourcesController::class, 'supprimer']);
     
 
 //Compte
-Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
-Route::get('/gestion/utilisateurs/citoyens',[CompteController::class, 'consulterLesCitoyens']);
-Route::get('/gestion/utilisateurs/citoyens/{id}/desactiver',[CompteController::class, 'desactiverCitoyen']);
-Route::get('/gestion/utilisateurs/citoyens/{id}/reactiver',[CompteController::class, 'reactiverCitoyen']);
-Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
+// Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
+// Route::get('/gestion/utilisateurs/citoyens',[CompteController::class, 'consulterLesCitoyens']);
+// Route::get('/gestion/utilisateurs/citoyens/{id}/desactiver',[CompteController::class, 'desactiverCitoyen']);
+// Route::get('/gestion/utilisateurs/citoyens/{id}/reactiver',[CompteController::class, 'reactiverCitoyen']);
+// Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
 
 
 Route::resource('utilisateurmodel', 'UtilisateurModelController');
