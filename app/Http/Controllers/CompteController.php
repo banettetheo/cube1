@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CompteController extends Controller
 {
+
+    public function monProfil(){
+        return view('user/compteUser');
+    }
+
     public function consulterLesUtilisateurs(){
         return view('compte/utilisateurs');
     }
