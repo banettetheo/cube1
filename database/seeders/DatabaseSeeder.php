@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
 			RessourcesSeeder::class,
 			Jointure_ress_utilisateurSeeder::class,
 			FavorisSeeder::class,
+			CommentaireSeeder::class,
 		 ]);
 	}
 }
