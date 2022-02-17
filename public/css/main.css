@@ -1,0 +1,117 @@
+@charset "UTF-8";
+.body-main {
+  background-color: #03989e;
+  margin: 0px;
+}
+
+#titre-logo {
+  display: flex;
+  margin: 20px 30px;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+}
+
+#titre-app {
+  margin: 0px;
+  margin-left: 20px;
+}
+
+/* page d'accueil */
+#accueil {
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.col-left {
+  width: 15%;
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  max-height: 20em;
+}
+
+.col-center {
+  width: 50%;
+  height: auto;
+  background-color: aliceblue;
+}
+
+.col-right {
+  width: 15%;
+  background-color: pink;
+  max-height: 20em;
+}
+
+#titre-menu {
+  padding-left: 10%;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.button-menu {
+  width: 50%;
+  margin-left: 10%;
+  margin-bottom: 4%;
+}
+
+.recherche-ressource {
+  width: -webkit-fill-available;
+  margin: 1% 2%;
+}
+
+.ressources {
+  border: 1px solid;
+  width: -webkit-fill-available;
+  margin: 1% 2%;
+  padding: 1%;
+}
+
+/* formulaire général */
+.input-form {
+  margin-bottom: 10%;
+}
+
+.btn-validation {
+  width: 90%;
+}
+
+/* page inscription */
+#inscription-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#inscription-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-inscription {
+  margin-bottom: 10%;
+}
+
+/* page connexion */
+#connexion-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#connexion-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-connexion {
+  margin-bottom: 10%;
+}
