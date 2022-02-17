@@ -20,6 +20,17 @@ class UtilisateurSeeder extends Seeder
             'Prenom' => 'Bebere_'.Str::random(5),
             'Nom' => 'De_'.Str::random(5),
             'Moderateur' => 1,
+            'email' => 'Bebere@gmail.com',
+            'password' => 'motdepasse',
+
+        ]);
+
+        Utilisateur::create([
+            'Prenom' => 'Jacline_'.Str::random(5),
+            'Nom' => 'De_'.Str::random(5),
+            'Moderateur' => 1,
+            'email' => 'Jacline@gmail.com',
+            'password' => 'motdepasse',
 
         ]);
     }

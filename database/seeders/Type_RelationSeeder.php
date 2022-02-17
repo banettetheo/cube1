@@ -18,5 +18,22 @@ class Type_RelationSeeder extends Seeder
         Type_Relation::create([
             'Nom' => 'Etranger',
         ]);
+
+        Type_Relation::create([
+            'Nom' => 'Amis',
+        ]);
+
+        Type_Relation::create([
+            'Nom' => 'Professionelle',
+        ]);
+
+        Type_Relation::create([
+            'Nom' => 'Famille',
+        ]);
+
+        Type_Relation::create([
+            'Nom' => 'Conjoint',
+        ]);
+
     }
 }

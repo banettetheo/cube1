@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
 			Jointure_ress_utilisateurSeeder::class,
 			FavorisSeeder::class,
 			CommentaireSeeder::class,
+			RelationSeeder::class,
 		 ]);
 	}
 }
