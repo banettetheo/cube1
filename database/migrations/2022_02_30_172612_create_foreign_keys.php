@@ -18,6 +18,11 @@ class CreateForeignKeys extends Migration {
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
+		Schema::table('Favoris', function(Blueprint $table) {
+			$table->foreign('Type_favoris_id')->references('id')->on('type_favoris')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
 		Schema::table('Relation', function(Blueprint $table) {
 			$table->foreign('IdUser1')->references('id')->on('Utilisateurs')
 						->onDelete('restrict')
@@ -48,6 +53,21 @@ class CreateForeignKeys extends Migration {
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
+		Schema::table('Ressources', function(Blueprint $table) {
+			$table->foreign('IdType')->references('id')->on('type')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
+		Schema::table('Ressources', function(Blueprint $table) {
+			$table->foreign('IdEtat')->references('id')->on('etat')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
+		Schema::table('Ressources', function(Blueprint $table) {
+			$table->foreign('IdUtilisateur_createur')->references('id')->on('Utilisateurs')
+						->onDelete('restrict')
+						->onUpdate('restrict');
+		});
 		Schema::table('Jointure_Ress_Utilisateur', function(Blueprint $table) {
 			$table->foreign('IdUtilisateur')->references('id')->on('Utilisateurs')
 						->onDelete('restrict')
@@ -67,6 +87,9 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('Favoris', function(Blueprint $table) {
 			$table->dropForeign('Favoris_IdRessources_foreign');
+		});
+		Schema::table('Favoris', function(Blueprint $table) {
+			$table->dropForeign('Favoris_Type_favoris_id_foreign');
 		});
 		Schema::table('Relation', function(Blueprint $table) {
 			$table->dropForeign('Relation_IdUser1_foreign');
