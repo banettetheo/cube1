@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ressources as ModelsRessources;
+use App\Models\Ressources;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -15,10 +15,14 @@ class RessourcesSeeder extends Seeder
      */
     public function run()
     {
-        ModelsRessources::create([
+        Ressources::create([
             'Lien_ressources' => 'Lien:'.Str::random(5),
-            'Type' => 'Type:'.Str::random(5),
+            'Titre' => 'Titre:'.Str::random(5),
+            'Contenue' => 'contenu:'.Str::random(5),
             'IdCategorie' => 1,
+            'IdType' => 1,
+            'IdUtilisateur_createur' => 2,
+            'IdEtat' => 1,
         ]);
     }
 }

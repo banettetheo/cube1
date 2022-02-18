@@ -18,6 +18,7 @@ class FavorisSeeder extends Seeder
         Favoris::create([
             'Utilisateur_id' => 1,
             'IdRessources' => 1,
+            'Type_favoris_id' =>1,
         ]);
     }
 }

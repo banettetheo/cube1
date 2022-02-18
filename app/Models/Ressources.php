@@ -15,6 +15,18 @@ class Ressources extends Model
     public function Categorie() {
         return $this->belongsTo('App\Models\Categorie', 'IdCategorie');
       }
+
+      public function Utilisateur() {
+        return $this->belongsTo('App\Models\Utilisateur', 'IdUtilisateur_createur');
+      }
+
+      public function Type() {
+        return $this->belongsTo('App\Models\Type_ressource', 'IdType');
+      }
+
+      public function Etat() {
+        return $this->belongsTo('App\Models\Etat', 'IdEtat');
+      }
     
     public $fillable = [
         'Lien_ressources',

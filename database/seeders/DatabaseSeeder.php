@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder {
 		$this->call([
 						//here you need the seeder class, not the model class
 			CategorieSeeder::class ,
+			EtatSeeder::class,
+			Type_favorisSeeder::class,
+			Type_ressourceSeeder::class,
 			UtilisateurSeeder::class,
 			Type_RelationSeeder::class,
 			RessourcesSeeder::class,
