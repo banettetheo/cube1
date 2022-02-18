@@ -28,6 +28,32 @@ De plus les citoyens auront la possibilité de partager leurs ressources avec le
 php artisan migrate:fresh --seed 
 ```
 
+## Naviguer sur le site
+Accueil 
+```
+Front office    <base URL>
+```
+
+
+Authentification
+```
+Connexion       <base URL>/connexion
+Inscription     <base URL>/inscription
+Deconnexion     <base URL>/deconnexion
+```
+
+Page utilisateur
+```
+Mon compte      <base URL>/compte/mon-profil
+```
+
+Les ressources
+```
+Consulter       <base URL>/ressources/{id}
+Créer           <base URL>/ressources/creer
+Modifier        <base URL>/ressources/modifier/{id}
+Supprimer       <base URL>/ressources/supprimer
+```
 
 ## Contribution
 Le projet cube1 est un projet a titre éducatif vous êtes libre de le cloner et de faire ce que vous voulez avec mais aucune amélioration ne seras accepter. 
