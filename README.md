@@ -52,7 +52,7 @@ Les ressources
 Consulter       <base URL>/ressources/{id}
 Créer           <base URL>/ressources/creer
 Modifier        <base URL>/ressources/modifier/{id}
-Supprimer       <base URL>/ressources/supprimer
+Supprimer       <base URL>/ressources/supprimer/{id}
 ```
 
 ## Contribution
