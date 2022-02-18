@@ -1,9 +1,7 @@
-<?php
-    include "template/header.php";
-?>
+@extends('layouts.app')
+
+@section('content')
 
 
 
-<?php
-    include "template/footer.php";
-?>
+@endsection
