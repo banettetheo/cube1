@@ -15,12 +15,25 @@ class EtatSeeder extends Seeder
     public function run()
     {
         //
+
+        Etat::create([
+            'Nom' => 'Privée',
+        ]);
+
+        Etat::create([
+            'Nom' => 'Partager',
+        ]);
+
+        Etat::create([
+            'Nom' => 'En cours de validation',
+        ]);
+        
         Etat::create([
             'Nom' => 'Publique',
         ]);
 
         Etat::create([
-            'Nom' => 'En cours de validation',
+            'Nom' => 'Refuser',
         ]);
     }
 }

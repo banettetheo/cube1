@@ -16,7 +16,7 @@ class CreateRessourcesTable extends Migration {
 			$table->integer('IdCategorie')->unsigned();
 			$table->integer('IdUtilisateur_createur')->unsigned();
 			$table->integer('IdType')->unsigned();
-			$table->integer('IdEtat')->unsigned();
+			$table->integer('IdEtat')->unsigned()->default(1);
 			$table->string('Lien_ressources');
 		});
 	}
