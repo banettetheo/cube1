@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('Nom', 50);
 			$table->string('Prenom', 50);
 			$table->boolean('Moderateur');
+            $table->boolean('Compte_ban')->default(0);
         });
     }
 
