@@ -1,6 +1,6 @@
-<?php
-    include "../template/header.php";
-?>
+@extends('layouts.app')
+
+@section('content')
 
     <section id="inscription-user">
 
@@ -19,7 +19,4 @@
         </form>
 
     </section>
-
-<?php
-    include "../template/footer.php";
-?>
+@endsection
