@@ -112,64 +112,6 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: mainBlack,
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 10.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 25.0,
-                                backgroundImage:
-                                    NetworkImage(widget.user.imagePath),
-                              ),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.only(left: 25.0),
-                                    hintText: "Post Something...",
-                                    filled: true,
-                                    fillColor: mainGrey,
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0),
-                                        borderSide: BorderSide.none)),
-                              )),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Divider(
-                            thickness: 1.5,
-                            color: Color(0xFF505050),
-                          ),
-                          Row(
-                            children: [
-                              actionButton(
-                                  Icons.thumb_up, "Aimer", Color(0xFF505050)),
-                              actionButton(
-                                  Icons.comment, "Comment", Color(0xFF505050)),
-                              actionButton(
-                                  Icons.share, "Partager", Color(0xFF505050)),
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
                 SizedBox(
                   height: 20.0,
                 ),

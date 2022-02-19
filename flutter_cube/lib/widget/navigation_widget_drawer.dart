@@ -130,7 +130,7 @@ class NavigationWidgetDrawer extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PostPage(),
+          builder: (context) => PostPage(user: user),
         ));
         break;
       case 2:

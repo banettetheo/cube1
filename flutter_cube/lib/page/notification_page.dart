@@ -10,18 +10,10 @@ class NotificationPage extends StatelessWidget {
     {"content": "test 3", "date": ""},
     {"content": "test 4", "date": ""},
     {"content": "test 5", "date": ""},
-    {"content": "test 6", "date": ""},
-    {"content": "test 1", "date": "il y'a 10 min"},
-    {"content": "test 2", "date": ""},
-    {"content": "test 3", "date": ""},
-    {"content": "test 4", "date": ""},
-    {"content": "test 5", "date": ""},
-    {"content": "test 6", "date": ""}
   ];
 
   @override
   Widget build(BuildContext context) {
-    inspect(_notifs[0]["content"]);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Toutes les notifications'),
