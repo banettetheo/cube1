@@ -13,37 +13,62 @@
     </div>
 
     <div class="col-center">
-        <input type="text" class="recherche-ressource" placeholder="Rechercher pas mot"/>
+        <input type="text" class="recherche-ressource" placeholder="Rechercher pas nom d'utilisateur"/>
+        
+        <select name="categorie" id="cat-select">
+            <option value="" selected>selectionner la catégorie de votre ressource</option>
+            <option value="exemple">exemple</option>
+            <option value="exemple">exemple</option>
+        </select>
+
+        <label for="type-select">selectionner le type de votre ressource</label>
+        <select name="type" id="type-select">
+            <option value="" selected>selectionner le type de votre ressource</option>
+            <option value="exemple">exemple</option>
+            <option value="exemple">exemple</option>
+        </select>
+
         <!-- faire un for each pour récupérer une ressource et afficher les éléments titre/auteur/contenu(image texte)/et les comentaire-->
         <div class="ressources">
-            <h3>le titre</h3>
-            <p>le contenu</p>
-            <p>le footer avec les commentaires</p>
+            <h2 id="titreRessource"></h2>
+            <h3 id="userRessource"></h3>
+            <textarea id="contentRessource"></textarea>
+            <input id="footerRessource"> </input>
         </div>
         <div class="ressources">
-            <h3>le titre</h3>
-            <p>le contenu</p>
-            <p>le footer avec les commentaires</p>
+            <h2 id="titreRessource"></h2>
+            <h3 id="userRessource"></h3>
+            <textarea id="contentRessource"></textarea>
+            <input id="footerRessource"> </input>
+            <button href=""> lire la suite </button>
         </div>
         <div class="ressources">
-            <h3>le titre</h3>
-            <p>le contenu</p>
-            <p>le footer avec les commentaires</p>
+            <h2 id="titreRessource"></h2>
+            <h3 id="userRessource"></h3>
+            <textarea id="contentRessource"></textarea>
+            <input id="footerRessource"> </input>
+            <button href=""> lire la suite </button>
         </div>
         <div class="ressources">
-            <h3>le titre</h3>
-            <p>le contenu</p>
-            <p>le footer avec les commentaires</p>
+            <h2 id="titreRessource"></h2>
+            <h3 id="userRessource"></h3>
+            <textarea id="contentRessource"></textarea>
+            <input id="footerRessource"> </input>
+            <button href=""> lire la suite </button>
         </div>
         <div class="ressources">
-            <h3>le titre</h3>
-            <p>le contenu</p>
-            <p>le footer avec les commentaires</p>
+            <h2 id="titreRessource"></h2>
+            <h3 id="userRessource"></h3>
+            <textarea id="contentRessource"></textarea>
+            <input id="footerRessource"> </input>
+            <button href=""> lire la suite </button>
         </div>
         <div class="ressources">
-            <h3>le titre</h3>
-            <p>le contenu</p>
-            <p>le footer avec les commentaires</p>
+            <h2 id="titreRessource"></h2>
+            <h3 id="userRessource"></h3>
+            <textarea id="contentRessource"></textarea>
+            <input id="footerRessource"> </input>
+            <button href=""> lire la suite </button>
         </div>
     </div>
 

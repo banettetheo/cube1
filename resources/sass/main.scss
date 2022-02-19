@@ -1,5 +1,6 @@
 //variables
 $color-primary: #03989e;
+$color-secondary: white;
 
 .body-main{
     background-color: $color-primary;
@@ -29,7 +30,7 @@ $color-primary: #03989e;
 
 .col-left{
     width: 15%;
-    background-color: pink;
+    background-color: $color-secondary;
     display: flex;
     flex-direction: column;
     max-height: 20em;
