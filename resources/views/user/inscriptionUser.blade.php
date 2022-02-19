@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section id="inscription-user">
+    <section id="inscription-user" class="">
 
         <h1>Inscription</h1>
 

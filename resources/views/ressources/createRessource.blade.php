@@ -2,20 +2,22 @@
 
 @section('content')
 
-<section id="creerRessource">
+<section id="creer-ressource" class="">
     <form action="" class="" method="post">
         
         <label for="nom">le titre de votre ressource </label>
         <input type="text" id="titre" value="titre"/>
 
-        <label for="cat-select">selectionner la catégorie de votre ressource</label>
+        <label for="cat-select">selectionner la catégorie de votre ressource</label><br>
+        <!--une liste de catégorie récupérer sur la bdd-->
         <select name="categorie" id="cat-select">
             <option value="" selected>selectionner la catégorie de votre ressource</option>
             <option value="exemple">exemple</option>
             <option value="exemple">exemple</option>
         </select>
 
-        <label for="type-select">selectionner le type de votre ressource</label>
+        <label for="type-select">selectionner le type de votre ressource</label><br>
+        <!--une liste de type récupérer sur la bdd-->
         <select name="type" id="type-select">
             <option value="" selected>selectionner le type de votre ressource</option>
             <option value="exemple">exemple</option>

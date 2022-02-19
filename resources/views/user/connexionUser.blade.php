@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section id="connexion-user">
+    <section id="connexion-user" class="">
 
         <h1>Connexion</h1>
 
