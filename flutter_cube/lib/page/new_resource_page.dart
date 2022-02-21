@@ -32,6 +32,9 @@ class NewResourcePage extends StatelessWidget {
                 onChanged: (name) {}),
             const SizedBox(height: 24),
             DropdownItemWidget(),
+            const SizedBox(height: 24),
+            DropdownItemWidget(),
+            const SizedBox(height: 24),
             TextFieldWidget(
                 label: "Contenu de la ressource",
                 text: "",

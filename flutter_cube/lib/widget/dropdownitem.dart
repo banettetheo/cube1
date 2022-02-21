@@ -26,7 +26,7 @@ class _DropdownItemState extends State<DropdownItemWidget> {
       setState(() {
         _categories.add(DropdownMenuItem(
           child: Text(item["name"].toString()),
-          value: item["name"],
+          value: item["name"].toString(),
         ));
       });
     });
@@ -36,10 +36,15 @@ class _DropdownItemState extends State<DropdownItemWidget> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       value: _selectedValue,
-      items: _categories,
+      items: [
+        DropdownMenuItem(
+          child: Text("jij"),
+          value: "jij",
+        )
+      ],
       onChanged: (value) {
         setState(() {
-          _selectedValue = value,
+          _selectedValue = value;
         });
       },
     );

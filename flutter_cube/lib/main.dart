@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   final User user = const User(
       imagePath:
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
+          "https://gitlab.com/uploads/-/system/user/avatar/9648908/avatar.png?width=90",
       name: "Théo",
       email: "theobanette@icloud.com",
       about: "Giga bg de la street tu coco",
