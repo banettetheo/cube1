@@ -1,35 +1,30 @@
 //variables
 $color-primary: #03989e;
+$color-secondary: white;
 
+//css en commun avec toutes les pages
 .body-main{
     background-color: $color-primary;
     margin: 0px;
 }
-#titre-logo{
-    display: flex;
-    margin: 20px 30px;
-}
 
-#logo{
-    width: 40px;
-    height: 40px;
-}
-
-#titre-app{
-    margin: 0px;
-    margin-left: 20px;
-}
-
-/* page d'accueil */
-#accueil{
+.main-flex{
     display: flex;
     justify-content: center;
     min-height: 100%;
 }
 
+.flex{
+    display: flex;
+}
+
+.column{
+    flex-direction: column;
+}
+
 .col-left{
     width: 15%;
-    background-color: pink;
+    background-color: $color-secondary;
     display: flex;
     flex-direction: column;
     max-height: 20em;
@@ -47,28 +42,55 @@ $color-primary: #03989e;
     max-height: 20em;
 }
 
-#titre-menu{
-    padding-left: 10%;
-    width: min-content;
+/*----------------------------------------*/
+
+/*le titre de la page et le logo*/
+
+#titre-logo{
+    display: flex;
+    margin: 20px 30px;
+    
+    #logo{
+        width: 40px;
+        height: 40px;
+    }
+    
+    #titre-app{
+        margin: 0px;
+        margin-left: 20px;
+    }
 }
 
-.button-menu{
-    width: 50%;
-    margin-left: 10%;
-    margin-bottom: 4%;
+/*----------------------------------------*/
+
+/* page d'accueil */
+
+#accueil{
+    #titre-menu{
+        padding-left: 10%;
+        width: min-content;
+    }
+    
+    .button-menu{
+        width: 50%;
+        margin-left: 10%;
+        margin-bottom: 4%;
+    }
+    
+    .recherche-user{
+        width: -webkit-fill-available;
+        margin: 1% 2%;
+    }
+    
+    .ressources{
+        border: 1px solid;
+        width: -webkit-fill-available;
+        margin: 1% 2%;
+        padding: 1%;
+    }
 }
 
-.recherche-ressource{
-    width: -webkit-fill-available;
-    margin: 1% 2%;
-}
-
-.ressources{
-    border: 1px solid;
-    width: -webkit-fill-available;
-    margin: 1% 2%;
-    padding: 1%;
-}
+/*----------------------------------------*/
 
 /* formulaire général */
 
@@ -87,17 +109,19 @@ $color-primary: #03989e;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    #inscription-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .input-inscription{
+            margin-bottom: 10%;
+        }
+    }
 }
 
-#inscription-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.input-inscription{
-    margin-bottom: 10%;
-}
 
 /* page connexion */
 
@@ -106,15 +130,17 @@ $color-primary: #03989e;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    #connexion-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .input-connexion{
+            margin-bottom: 10%;
+        }
+    }
 }
 
-#connexion-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.input-connexion{
-    margin-bottom: 10%;
-}
 
