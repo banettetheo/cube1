@@ -47,6 +47,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        Route::resourceVerbs([
+            'show' => 'voir',
+            'create' => 'creer',
+            'edit' => 'modifier',
+        ]);
     }
 
     /**
