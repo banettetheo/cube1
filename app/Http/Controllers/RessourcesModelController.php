@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Etat;
+use App\Models\Ressources;
+use App\Models\Type_ressource;
 use Illuminate\Http\Request;
 
 class RessourcesModelController extends Controller 
@@ -45,8 +49,19 @@ class RessourcesModelController extends Controller
    */
   public function show($id)
   {
-    return view ('ressources/zoomRessource');
+    $laRessource = Ressources::findOrFail($id);
+    $utilisateur = Ressources::findOrFail($id);
+    $categorie = Categorie::findOrFail($id);
+    $type = Type_ressource::findOrFail($id);
+    $etat = Etat::findOrFail($id);
 
+    return view ('ressources/zoomRessource', [
+      'ressource' => $laRessource,
+      'utilisateur' => $utilisateur,
+      'categorie' => $categorie,
+      'type' => $type,
+      'etat' => $etat
+    ]);
   }
 
   /**
