@@ -14,7 +14,7 @@ class RessourcesModelController extends Controller
    */
   public function index()
   {
-    
+    return view ('accueil');
   }
 
   /**
@@ -24,7 +24,7 @@ class RessourcesModelController extends Controller
    */
   public function create()
   {
-    
+    return view ('ressources/createRessource'); 
   }
 
   /**
@@ -34,7 +34,7 @@ class RessourcesModelController extends Controller
    */
   public function store(Request $request)
   {
-    
+    return view ('ressources/zoomRessource');
   }
 
   /**
@@ -45,7 +45,8 @@ class RessourcesModelController extends Controller
    */
   public function show($id)
   {
-    
+    return view ('ressources/zoomRessource');
+
   }
 
   /**
@@ -56,7 +57,7 @@ class RessourcesModelController extends Controller
    */
   public function edit($id)
   {
-    
+    return view ('ressources/modifRessource');
   }
 
   /**
@@ -67,7 +68,7 @@ class RessourcesModelController extends Controller
    */
   public function update($id)
   {
-    
+    return view ('ressources/zoomRessource');
   }
 
   /**
@@ -78,7 +79,8 @@ class RessourcesModelController extends Controller
    */
   public function destroy($id)
   {
-    
+    return view ('accueil');
+
   }
   
 }
