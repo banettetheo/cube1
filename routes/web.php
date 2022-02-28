@@ -36,10 +36,10 @@ Route::get('/compte/mon-profil',[CompteController::class, 'monProfil']);
 
 //Ressources
 // Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
-Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource']);
-Route::get('/ressources/creer',[RessourcesController::class, 'creer']);
-Route::get('/ressources/modifier/{id}',[RessourcesController::class, 'modifier']);
-Route::get('/ressources/supprimer/{id}',[RessourcesController::class, 'supprimer']);
+// Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource'])->name('ressources.consulterUneRessource');
+// Route::get('/ressources/creer',[RessourcesController::class, 'creer']);
+// Route::get('/ressources/modifier/{id}',[RessourcesController::class, 'modifier']);
+// Route::get('/ressources/supprimer/{id}',[RessourcesController::class, 'supprimer']);
     
 
 //Compte
@@ -50,11 +50,11 @@ Route::get('/ressources/supprimer/{id}',[RessourcesController::class, 'supprimer
 // Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
 
 
-Route::resource('utilisateurmodel', 'UtilisateurModelController');
-Route::resource('favorismodel', 'FavorisModelController');
-Route::resource('relationmodel', 'RelationModelController');
-Route::resource('type_relationmodel', 'Type_relationModelController');
-Route::resource('commentairemodel', 'CommentaireModelController');
-Route::resource('ressourcesmodel', 'RessourcesModelController');
-Route::resource('categoriemodel', 'CategorieModelController');
-Route::resource('jru', 'JRUController');
+// Route::resource('utilisateurmodel', 'UtilisateurModelController');
+// Route::resource('favorismodel', 'FavorisModelController');
+// Route::resource('relationmodel', 'RelationModelController');
+// Route::resource('type_relationmodel', 'Type_relationModelController');
+// Route::resource('commentairemodel', 'CommentaireModelController');
+Route::resource('ressources', 'App\Http\Controllers\RessourcesModelController');
+// Route::resource('categoriemodel', 'CategorieModelController');
+// Route::resource('jru', 'JRUController');
