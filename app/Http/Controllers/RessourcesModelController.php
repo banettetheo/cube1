@@ -28,15 +28,15 @@ class RessourcesModelController extends Controller
   }
 
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return Response
-   */
-  public function index()
-  {
-    return view ('accueil');
-  }
+  // /**
+  //  * Display a listing of the resource.
+  //  *
+  //  * @return Response
+  //  */
+  // public function index()
+  // {
+  //   return view ('accueil');
+  // }
 
   /**
    * Show the form for creating a new resource.
@@ -45,6 +45,9 @@ class RessourcesModelController extends Controller
    */
   public function create()
   {
+    $uneRessource = new Ressources;
+    //$uneRessource->Utilisateur;
+
     return view ('ressources/createRessource'); 
   }
 
@@ -66,19 +69,36 @@ class RessourcesModelController extends Controller
    */
   public function show($id)
   {
+    // $laRessource = Ressources::findOrFail($id)
+    // ->get()
+    // ->map(function ($ressource){
+    //   return [
+    //     'id_ressource' => $ressource->id,
+    //     'auteur' => $ressource->Utilisateur->Nom
+    //   ];
+    // });
+
     $laRessource = Ressources::findOrFail($id);
-    $utilisateur = Utilisateur::findOrFail($laRessource->IdUtilisateur_createur);
-    $categorie = Categorie::findOrFail($laRessource->IdCategorie);
-    $etat = Etat::findOrFail($laRessource->IdEtat);
-    $typeRessource = Type_ressource::findOrFail($laRessource->IdType);
-    $lesCommentaires = Commentaire::where('idRessources', $id)->get(); 
+    $utilisateur = $laRessource->Utilisateur->only('Nom','Prenom');
+    $categorie = $laRessource->Categorie->only('Nom');
+    $etat = $laRessource->Etat->only('Nom');
+    $typeRessource = $laRessource->Type->only('Nom');
+    $lesCommentaires = Commentaire::where('idRessources', $id)
+    ->get()
+    ->map(function ($commentaire){
+      return [
+        //'dateCreation' => $Commentaire->id,
+        'utilisateur' => $commentaire->Utilisateur->only('Nom','Prenom'),
+        'contenu' => $commentaire->Contenue
+      ];
+    }); 
 
     return view ('ressources/zoomRessource', [
       'ressource' => $laRessource,
       'utilisateur' => $utilisateur,
-      'categorie' => $categorie->Nom,
-      'etat' => $etat->Nom,
-      'typeRessource' => $typeRessource->Nom,
+      'categorie' => $categorie,
+      'etat' => $etat,
+      'typeRessource' => $typeRessource,
       'commentaires' => $lesCommentaires
     ]);
   }
