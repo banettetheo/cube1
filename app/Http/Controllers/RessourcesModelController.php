@@ -46,27 +46,7 @@ class RessourcesModelController extends Controller
    */
   public function create()
   {
-    $lesCategories = Categorie::all()
-    ->map(function ($categorie){
-      return [
-        'id' => $categorie->id,
-        'nom' => $categorie->Nom
-      ];
-    });
-
-      $lesTypes = Type_ressource::all()
-      ->map(function ($type){
-        return [
-          'id' => $type->id,
-          'nom' => $type->Nom
-        ];
-    }); 
-
-    return view ('ressources/createRessource',
-      [
-        //'categories' => $lesCategories,
-        'types' => $lesTypes
-    ]); 
+    return view ('ressources/createRessource');
   }
 
   /**
