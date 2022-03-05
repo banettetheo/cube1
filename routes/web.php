@@ -36,7 +36,8 @@ Route::get('/compte/mon-profil',[CompteController::class, 'monProfil']);
 
 
 //Ressources
-Route::resource('ressources', RessourcesModelController::class)->except(['index']);
+Route::resource('ressources', RessourcesModelController::class)->except(['index','store']);
+Route::post('accueil', [RessourcesModelController::class, 'store'])->name('ressources.store');
 
 // Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
 // Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource'])->name('ressources.consulterUneRessource');

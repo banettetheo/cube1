@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+
+use App\Http\ViewComposers\CategorieComposer;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View()->composer(['ressources.createRessource', 'accueil'], CategorieComposer::class);
     }
 }

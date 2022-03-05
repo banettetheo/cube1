@@ -9,6 +9,7 @@ use App\Models\Ressources;
 use App\Models\Type_ressource;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRessourceRequest;
 
 class RessourcesModelController extends Controller 
 {
@@ -61,10 +62,9 @@ class RessourcesModelController extends Controller
         ];
     }); 
 
-
     return view ('ressources/createRessource',
       [
-        'categories' => $lesCategories,
+        //'categories' => $lesCategories,
         'types' => $lesTypes
     ]); 
   }
@@ -74,9 +74,24 @@ class RessourcesModelController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function store(StoreRessourceRequest $request)
   {
-    return view ('ressources/zoomRessource');
+    // $validated = $request->validated();
+
+    // $categorie = $validated['content'];
+    // $url = $validated['url'];
+    // $type =$validated['content'];
+    // $utilisateurID = 1;
+
+    // Ressources::create([
+    //   'Titre' => $validated['titre'],
+    //   'Contenue' => $validated['content'],
+    //   'Categorie' => $validated['categorie'],
+    //   'Lien_ressources' => $validated['url'],
+    //   'Type' => $validated['url'],
+    //   'Utilisateur' => 1
+    // ]);
+    return view ('ressources/create');
   }
 
   /**
