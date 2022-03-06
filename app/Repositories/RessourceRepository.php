@@ -29,7 +29,7 @@ class RessourceRepository
     }
 
 
-    private function one($ressource)
+    public function one($ressource)
     {
         return [
             'id' => $ressource->id,
