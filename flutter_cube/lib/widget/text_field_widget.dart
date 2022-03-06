@@ -43,15 +43,20 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       children: [
         Text(
           widget.label,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 14.0, color: Colors.white),
         ),
         const SizedBox(height: 8),
         TextField(
+          style: const TextStyle(color: Colors.black),
           maxLines: widget.maxLines,
           decoration: InputDecoration(
+              fillColor: Colors.white,
+              filled: true,
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
           controller: controller,
+          cursorColor: Colors.black,
         ),
       ],
     );

@@ -24,18 +24,18 @@ class AccountPage extends StatelessWidget {
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          ProfileWidget(
+          /*ProfileWidget(
               imagePath: user.imagePath,
               onClicked: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => EditAccountPage(
                           user: user,
                         )));
-              }),
+              }),*/
           const SizedBox(height: 24),
           buildName(user),
           const SizedBox(height: 24),
-          buildAbout(user)
+          //buildAbout(user)
         ],
       ),
     );
@@ -44,7 +44,7 @@ class AccountPage extends StatelessWidget {
   Widget buildName(User user) => Column(
         children: [
           Text(
-            user.name,
+            user.nom,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
           ),
           const SizedBox(height: 4),
@@ -55,7 +55,7 @@ class AccountPage extends StatelessWidget {
         ],
       );
 
-  Widget buildAbout(User user) => Container(
+  /*Widget buildAbout(User user) => Container(
         padding: EdgeInsets.symmetric(horizontal: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,5 +71,5 @@ class AccountPage extends StatelessWidget {
             )
           ],
         ),
-      );
+      );*/
 }

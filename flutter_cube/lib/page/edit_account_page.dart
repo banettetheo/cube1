@@ -27,11 +27,11 @@ class EditAccountPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         physics: const BouncingScrollPhysics(),
         children: [
-          ProfileWidget(imagePath: user.imagePath, onClicked: () {}),
+          //ProfileWidget(imagePath: user.imagePath, onClicked: () {}),
           const SizedBox(height: 24),
           TextFieldWidget(
               label: "Nom complet",
-              text: user.name,
+              text: user.nom,
               maxLines: 1,
               onChanged: (name) {}),
           const SizedBox(height: 24),
@@ -40,12 +40,6 @@ class EditAccountPage extends StatelessWidget {
               text: user.email,
               maxLines: 1,
               onChanged: (email) {}),
-          const SizedBox(height: 24),
-          TextFieldWidget(
-              label: "A propos",
-              text: user.about,
-              maxLines: 5,
-              onChanged: (about) {}),
           const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(

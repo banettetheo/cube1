@@ -2,11 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:english_words/english_words.dart';
+import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/model/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_cube/widget/feedbox.dart';
 import 'package:flutter_cube/widget/navigation_widget_drawer.dart';
+import 'package:http/http.dart';
 import 'widget/actionbtn.dart';
 
 void main() {
@@ -28,22 +31,52 @@ class MyApp extends StatelessWidget {
 // #enddocregion MyApp
 
 class HomePage extends StatefulWidget {
-  final User user = const User(
-      imagePath:
-          "https://gitlab.com/uploads/-/system/user/avatar/9648908/avatar.png?width=90",
-      name: "Théo",
-      email: "theobanette@icloud.com",
-      about: "Giga bg de la street tu coco",
-      isDarkMode: false);
+  var _userJson = [];
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Color bgBlack = Color(0xFF1a1a1a);
-  Color mainBlack = Color(0xFF262626);
-  Color cubeBlue = Color(0xFF2D88FF);
-  Color mainGrey = Color(0xFF505050);
+  final url = "https://jsonplaceholder.typicode.com/posts";
+
+  void fetchUser() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      //prefs.setString('usernameCube', 'theo');
+      //prefs.setString('passwordCube', 'banette');
+
+      if (widget._userJson.isNotEmpty) {
+        inspect("jij");
+      }
+
+      final response = await get(Uri.parse(url));
+      final jsonData = jsonDecode(response.body);
+
+      setState(() {
+        var username = prefs.getString("usernameCube");
+        var password = prefs.getString("passwordCube");
+        widget._userJson = jsonData;
+        if (widget._userJson.isNotEmpty) {
+          inspect(username);
+          inspect(password);
+        }
+      });
+    } catch (e) {
+      inspect(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUser();
+  }
+
+  Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
+  Color mainBlue = const Color(0xff03989e);
+  Color cubeBlue = const Color(0xFF2D88FF);
+  Color mainGrey = const Color(0xFF505050);
 
   var feed = [
     {
@@ -87,34 +120,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: bgBlack,
-        drawer: NavigationWidgetDrawer(user: widget.user),
+        backgroundColor: bgBlue,
+        drawer: NavigationDrawer(data: widget._userJson),
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: mainBlack,
-          title: Text(
-            "(Re)sources Relationnelles",
-            style: TextStyle(
-              color: cubeBlue,
-            ),
+          backgroundColor: mainBlue,
+          title: const Image(
+            image: NetworkImage(
+                "https://cdn.discordapp.com/attachments/870209678192304169/948980643285577738/unknown.png",
+                scale: 3),
           ),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
           ],
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 20.0,
-                ),
                 for (var post in feed)
                   feedBox(
                       post["avatarUrl"].toString(),

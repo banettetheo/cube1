@@ -8,7 +8,7 @@ Widget feedBox(String avatarUrl, String userName, String date,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: Color(0xFF262626),
+        color: const Color(0xff03989e),
       ),
       child: Padding(
         padding: EdgeInsets.all(8.0),
@@ -20,7 +20,7 @@ Widget feedBox(String avatarUrl, String userName, String date,
                   backgroundImage: NetworkImage(avatarUrl),
                   radius: 25.0,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10.0,
                 ),
                 Expanded(
@@ -29,17 +29,17 @@ Widget feedBox(String avatarUrl, String userName, String date,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(userName,
-                        style: TextStyle(
-                          color: Colors.white,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: 18.0,
                           fontWeight: FontWeight.w600,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 5.0,
                     ),
                     Text(date,
-                        style: TextStyle(
-                          color: Colors.white,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: 12.0,
                           fontWeight: FontWeight.w600,
                         ))
@@ -47,30 +47,30 @@ Widget feedBox(String avatarUrl, String userName, String date,
                 ))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             if (contentText != "")
               Text(
                 contentText,
-                style: TextStyle(color: Colors.white, fontSize: 16.0),
+                style: const TextStyle(color: Colors.white, fontSize: 16.0),
               ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             if (contentImg != "") Image.network(contentImg),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
-            Divider(
+            const Divider(
               thickness: 1.5,
               color: Color(0xFF505050),
             ),
             Row(
               children: [
-                actionButton(Icons.thumb_up, "Aimer", Color(0xFF505050)),
-                actionButton(Icons.comment, "Comment", Color(0xFF505050)),
-                actionButton(Icons.share, "Partager", Color(0xFF505050)),
+                actionButton(Icons.thumb_up, "Aimer", const Color(0xFF505050)),
+                actionButton(Icons.comment, "Comment", const Color(0xFF505050)),
+                actionButton(Icons.share, "Partager", const Color(0xFF505050)),
               ],
             )
           ],

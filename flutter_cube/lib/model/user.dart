@@ -1,15 +1,17 @@
 class User {
-  final String imagePath;
-  final String name;
+  final int id;
+  final String nom;
+  final String prenom;
   final String email;
-  final String about;
-  final bool isDarkMode;
+  final String mdp;
+  final bool moderateur;
 
   const User({
-    required this.imagePath,
-    required this.name,
+    required this.id,
+    required this.nom,
     required this.email,
-    required this.about,
-    required this.isDarkMode,
+    required this.prenom,
+    required this.mdp,
+    required this.moderateur,
   });
 }
