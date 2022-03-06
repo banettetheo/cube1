@@ -31,5 +31,7 @@ class Ressources extends Model
     public $fillable = [
         'Lien_ressources',
         'Type',
+        'Nombre_vue',
+        'Nombre_like',
     ];
 }
