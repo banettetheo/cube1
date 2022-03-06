@@ -9,7 +9,12 @@ class Favoris extends Model
 {
     protected $table='favoris';
     protected $primaryKey='id';
-
+    protected $fillable= [
+      'Utilisateur_id',
+      'IdRessources',
+      'Types_favoris_id'
+    ];
+    
     use HasFactory;
 
     public function Utilisateur() {

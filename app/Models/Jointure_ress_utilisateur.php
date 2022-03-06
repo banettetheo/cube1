@@ -12,6 +12,12 @@ class Jointure_ress_utilisateur extends Model
 
     use HasFactory;
 
+    protected $fillable = [
+      'IdUtilisateur',
+      'idRessource',
+      'deleted_at'
+    ];
+
     public function Utilisateur() {
        return $this->hasMany('App\Models\Utilisateur', 'IdUtilisateur');
      }

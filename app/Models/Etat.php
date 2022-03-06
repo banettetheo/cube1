@@ -12,7 +12,8 @@ class Etat extends Model
 
     use HasFactory;
     
-    public $fillable = [
+    protected $fillable = [
         'Nom',
+        'deleted_at'
     ];
 }

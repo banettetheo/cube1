@@ -12,7 +12,8 @@ class Type_ressource extends Model
 
     use HasFactory;
     
-    public $fillable = [
+    protected $fillable = [
         'Nom',
+        'deleted_at'
     ];
 }
