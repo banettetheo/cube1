@@ -11,7 +11,7 @@ use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRessourceRequest;
 
-class RessourcesModelController extends Controller 
+class RessourceController extends Controller 
 {
   protected $ressource;
   protected $categorie;
