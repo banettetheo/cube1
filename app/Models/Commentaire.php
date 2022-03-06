@@ -12,12 +12,14 @@ class Commentaire extends Model
 
     use HasFactory;
 
-    public $fillable = [
+    protected $fillable = [
         'Contenue',
+        'IdUser',
+        'IdRessources'
     ];
 
     public function Utilisateur() {
-       return $this->hasOne('App\Models\Utilisateur', 'IdUser');
+       return $this->belongsTo('App\Models\Utilisateur', 'IdUser');
      }
      
      public function Ressources() {

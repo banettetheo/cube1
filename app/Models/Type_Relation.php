@@ -12,7 +12,7 @@ class Type_Relation extends Model
 
     use HasFactory;
     
-    public $fillable = [
+    protected $fillable = [
         'Nom',
     ];
 }

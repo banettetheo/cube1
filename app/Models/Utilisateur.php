@@ -12,9 +12,11 @@ class Utilisateur extends Model
 
     use HasFactory;
     
-    public $fillable = [
+    protected $fillable = [
         'Prenom',
         'Nom',
+        'Email',
         'Moderateur',
+        'Compte_ban'
     ];
 }

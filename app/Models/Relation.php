@@ -12,6 +12,13 @@ class Relation extends Model
 
     use HasFactory;
 
+    protected $fillable = [
+      'IdTypeRelation',
+      'IdUser1',
+      'IdUser2',
+      'deleted_at'
+    ];
+
    public function IdRelation() {
        return $this->hasOne('App\Models\Type_Relation', 'IdTypeRelation');
      }

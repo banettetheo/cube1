@@ -12,7 +12,7 @@ class Type_favoris extends Model
 
     use HasFactory;
     
-    public $fillable = [
+    protected $fillable = [
         'Nom',
     ];
 }

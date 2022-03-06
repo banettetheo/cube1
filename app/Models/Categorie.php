@@ -12,7 +12,8 @@ class Categorie extends Model
 
     use HasFactory;
     
-    public $fillable = [
+    protected $fillable = [
         'Nom',
+        'deleted_at'
     ];
 }
