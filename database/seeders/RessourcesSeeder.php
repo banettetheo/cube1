@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Ressources;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Integer;
 
 class RessourcesSeeder extends Seeder
 {
@@ -19,6 +20,8 @@ class RessourcesSeeder extends Seeder
             'Lien_ressources' => 'Lien:'.Str::random(5),
             'Titre' => 'Titre:'.Str::random(5),
             'Contenue' => 'contenu:'.Str::random(5),
+            'Nombre_vue' => rand(1,999),
+            'Nombre_like' => rand(1,999),
             'IdCategorie' => 1,
             'IdType' => 1,
             'IdUtilisateur_createur' => 2,

@@ -9,7 +9,7 @@ class Ressources extends Model
 {
     protected $table='ressources';
     protected $primaryKey='id';
-    public $fillable = [
+    protected $fillable = [
         'Titre',
         'Contenue',
         'IdCategorie',
@@ -17,7 +17,8 @@ class Ressources extends Model
         'IdType',
         'IdEtat',
         'Lien_ressources'
-        //'NbLike'
+        'Nombre_vue',
+        'Nombre_like'
     ];
 
     use HasFactory;
@@ -37,5 +38,4 @@ class Ressources extends Model
       public function Etat() {
         return $this->belongsTo('App\Models\Etat', 'IdEtat');
       }
-    
 }
