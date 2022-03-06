@@ -50,22 +50,17 @@ class RessourceController extends Controller
    */
   public function store(StoreRessourceRequest $request)
   {
-    // $validated = $request->validated();
+    $validated = $request->validated();
 
-    // $categorie = $validated['content'];
-    // $url = $validated['url'];
-    // $type =$validated['content'];
-    // $utilisateurID = 1;
-
-    // Ressources::create([
-    //   'Titre' => $validated['titre'],
-    //   'Contenue' => $validated['content'],
-    //   'Categorie' => $validated['categorie'],
-    //   'Lien_ressources' => $validated['url'],
-    //   'Type' => $validated['url'],
-    //   'Utilisateur' => 1
-    // ]);
-    return view ('ressources/create');
+    $ressource = Ressources::create([
+      'Titre' => $validated['titre'],
+      'Contenue' => $validated['content'],
+      'IdCategorie' => $validated['categorie'],
+      'IdUtilisateur_createur' => 1,
+      'IdType' => $validated['type'],
+      'Lien_ressources' => $validated['url'],
+    ]);
+    return redirect()->route('ressources.show',$ressource->id);
   }
 
   /**
