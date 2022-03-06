@@ -7,15 +7,22 @@ use App\Models\Categorie;
 use App\Models\Ressources;
 use App\Models\Type_ressource;
 use App\Models\Utilisateur;
+use App\Repositories\RessourceRepository;
 use Illuminate\Http\Request;
 
 class AccueilController extends Controller
 {
-    public function index(){
-        $lesRessources = Collect(Ressources::all()
-            ->sortByDesc('created_at')
-            ->take(100));
 
+    private $ressourceRepository;
+
+    public function __construct(RessourceRepository $ressourceRepository)
+    {
+        $this->ressourceRepository = $ressourceRepository;
+    }
+
+    public function index(){
+
+        $lesRessources = $this->ressourceRepository->all();
 
         $lesCategories = Categorie::all();
         $lesTypesRessource = Type_ressource::all();
