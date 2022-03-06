@@ -16,7 +16,7 @@ class Ressources extends Model
         'IdUtilisateur_createur',
         'IdType',
         'IdEtat',
-        'Lien_ressources'
+        'Lien_ressources',
         'Nombre_vue',
         'Nombre_like'
     ];
