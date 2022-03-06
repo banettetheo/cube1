@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\CompteController;
-use App\Http\Controllers\RessourcesController;
-use App\Http\Controllers\RessourcesModelController;
+use App\Http\Controllers\RessourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +35,8 @@ Route::get('/compte/mon-profil',[CompteController::class, 'monProfil']);
 
 
 //Ressources
-Route::resource('ressources', RessourcesModelController::class)->except(['index']);
+Route::resource('ressources', RessourceController::class)->except(['index','store']);
+Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
 
 // Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
 // Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource'])->name('ressources.consulterUneRessource');
