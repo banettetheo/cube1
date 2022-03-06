@@ -22,6 +22,13 @@ class RessourceRepository
 
 
 
+    public function findById(int $id){
+        $laRessource = Ressources::findOrFail($id);
+        $ressource = $this->one($laRessource);
+        return $ressource;
+    }
+
+
     private function one($ressource)
     {
         return [
@@ -33,8 +40,8 @@ class RessourceRepository
             'type' => $ressource->Type->only('Nom'),
             'etat' => $ressource->Etat->only('Nom'),
             'lienRessource' => $ressource->Lien_ressources,
-            'commentaires' => Commentaire::all()
-                ->where('idRessources', $ressource->id)
+            'commentaires' => Commentaire::where('idRessources', $ressource->id)
+                ->get()
                 ->map(function ($commentaire) {
                     return [
                         //'dateCreation' => $Commentaire->id,

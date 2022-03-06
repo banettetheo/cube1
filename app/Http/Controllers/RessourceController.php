@@ -10,23 +10,17 @@ use App\Models\Type_ressource;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRessourceRequest;
+use App\Repositories\RessourceRepository;
 
 class RessourceController extends Controller 
 {
-  protected $ressource;
-  protected $categorie;
-  protected $etat;
-  protected $typeRessource;
-  protected $utilisateur;
+    private $ressourceRepository;
 
-  public function __construct(Ressources $ressource, Categorie $categorie, Etat $etat, Type_ressource $typeRessource, Utilisateur $utilisateur)
+  public function __construct(RessourceRepository $ressourceRepository)
   {
-      $this->ressource = $ressource;
-      $this->categorie = $categorie;
-      $this->etat = $etat;
-      $this->typeRessource = $typeRessource;
-      $this->utilisateur = $utilisateur;
+    $this->ressourceRepository = $ressourceRepository;
   }
+  
 
 
   // /**
@@ -82,38 +76,11 @@ class RessourceController extends Controller
    */
   public function show($id)
   {
-    // $laRessource = Ressources::findOrFail($id)
-    // ->get()
-    // ->map(function ($ressource){
-    //   return [
-    //     'id_ressource' => $ressource->id,
-    //     'auteur' => $ressource->Utilisateur->Nom
-    //   ];
-    // });
+    $ressource =[
+      'ressource' => $this->ressourceRepository->findById($id)
+    ];
 
-    $laRessource = Ressources::findOrFail($id);
-    $utilisateur = $laRessource->Utilisateur->only('Nom','Prenom');
-    $categorie = $laRessource->Categorie->only('Nom');
-    $etat = $laRessource->Etat->only('Nom');
-    $typeRessource = $laRessource->Type->only('Nom');
-    $lesCommentaires = Commentaire::where('idRessources', $id)
-    ->get()
-    ->map(function ($commentaire){
-      return [
-        //'dateCreation' => $Commentaire->id,
-        'utilisateur' => $commentaire->Utilisateur->only('Nom','Prenom'),
-        'contenu' => $commentaire->Contenue
-      ];
-    }); 
-
-    return view ('ressources/zoomRessource', [
-      'ressource' => $laRessource,
-      'utilisateur' => $utilisateur,
-      'categorie' => $categorie,
-      'etat' => $etat,
-      'typeRessource' => $typeRessource,
-      'commentaires' => $lesCommentaires
-    ]);
+    return view ('ressources/zoomRessource',$ressource);
   }
 
   /**
