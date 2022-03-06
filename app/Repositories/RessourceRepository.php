@@ -49,7 +49,8 @@ class RessourceRepository
                         'contenu' => $commentaire->Contenue
                     ];
                 }),
-            //'like' => $ressource->Like
+            'nbLike' => $ressource->Nombre_like,
+            'nbVue' => $ressource->Nombre_vue
         ];
     }
 }
