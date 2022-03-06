@@ -48,6 +48,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         ),
         const SizedBox(height: 8),
         TextField(
+          onChanged: widget.onChanged,
           style: const TextStyle(color: Colors.black),
           maxLines: widget.maxLines,
           decoration: InputDecoration(

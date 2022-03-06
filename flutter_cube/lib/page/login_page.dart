@@ -1,8 +1,25 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/widget/text_field_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String _username = "";
+  String _password = "";
+
+  void setPreferences(username, password) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('usernameCube', username);
+    prefs.setString('passwordCube', password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +44,10 @@ class LoginScreen extends StatelessWidget {
                   maxLines: 1,
                   label: "UserName",
                   text: "",
-                  onChanged: (name) {}),
+                  onChanged: (username) {
+                    _username = username;
+                    inspect(_username);
+                  }),
               SizedBox(
                 height: 26.0,
               ),
@@ -35,7 +55,9 @@ class LoginScreen extends StatelessWidget {
                   maxLines: 1,
                   label: "Mot de passe",
                   text: "",
-                  onChanged: (name) {}),
+                  onChanged: (password) {
+                    _password = password;
+                  }),
               SizedBox(
                 height: 26.0,
               ),
@@ -44,7 +66,9 @@ class LoginScreen extends StatelessWidget {
                   shape: StadiumBorder(),
                   onPrimary: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  setPreferences(_username, _password);
+                },
                 child: Text("Connexion"),
               ),
               SizedBox(
