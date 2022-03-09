@@ -72,12 +72,10 @@ class PostPage extends StatelessWidget {
               child: Column(
                 children: [
                   for (var post in myWall)
-                    feedBox(
-                        post["avatarUrl"].toString(),
-                        post["username"].toString(),
-                        post["date"].toString(),
-                        post["contentText"].toString(),
-                        post["contentImg"].toString())
+                    FeedBox(
+                        userName: post["username"].toString(),
+                        contentText: post["contentText"].toString(),
+                        contentImg: post["contentImg"].toString())
                 ],
               ))),
     );
