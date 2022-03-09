@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\CategorieController;
 use App\Http\Controllers\API\RessourceController;
+use App\Http\Controllers\API\TypeRessourceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource("ressources", RessourceController::class, [
     'as' => 'api'
 ]);
+
+Route::apiResource("categories", CategorieController::class, [
+    'as' => 'api'
+])->only(['index']);
+
+Route::apiResource("types-ressource", TypeRessourceController::class, [
+    'as' => 'api'
+])->only(['index']);

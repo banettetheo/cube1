@@ -26,7 +26,8 @@ class RessourceController extends Controller
      */
     public function index()
     {
-        //
+        $lesRessources = $this->ressourceRepository->all();
+        return response()->json($lesRessources);
     }
 
     /**
