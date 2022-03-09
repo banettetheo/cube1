@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Ressources;
+use App\Models\Categorie;
 use App\Http\Controllers\Controller;
+use App\Repositories\CategorieRepository;
 use Illuminate\Http\Request;
-use App\Repositories\RessourceRepository;
 
-
-class RessourceController extends Controller
+class CategorieController extends Controller
 {
 
-    private $ressourceRepository;
+    private $categorieRepository;
 
-    public function __construct(RessourceRepository $ressourceRepository)
+    public function __construct(CategorieRepository $categorieRepository)
     {
-      $this->ressourceRepository = $ressourceRepository;
+      $this->categorieRepository = $categorieRepository;
     }
   
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +25,8 @@ class RessourceController extends Controller
      */
     public function index()
     {
-        $lesRessources = $this->ressourceRepository->all();
-        return response()->json($lesRessources);
+     $lesCategories = $this->categorieRepository->all(); 
+     return response()->json($lesCategories);  
     }
 
     /**
@@ -44,25 +43,22 @@ class RessourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ressources  $ressource
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function show(Ressources $ressource)
+    public function show(Categorie $categorie)
     {
-        $laRessource =[
-            'ressource' => $this->ressourceRepository->one($ressource)
-          ];
-          return response()->json($laRessource);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ressources  $ressources
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ressources $ressources)
+    public function update(Request $request, Categorie $categorie)
     {
         //
     }
@@ -70,10 +66,10 @@ class RessourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ressources  $ressources
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ressources $ressources)
+    public function destroy(Categorie $categorie)
     {
         //
     }

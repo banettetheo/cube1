@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Ressources;
+use App\Models\Type_ressource;
 use App\Http\Controllers\Controller;
+use App\Repositories\TypeRessourceRepository;
 use Illuminate\Http\Request;
-use App\Repositories\RessourceRepository;
 
-
-class RessourceController extends Controller
+class TypeRessourceController extends Controller
 {
 
-    private $ressourceRepository;
-
-    public function __construct(RessourceRepository $ressourceRepository)
-    {
-      $this->ressourceRepository = $ressourceRepository;
+    private $typeRessource;
+    
+    public function __construct(TypeRessourceRepository $typeRessource){
+        $this->typeRessource=$typeRessource;
     }
-  
     
     /**
      * Display a listing of the resource.
@@ -26,8 +23,8 @@ class RessourceController extends Controller
      */
     public function index()
     {
-        $lesRessources = $this->ressourceRepository->all();
-        return response()->json($lesRessources);
+        $lesTypesRessource = $this->typeRessource->all();
+        return response()->json($lesTypesRessource);
     }
 
     /**
@@ -44,25 +41,22 @@ class RessourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ressources  $ressource
+     * @param  \App\Models\Type_ressource  $type_ressource
      * @return \Illuminate\Http\Response
      */
-    public function show(Ressources $ressource)
+    public function show(Type_ressource $type_ressource)
     {
-        $laRessource =[
-            'ressource' => $this->ressourceRepository->one($ressource)
-          ];
-          return response()->json($laRessource);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ressources  $ressources
+     * @param  \App\Models\Type_ressource  $type_ressource
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ressources $ressources)
+    public function update(Request $request, Type_ressource $type_ressource)
     {
         //
     }
@@ -70,10 +64,10 @@ class RessourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ressources  $ressources
+     * @param  \App\Models\Type_ressource  $type_ressource
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ressources $ressources)
+    public function destroy(Type_ressource $type_ressource)
     {
         //
     }
