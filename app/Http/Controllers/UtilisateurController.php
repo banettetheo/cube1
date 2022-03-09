@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UtilisateurRepository;
 use Illuminate\Http\Request;
 
-class RelationModelController extends Controller 
+class UtilisateurController extends Controller 
 {
+
+  private $utilisateurRepository;
+
+  public function __construct(UtilisateurRepository $utilisateurRepository)
+  {
+    $this->utilisateurRepository = $utilisateurRepository;
+  }
+  
 
   /**
    * Display a listing of the resource.
@@ -45,7 +54,10 @@ class RelationModelController extends Controller
    */
   public function show($id)
   {
-    
+    $ressource =[
+      'utilisateur' => $this->utilisateurRepository->findById($id)
+    ];
+    return view('user/compteUser',$ressource);
   }
 
   /**
@@ -82,5 +94,3 @@ class RelationModelController extends Controller
   }
   
 }
-
-?>

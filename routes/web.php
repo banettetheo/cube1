@@ -5,7 +5,9 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
+use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
+use App\Http\Controllers\UtilisateurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,10 @@ Route::resource('ressources', RessourceController::class)->except(['index','stor
 Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
 
 
+//Relation
+Route::resource('relations', RelationController::class);
+
+route::resource('utilisateur', UtilisateurController::class)->only(['show']);
 
 // Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
 // Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource'])->name('ressources.consulterUneRessource');
