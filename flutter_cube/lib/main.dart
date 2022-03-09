@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   var _userJson = [];
-  var _feed;
+  var _feed = [];
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -40,7 +40,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final url = "https://jsonplaceholder.typicode.com/posts";
-  final url2 = "http://10.0.2.2:8000/api/ressources/1";
+  final url2 = "http://10.0.2.2:8000/api/ressources";
 
   void fetchUser() async {
     try {
@@ -63,8 +63,8 @@ class _HomePageState extends State<HomePage> {
       final jsonData = jsonDecode(response.body);
 
       setState(() {
-        widget._feed = jsonData["ressource"];
-        inspect(widget._feed["titre"]);
+        widget._feed = jsonData;
+        inspect(widget._feed);
       });
     } catch (e) {
       inspect(e);
@@ -110,13 +110,10 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FeedBox(
-                    userName: widget._feed["utilisateur"]["Nom"].toString(),
-                    contentText: widget._feed["contenu"],
-                    contentImg: widget._feed["lienRessource"])
-                /*for (var post in widget._feed)
-                  feedBox(post["ressource"]["utilisateur"]["nom"].toString(),
-                      post["description"].toString(), post["image"].toString())*/
+                for (var post in widget._feed)
+                  FeedBox(
+                    ressource: post,
+                  )
               ],
             ),
           ),

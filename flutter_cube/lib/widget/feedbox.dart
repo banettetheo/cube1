@@ -1,18 +1,12 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'actionbtn.dart';
 
 class FeedBox extends StatelessWidget {
-  final String userName;
-  final String contentText;
-  final String contentImg;
-  const FeedBox({
-    Key? key,
-    required this.userName,
-    required this.contentImg,
-    required this.contentText,
-  }) : super(key: key);
+  final ressource;
+  const FeedBox({Key? key, required this.ressource}) : super(key: key);
 
   Widget build(BuildContext context) {
     const mainBlue = const Color(0xff03989e);
@@ -34,7 +28,7 @@ class FeedBox extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(userName,
+                      Text(ressource["utilisateur"]["Nom"],
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,
@@ -50,15 +44,16 @@ class FeedBox extends StatelessWidget {
               const SizedBox(
                 height: 10.0,
               ),
-              if (contentText != "")
+              if (ressource["contenu"] != "")
                 Text(
-                  contentText,
+                  ressource["contenu"],
                   style: const TextStyle(color: Colors.white, fontSize: 16.0),
                 ),
               const SizedBox(
                 height: 10.0,
               ),
-              if (contentImg != "") Image.network(contentImg),
+              if (ressource["lienRessource"] != "")
+                Image.network(ressource["lienRessource"]),
               const SizedBox(
                 height: 10.0,
               ),

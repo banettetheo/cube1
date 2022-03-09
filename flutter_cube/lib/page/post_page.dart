@@ -70,13 +70,7 @@ class PostPage extends StatelessWidget {
           child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                children: [
-                  for (var post in myWall)
-                    FeedBox(
-                        userName: post["username"].toString(),
-                        contentText: post["contentText"].toString(),
-                        contentImg: post["contentImg"].toString())
-                ],
+                children: [for (var post in myWall) FeedBox(ressource: post)],
               ))),
     );
   }
