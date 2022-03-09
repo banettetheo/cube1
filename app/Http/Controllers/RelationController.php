@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Type_relationModelController extends Controller 
+class RelationController extends Controller 
 {
 
   /**
@@ -14,7 +14,7 @@ class Type_relationModelController extends Controller
    */
   public function index()
   {
-    
+    return view('user/mesRelations');
   }
 
   /**
