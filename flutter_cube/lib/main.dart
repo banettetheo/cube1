@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   var _userJson = [];
+  var _feed;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -39,28 +40,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final url = "https://jsonplaceholder.typicode.com/posts";
+  final url2 = "http://10.0.2.2:8000/api/ressources/1";
 
   void fetchUser() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      //prefs.setString('usernameCube', 'theo');
-      //prefs.setString('passwordCube', 'banette');
-
-      if (widget._userJson.isNotEmpty) {
-        inspect("jij");
-      }
 
       final response = await get(Uri.parse(url));
       final jsonData = jsonDecode(response.body);
 
       setState(() {
-        var username = prefs.getString("usernameCube");
-        var password = prefs.getString("passwordCube");
         widget._userJson = jsonData;
-        if (widget._userJson.isNotEmpty) {
-          inspect(username);
-          inspect(password);
-        }
+      });
+    } catch (e) {
+      inspect(e);
+    }
+  }
+
+  void fetchFeed() async {
+    try {
+      final response = await get(Uri.parse(url2));
+      final jsonData = jsonDecode(response.body);
+
+      setState(() {
+        widget._feed = jsonData["ressource"];
+        inspect(widget._feed["titre"]);
       });
     } catch (e) {
       inspect(e);
@@ -71,51 +75,13 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     fetchUser();
+    fetchFeed();
   }
 
   Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
   Color mainBlue = const Color(0xff03989e);
   Color cubeBlue = const Color(0xFF2D88FF);
   Color mainGrey = const Color(0xFF505050);
-
-  var feed = [
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-    {
-      "avatarUrl":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg",
-      "username": "Théo",
-      "date": "maintenant",
-      "description": "du jij",
-      "image":
-          "http://trucsetastucesjeux.com/wp-content/uploads/2022/01/Genshin-Impact-25-Leaks-Yae-Miko-Weapon-Competences-Date-de.jpg"
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -144,13 +110,13 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                for (var post in feed)
-                  feedBox(
-                      post["avatarUrl"].toString(),
-                      post["username"].toString(),
-                      post["date"].toString(),
-                      post["description"].toString(),
-                      post["image"].toString())
+                FeedBox(
+                    userName: widget._feed["utilisateur"]["Nom"].toString(),
+                    contentText: widget._feed["contenu"],
+                    contentImg: widget._feed["lienRessource"])
+                /*for (var post in widget._feed)
+                  feedBox(post["ressource"]["utilisateur"]["nom"].toString(),
+                      post["description"].toString(), post["image"].toString())*/
               ],
             ),
           ),
