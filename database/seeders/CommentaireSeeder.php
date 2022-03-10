@@ -15,10 +15,6 @@ class CommentaireSeeder extends Seeder
     public function run()
     {
         //
-        Commentaire::create([
-            'Contenue' => 'Je suis le commentaire de test',
-            'IdRessources' => 1,
-            'IdUser' => 1,
-        ]);
+        Commentaire::factory(200)->create();
     }
 }

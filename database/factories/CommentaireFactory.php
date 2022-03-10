@@ -14,7 +14,9 @@ class CommentaireFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'Contenue' => $this->faker->realText(200),
+            'IdRessources' => $this->faker->numberBetween(1,200),
+            'IdUser' => $this->faker->numberBetween(1,50),
         ];
     }
 }
