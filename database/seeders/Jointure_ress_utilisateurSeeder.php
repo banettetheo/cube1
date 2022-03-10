@@ -13,10 +13,7 @@ class Jointure_ress_utilisateurSeeder extends Seeder
      * @return void
      */
     public function run()
-    {       
-        Jointure_ress_utilisateur::create([
-            'IdUtilisateur' => 1,
-            'IdRessource' => 1,
-        ]);
+    {
+        Jointure_ress_utilisateur::factory(200)->create();
     }
 }
