@@ -22,6 +22,8 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   final urlPosts = "http://10.0.2.2:8000/api/ressources";
+  Color mainBlue = const Color(0xff03989e);
+  Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
 
   void fetchPosts() async {
     try {
@@ -46,10 +48,11 @@ class _PostPageState extends State<PostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgBlue,
       appBar: AppBar(
         title: const Text('Mes publications'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: mainBlue,
         actions: [
           IconButton(
               onPressed: () {

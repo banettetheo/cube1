@@ -14,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String _username = "";
   String _password = "";
+  Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
+  Color mainBlue = const Color(0xff03989e);
 
   void setPreferences(username, password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -24,18 +26,19 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: const Color(0xff03989e),
-        ),
+        backgroundColor: bgBlue,
+        appBar: AppBar(elevation: 0, backgroundColor: bgBlue),
         body: Container(
-          color: const Color(0xff03989e),
+          color: bgBlue,
           padding: const EdgeInsets.symmetric(horizontal: 35.0),
           child: Column(
             children: [
               const Text(
                 "Ecran de connexion",
-                style: TextStyle(fontSize: 26, fontStyle: FontStyle.normal),
+                style: TextStyle(
+                    fontSize: 26,
+                    fontStyle: FontStyle.normal,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: 46.0,
@@ -63,9 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shape: StadiumBorder(),
-                  onPrimary: Colors.white,
-                ),
+                    shape: StadiumBorder(),
+                    onPrimary: Colors.white,
+                    primary: mainBlue),
                 onPressed: () {
                   setPreferences(_username, _password);
                 },
@@ -83,16 +86,19 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const Text(
                 "Vous n'avez pas de compte? Créez-en un!",
-                style: TextStyle(fontSize: 12, fontStyle: FontStyle.normal),
+                style: TextStyle(
+                    fontSize: 12,
+                    fontStyle: FontStyle.normal,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: 16.0,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shape: const StadiumBorder(),
-                  onPrimary: Colors.white,
-                ),
+                    shape: const StadiumBorder(),
+                    onPrimary: Colors.white,
+                    primary: mainBlue),
                 onPressed: () {},
                 child: const Text("S'enregistrer"),
               ),

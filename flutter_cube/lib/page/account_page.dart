@@ -13,10 +13,12 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
     return Scaffold(
+      backgroundColor: bgBlue,
       appBar: AppBar(
         leading: BackButton(
-          color: Colors.black,
+          color: Colors.white,
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,

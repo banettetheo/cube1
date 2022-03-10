@@ -24,6 +24,8 @@ class NewResourcePage extends StatefulWidget {
 class _NewResourcePageState extends State<NewResourcePage> {
   final urlCat = "http://10.0.2.2:8000/api/categories";
   final urlTypes = "http://10.0.2.2:8000/api/types-ressource";
+  Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
+  Color mainBlue = const Color(0xff03989e);
 
   void fetchCategories() async {
     try {
@@ -62,10 +64,11 @@ class _NewResourcePageState extends State<NewResourcePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: bgBlue,
         appBar: AppBar(
           title: const Text('Nouvelle publication'),
           centerTitle: true,
-          backgroundColor: Colors.green,
+          backgroundColor: mainBlue,
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -90,9 +93,9 @@ class _NewResourcePageState extends State<NewResourcePage> {
             const SizedBox(height: 24),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(),
-                onPrimary: Colors.white,
-              ),
+                  shape: StadiumBorder(),
+                  onPrimary: Colors.white,
+                  primary: mainBlue),
               onPressed: () {},
               child: Text("Sauvegarder la ressource"),
             ),
