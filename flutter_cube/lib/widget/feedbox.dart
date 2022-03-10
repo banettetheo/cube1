@@ -1,7 +1,7 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/widget/comment_widget.dart';
 import 'actionbtn.dart';
 
 class FeedBox extends StatelessWidget {
@@ -9,7 +9,8 @@ class FeedBox extends StatelessWidget {
   const FeedBox({Key? key, required this.ressource}) : super(key: key);
 
   Widget build(BuildContext context) {
-    const mainBlue = const Color(0xff03989e);
+    Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
+    Color mainBlue = const Color(0xff03989e);
     return Container(
         margin: EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
@@ -72,34 +73,23 @@ class FeedBox extends StatelessWidget {
                       () => showGeneralDialog(
                           context: context,
                           pageBuilder: (bc, ania, anis) {
-                            return SizedBox.expand(
-                              child: Container(
-                                color: mainBlue,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      FlutterLogo(
-                                        size: 200,
-                                      ),
-                                      /*for (var comment in items) {
-                                        
-                                      }*/
-                                      Text(
-                                        "This is a Full Screen Dialog",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            decoration: TextDecoration.none),
-                                      ),
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text("Close"))
-                                    ],
-                                  ),
+                            return Container(
+                              color: bgBlue,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    for (var comment
+                                        in ressource["commentaires"])
+                                      CommentWidget(comment: comment),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text("Close"))
+                                  ],
                                 ),
                               ),
                             );
