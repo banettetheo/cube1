@@ -18,7 +18,7 @@ class EtatSeeder extends Seeder
     {
         //
 
-        $nomsEtats = ['Privée','Partager',"En cours de validation","Publique","Loisirs","Refuser"];
+        $nomsEtats = ['Privée','Partager',"En cours de validation","Publique","Refuser"];
         $etats = array();
 
         foreach ($nomsEtats as $unEtat){
