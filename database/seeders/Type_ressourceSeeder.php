@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Type_ressource;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class Type_ressourceSeeder extends Seeder
 {
@@ -16,36 +17,19 @@ class Type_ressourceSeeder extends Seeder
     {
         //
 
-        Type_ressource::create([
-            'Nom' => 'Activité / Jeu a réaliser',
-        ]);
+        $nomsTypesRessource = ['Activité / Jeu a réaliser','Article',"Carte defi","Cours au format PDF","Exercice","Fiche de lecture","Jeu en ligne","Qualité de vie","Video"];
+        $typesRessource = array();
 
-        Type_ressource::create([
-            'Nom' => 'Article',
-        ]);
+        foreach ($nomsTypesRessource as $unTypeRessource){
+            $element = [
+                'Nom'=>$unTypeRessource,
+                'created_at' => now()
+            ];
+            array_push($typesRessource,$element);
+        }
 
-        Type_ressource::create([
-            'Nom' => 'Carte defi',
-        ]);
 
-        Type_ressource::create([
-            'Nom' => 'Cours au format PDF',
-        ]);
+    DB::table('type_ressource')->insert($typesRessource);
 
-        Type_ressource::create([
-            'Nom' => 'Exercice',
-        ]);
-
-        Type_ressource::create([
-            'Nom' => 'Fiche de lecture',
-        ]);
-
-        Type_ressource::create([
-            'Nom' => 'Jeu en ligne',
-        ]);
-
-        Type_ressource::create([
-            'Nom' => 'Video',
-        ]);
     }
 }
