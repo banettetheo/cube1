@@ -12,6 +12,8 @@ class Ressources extends Model
     protected $fillable = [
         'Titre',
         'Contenue',
+        'created_at',
+        'updated_at',
         'IdCategorie',
         'IdUtilisateur_createur',
         'IdType',
