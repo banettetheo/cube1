@@ -4,6 +4,8 @@ namespace Database\Seeders;
 use App\Models\Type_Relation;
 use Database\Seeders\Type_Relation as SeedersType_Relation;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class Type_RelationSeeder extends Seeder
 {
@@ -15,25 +17,20 @@ class Type_RelationSeeder extends Seeder
     public function run()
     {
         //
-        Type_Relation::create([
-            'Nom' => 'Etranger',
-        ]);
 
-        Type_Relation::create([
-            'Nom' => 'Amis',
-        ]);
+        $nomsRelations = ["Conjoints","Famille","Professionelle","Amis et communautés","Inconnus"];
+        $relations = array();
 
-        Type_Relation::create([
-            'Nom' => 'Professionelle',
-        ]);
+        foreach ($nomsRelations as $uneRelation){
+            $element = [
+                'Nom'=>$uneRelation,
+                'created_at' => now()
+            ];
+            array_push($relations,$element);
+        }
 
-        Type_Relation::create([
-            'Nom' => 'Famille',
-        ]);
 
-        Type_Relation::create([
-            'Nom' => 'Conjoint',
-        ]);
+    DB::table('type_relation')->insert($relations);
 
     }
 }

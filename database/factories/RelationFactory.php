@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CommentaireFactory extends Factory
+class RelationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,9 +14,9 @@ class CommentaireFactory extends Factory
     public function definition()
     {
         return [
-            'Contenue' => $this->faker->realText(200),
-            'IdRessources' => $this->faker->numberBetween(1,200),
-            'IdUser' => $this->faker->numberBetween(1,50),
+            'IdUser1' => $this->faker->numberBetween(1,50),
+            'IdUser2' => $this->faker->numberBetween(1,50),
+            'IdTypeRelation' => $this->faker->numberBetween(1,5),
         ];
     }
 }

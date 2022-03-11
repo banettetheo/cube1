@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Etat;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class EtatSeeder extends Seeder
 {
@@ -16,24 +18,18 @@ class EtatSeeder extends Seeder
     {
         //
 
-        Etat::create([
-            'Nom' => 'Privée',
-        ]);
+        $nomsEtats = ['Privée','Partager',"En cours de validation","Publique","Refuser"];
+        $etats = array();
 
-        Etat::create([
-            'Nom' => 'Partager',
-        ]);
+        foreach ($nomsEtats as $unEtat){
+            $element = [
+                'Nom'=>$unEtat,
+                'created_at' => now()
+            ];
+            array_push($etats,$element);
+        }
 
-        Etat::create([
-            'Nom' => 'En cours de validation',
-        ]);
-        
-        Etat::create([
-            'Nom' => 'Publique',
-        ]);
 
-        Etat::create([
-            'Nom' => 'Refuser',
-        ]);
+    DB::table('etat')->insert($etats);
     }
 }

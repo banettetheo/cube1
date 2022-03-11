@@ -14,11 +14,7 @@ class RelationSeeder extends Seeder
      */
     public function run()
     {
-        //
-        Relation::create([
-            'IdUser1' => 1,
-            'IdUser2' => 2,
-            'IdTypeRelation' => 5,
-        ]);
+        Relation::factory(50)->create();
+
     }
 }
