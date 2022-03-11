@@ -8,7 +8,6 @@ use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
 use App\Http\Controllers\UtilisateurController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,12 +19,20 @@ use App\Http\Controllers\UtilisateurController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-    
+ Route::get('/', function () {
+     return view('welcome');
+ });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+
 //Accueil
-Route::get('/',[AccueilController::class, 'index']);
+//Route::get('/',[AccueilController::class, 'index']);
     
 //Authentification
 Route::get('/inscription',[AuthentificationController::class, 'inscription']);
@@ -46,26 +53,3 @@ Route::post('/', [RessourceController::class, 'store'])->name('ressources.store'
 Route::resource('relations', RelationController::class);
 
 route::resource('utilisateur', UtilisateurController::class)->only(['show']);
-
-// Route::get('/ressources',[RessourcesController::class, 'consulterLesRessources']);
-// Route::get('/ressources/{id}',[RessourcesController::class, 'consulterUneRessource'])->name('ressources.consulterUneRessource');
-// Route::get('/ressources/creer',[RessourcesController::class, 'creer']);
-// Route::get('/ressources/modifier/{id}',[RessourcesController::class, 'modifier']);
-// Route::get('/ressources/supprimer/{id}',[RessourcesController::class, 'supprimer']);
-    
-
-//Compte
-// Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
-// Route::get('/gestion/utilisateurs/citoyens',[CompteController::class, 'consulterLesCitoyens']);
-// Route::get('/gestion/utilisateurs/citoyens/{id}/desactiver',[CompteController::class, 'desactiverCitoyen']);
-// Route::get('/gestion/utilisateurs/citoyens/{id}/reactiver',[CompteController::class, 'reactiverCitoyen']);
-// Route::get('/gestion/utilisateurs',[CompteController::class, 'consulterLesUtilisateurs']);
-
-
-// Route::resource('utilisateurmodel', 'UtilisateurModelController');
-// Route::resource('favorismodel', 'FavorisModelController');
-// Route::resource('relationmodel', 'RelationModelController');
-// Route::resource('type_relationmodel', 'Type_relationModelController');
-// Route::resource('commentairemodel', 'CommentaireModelController');
-// Route::resource('categoriemodel', 'CategorieModelController');
-// Route::resource('jru', 'JRUController');
