@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontStyle: FontStyle.normal,
                     color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 46.0,
               ),
               TextFieldWidget(
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     _username = username;
                     inspect(_username);
                   }),
-              SizedBox(
+              const SizedBox(
                 height: 26.0,
               ),
               TextFieldWidget(
@@ -61,27 +61,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   onChanged: (password) {
                     _password = password;
                   }),
-              SizedBox(
+              const SizedBox(
                 height: 26.0,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
+                    shape: const StadiumBorder(),
                     onPrimary: Colors.white,
                     primary: mainBlue),
                 onPressed: () {
                   setPreferences(_username, _password);
                 },
-                child: Text("Connexion"),
+                child: const Text("Connexion"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 46.0,
               ),
-              Divider(
+              const Divider(
                 thickness: 1.5,
                 color: Colors.grey,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 46.0,
               ),
               const Text(
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontStyle: FontStyle.normal,
                     color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16.0,
               ),
               ElevatedButton(

@@ -93,11 +93,11 @@ class _NewResourcePageState extends State<NewResourcePage> {
             const SizedBox(height: 24),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  shape: StadiumBorder(),
+                  shape: const StadiumBorder(),
                   onPrimary: Colors.white,
                   primary: mainBlue),
               onPressed: () {},
-              child: Text("Sauvegarder la ressource"),
+              child: const Text("Sauvegarder la ressource"),
             ),
           ],
         ),

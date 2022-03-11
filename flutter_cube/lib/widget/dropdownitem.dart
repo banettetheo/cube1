@@ -14,7 +14,6 @@ class DropdownItemWidget extends StatefulWidget {
 
 class _DropdownItemState extends State<DropdownItemWidget> {
   var _selectedValue;
-  var _categories = <DropdownMenuItem>[];
 
   @override
   void initState() {

@@ -13,7 +13,7 @@ Widget actionButton(IconData icon, String actionTitle, Color iconColor,
           ),
           label: Text(
             actionTitle,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           )));

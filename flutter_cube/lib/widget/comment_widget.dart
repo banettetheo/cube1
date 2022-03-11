@@ -14,7 +14,7 @@ class CommentWidget extends StatefulWidget {
 class _CommentWidgetState extends State<CommentWidget> {
   @override
   Widget build(BuildContext context) {
-    const mainBlue = const Color(0xff03989e);
+    const mainBlue = Color(0xff03989e);
     return Material(
         borderRadius: BorderRadius.circular(12.0),
         child: Container(
@@ -37,13 +37,14 @@ class _CommentWidgetState extends State<CommentWidget> {
                   ),
                   Text(
                     widget.comment["utilisateur"]["Prenom"],
-                    style: TextStyle(color: Colors.black, fontSize: 15),
+                    style: const TextStyle(color: Colors.black, fontSize: 15),
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   Text(widget.comment["utilisateur"]["Nom"],
-                      style: TextStyle(color: Colors.black, fontSize: 15)),
+                      style:
+                          const TextStyle(color: Colors.black, fontSize: 15)),
                   const SizedBox(
                     width: 20,
                   ),
@@ -53,7 +54,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                 height: 20,
               ),
               Text(widget.comment["contenu"],
-                  style: TextStyle(color: Colors.black, fontSize: 15)),
+                  style: const TextStyle(color: Colors.black, fontSize: 15)),
               const SizedBox(
                 height: 20,
               ),

@@ -8,18 +8,19 @@ class FeedBox extends StatelessWidget {
   final ressource;
   const FeedBox({Key? key, required this.ressource}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
     Color mainBlue = const Color(0xff03989e);
     return Container(
-        margin: EdgeInsets.only(bottom: 20.0),
+        margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           color: mainBlue,
         ),
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Row(
@@ -88,7 +89,7 @@ class FeedBox extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text("Close"))
+                                        child: const Text("Close"))
                                   ],
                                 ),
                               ),

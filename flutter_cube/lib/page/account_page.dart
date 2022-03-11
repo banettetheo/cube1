@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/model/user.dart';
-import 'package:flutter_cube/page/edit_account_page.dart';
-import 'package:flutter_cube/widget/profile_widget.dart';
 
 class AccountPage extends StatelessWidget {
   final User user;
@@ -17,7 +15,7 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgBlue,
       appBar: AppBar(
-        leading: BackButton(
+        leading: const BackButton(
           color: Colors.white,
         ),
         elevation: 0,
@@ -47,12 +45,12 @@ class AccountPage extends StatelessWidget {
         children: [
           Text(
             user.nom,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
           ),
           const SizedBox(height: 4),
           Text(
             user.email,
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           )
         ],
       );

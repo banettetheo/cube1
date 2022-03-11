@@ -1,16 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/widget/notificationbox.dart';
 
 class NotificationPage extends StatelessWidget {
-  var _notifs = [
-    {"content": "test 1", "date": "il y'a 10 min"},
-    {"content": "test 2", "date": ""},
-    {"content": "test 3", "date": ""},
-    {"content": "test 4", "date": ""},
-    {"content": "test 5", "date": ""},
-  ];
+  var _notifs = [];
 
   @override
   Widget build(BuildContext context) {

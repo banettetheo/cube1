@@ -60,7 +60,7 @@ class _PostPageState extends State<PostPage> {
                   builder: (context) => NewResourcePage(user: widget.user),
                 ));
               },
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
       ),
       body: SingleChildScrollView(
