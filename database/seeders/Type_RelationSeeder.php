@@ -18,7 +18,7 @@ class Type_RelationSeeder extends Seeder
     {
         //
 
-        $nomsRelations = ["Soi","Conjoints","Famille","Professionelle","Amis et communautés","Inconnus"];
+        $nomsRelations = ["Conjoints","Famille","Professionelle","Amis et communautés","Inconnus"];
         $relations = array();
 
         foreach ($nomsRelations as $uneRelation){
