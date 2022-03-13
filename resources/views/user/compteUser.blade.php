@@ -34,12 +34,12 @@
             </div>
         </div>
         <div class="col-right flex column">
+        @auth
             <h1>Vos information :</h1>
-            <p id="nom">nom</p>
-            <p id="prenom">prenom</p>
+            <p id="nom">{{ Auth::user()->name}}</p>
+            <p id="prenom">{{ Auth::user()->Prenom}}</p>
             <!------------------------------------------------------------->
             <!-- s'affiche que si l'id dans l'url et celui du user connecter sont les mêmes -->
-            @auth
             <p id="adresse-mail">{{ Auth::user()->email}}</p>
                             <a id="changeMDP" class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ url('changer-mot-de-passe') }}">
                     {{ __('Changer de mot de passe') }}
