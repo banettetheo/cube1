@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CompteController extends Controller
 {
 
-    public function monProfil(){
+    public function monCompte(){
         return view('user/compteUser');
     }
 

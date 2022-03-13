@@ -1,20 +1,26 @@
-@extends('layouts.app')
-
-@section('content')
+<x-guest-layout>
 
     <section id="connexion-user" class="">
 
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+
         <h1>Connexion</h1>
 
-        <form id="connexion-form">
+        <form id="connexion-form" method="POST" action="{{ route('login') }}">
+            @csrf
+            <x-input id="email" name="email" type="email" class="input-connexion" placeholder="email" :value="old('email')" required autofocus />
 
-            <input type="text" class="input-connexion" placeholder="email"></input>
-            <input type="text" class="input-connexion" placeholder="mot de passe"></input>
+            <x-input id="password" type="password" name="password" class="input-connexion" placeholder="mot de passe" required autocomplete="current-password" />
 
-            <button class="btn-validation">connexion</button>
+            <x-button class="btn-validation">{{ __('Connexion') }}</x-button>
 
         </form>
 
     </section>
-    
-@endsection
+
+</x-guest-layout>

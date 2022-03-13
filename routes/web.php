@@ -19,29 +19,27 @@ use App\Http\Controllers\UtilisateurController;
 |
 */
 
- Route::get('/', function () {
-     return view('welcome');
- });
+//  Route::get('/', function () {
+//      return view('welcome');
+//  });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
 
 require __DIR__.'/auth.php';
 
 
 
 //Accueil
-//Route::get('/',[AccueilController::class, 'index']);
+Route::get('/',[AccueilController::class, 'index']);
     
-//Authentification
-Route::get('/inscription',[AuthentificationController::class, 'inscription']);
-Route::get('/connexion',[AuthentificationController::class, 'connexion']);
-Route::get('/deconnexion',[AuthentificationController::class, 'deconnexion']);
+// //Authentification
+// Route::get('/inscription',[AuthentificationController::class, 'inscription']);
+// Route::get('/connexion',[AuthentificationController::class, 'connexion']);
+// Route::get('/deconnexion',[AuthentificationController::class, 'deconnexion']);
 
 
 //Comptes
-Route::get('/compte/mon-profil',[CompteController::class, 'monProfil']);
+//Route::get('/mon-compte',[CompteController::class, 'monProfil']);
 
 
 //Ressources

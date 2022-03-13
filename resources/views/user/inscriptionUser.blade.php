@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-guest-layout>
 
     <section id="inscription-user" class="">
 
@@ -19,4 +17,4 @@
         </form>
 
     </section>
-@endsection
+</x-guest-layout>
