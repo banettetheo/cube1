@@ -4,7 +4,7 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        <h1>Changer son mot de passe</h1>
         <form method="POST" action="{{ route('mdp.changer') }}" id="inscription-form">
             @csrf
             @auth
