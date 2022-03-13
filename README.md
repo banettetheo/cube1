@@ -29,32 +29,39 @@ php artisan migrate:fresh --seed
 ```
 
 ## Naviguer sur le site
-Accueil 
+
+Compte administrateur :
 ```
-Front office    <base URL>
+Email           paul@administrateur.com
+Mot de passe    123456789
 ```
 
-
-Authentification
+Front office
 ```
+Accueil         <base URL>
 Connexion       <base URL>/connexion
 Inscription     <base URL>/inscription
-Deconnexion     <base URL>/deconnexion
 ```
 
-Page utilisateur
+
+Utilisateur connecté ====================
 ```
-Mon compte      <base URL>/compte/mon-profil
+Mon compte      <base URL>/mon-compte
+Changer de mdp  <base URL>/changer-mot-de-passe
 ```
 
 Les ressources
 ```
 Consulter       <base URL>/ressources/{id}
 Créer           <base URL>/ressources/creer
-Modifier        <base URL>/ressources/modifier/{id}
-Supprimer       <base URL>/ressources/supprimer/{id}
+Modifier        <base URL>/ressources/{id}/modifier
+Supprimer       <base URL>/ressources/{id}/supprimer
 ```
 
+Modérateur 
+```
+Ressources à valider   <base URL>/moderateur/ressources-a-valider
+```
 
 ## API
 
