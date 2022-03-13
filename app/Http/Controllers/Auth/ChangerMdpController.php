@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Rules\MatchAncienMdp;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Hash;
 
 class ChangerMdpController extends Controller
@@ -38,8 +39,7 @@ class ChangerMdpController extends Controller
       ]);
 
       User::find(auth()->user()->id)->update(['password' => Hash::make($request->mdp)]);
-
-      dd('Password change successfully.');
+      return redirect()->intended(RouteServiceProvider::HOME);
     }
   }
 }

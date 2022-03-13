@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use App\Models\Ressources;
 use App\Models\Type_ressource;
-use App\Models\Utilisateur;
+use App\Models\User;
 use App\Repositories\RessourceRepository;
 use Illuminate\Http\Request;
 
@@ -40,11 +40,11 @@ class AccueilController extends Controller
                 'nom' => $typeRessource->Nom
             ];
         });
-        $lesUtilisateurs = Utilisateur::all()
+        $lesUtilisateurs = User::all()
         ->map(function ($utilisateur) {
             return [
                 'id' => $utilisateur->id,
-                'nom' => $utilisateur->Nom,
+                'nom' => $utilisateur->name,
                 'prenom' => $utilisateur->Prenom
             ];
         });
