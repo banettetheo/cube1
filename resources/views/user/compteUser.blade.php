@@ -5,9 +5,16 @@
     on affiche la liste et les informations de l'id dans l'url et le bouton changer de mot de passe et l'adresse mail ne s'affiche pas.
     à la place on a un ajouter en tant que -->
         <div class="col-left">
-            <button class="button-menu">créer une ressource</button>
+        <a href="{{ route('ressources.create') }}" class="button-menu">Créer une ressource</a>
+
             <!-- accède à la page mesRelation.blade.php -->
-            <button class="button-menu">voir mes relation</button>
+            <a href="{{ route('relations.index') }}" class="button-menu">Voir mes relations</a>
+
+            @auth
+            @if ( Auth::user()->Moderateur)
+            <a href="{{ route('ressources-a-valider.index') }}" class="button-menu">Valider des ressources</a>
+            @endif
+            @endauth
         </div>
         <div class="col-center">
             <h2>Liste de vos actualités et celles qui sont partagé avec vous</h2>

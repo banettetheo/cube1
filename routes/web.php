@@ -7,6 +7,7 @@ use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
+use App\Http\Controllers\Moderateur\RessourceValidationController;
 use App\Http\Controllers\UtilisateurController;
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('ressources', RessourceController::class)->except(['index','store']);
     Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
 
+    //Modération
+    Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
+    
+    //Relations
+    Route::resource('relations', RelationController::class);
+
 });
 
 Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
@@ -48,8 +55,5 @@ require __DIR__.'/auth.php';
 
 
 
-
-//Relation
-Route::resource('relations', RelationController::class);
 
 route::resource('utilisateur', UtilisateurController::class)->only(['show']);

@@ -6,8 +6,7 @@
             @if (Route::has('login'))
                 @auth
                     <a href="{{ route('monCompte') }}" class="button-menu">Mon compte</a>
-                    <a href="{{ url('/dashboard') }}" class="button-menu">Créer une ressource</a>
-
+                    <a href="{{ route('ressources.create') }}" class="button-menu">Créer une ressource</a>
 
                     @else
                         <a href="{{ route('login') }}" class="button-menu">Connexion</a>
