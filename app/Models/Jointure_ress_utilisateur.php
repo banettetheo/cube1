@@ -19,7 +19,7 @@ class Jointure_ress_utilisateur extends Model
     ];
 
     public function Utilisateur() {
-       return $this->hasMany('App\Models\Utilisateur', 'IdUtilisateur');
+       return $this->hasMany('App\Models\User', 'IdUtilisateur');
      }
      
      public function Ressources() {

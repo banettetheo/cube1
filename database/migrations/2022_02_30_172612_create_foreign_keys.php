@@ -9,7 +9,7 @@ class CreateForeignKeys extends Migration {
 	public function up()
 	{
 		Schema::table('Favoris', function(Blueprint $table) {
-			$table->foreign('Utilisateur_id')->references('id')->on('Utilisateurs')
+			$table->foreign('Utilisateur_id')->references('id')->on('Users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
@@ -24,12 +24,12 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('Relation', function(Blueprint $table) {
-			$table->foreign('IdUser1')->references('id')->on('Utilisateurs')
+			$table->foreign('IdUser1')->references('id')->on('Users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
 		Schema::table('Relation', function(Blueprint $table) {
-			$table->foreign('IdUser2')->references('id')->on('Utilisateurs')
+			$table->foreign('IdUser2')->references('id')->on('Users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
@@ -39,7 +39,7 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('Commentaire', function(Blueprint $table) {
-			$table->foreign('IdUser')->references('id')->on('Utilisateurs')
+			$table->foreign('IdUser')->references('id')->on('Users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
@@ -64,12 +64,12 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('restrict');
 		});
 		Schema::table('Ressources', function(Blueprint $table) {
-			$table->foreign('IdUtilisateur_createur')->references('id')->on('Utilisateurs')
+			$table->foreign('IdUtilisateur_createur')->references('id')->on('Users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
 		Schema::table('Jointure_Ress_Utilisateur', function(Blueprint $table) {
-			$table->foreign('IdUtilisateur')->references('id')->on('Utilisateurs')
+			$table->foreign('IdUtilisateur')->references('id')->on('Users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});

@@ -1,6 +1,5 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
 
 <section id="compte-ser" class="main-flex">
     <div class="col-center">
@@ -18,4 +17,4 @@
     </div>
 </section>
 
-@endsection
+</x-app-layout>

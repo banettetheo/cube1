@@ -18,7 +18,7 @@ class Favoris extends Model
     use HasFactory;
 
     public function Utilisateur() {
-       return $this->hasOne('App\Models\Utilisateur', 'Utilisateur_id');
+       return $this->hasOne('App\Models\User', 'Utilisateur_id');
      }
      
      public function Ressources() {

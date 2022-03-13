@@ -30,7 +30,7 @@ class Ressources extends Model
       }
 
       public function Utilisateur() {
-        return $this->belongsTo('App\Models\Utilisateur', 'IdUtilisateur_createur');
+        return $this->belongsTo('App\Models\User', 'IdUtilisateur_createur');
       }
 
       public function Type() {

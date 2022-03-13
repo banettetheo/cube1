@@ -2,13 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
-use App\Models\Commentaire;
-use App\Models\Etat;
 use App\Models\Ressources;
-use App\Models\Type_ressource;
-use App\Models\Utilisateur;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreRessourceRequest;
 use App\Repositories\RessourceRepository;
 

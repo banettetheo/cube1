@@ -4,31 +4,23 @@
   margin: 0px;
 }
 
-#titre-logo {
-  display: flex;
-  margin: 20px 30px;
-}
-
-#logo {
-  width: 40px;
-  height: 40px;
-}
-
-#titre-app {
-  margin: 0px;
-  margin-left: 20px;
-}
-
-/* page d'accueil */
-#accueil {
+.main-flex {
   display: flex;
   justify-content: center;
   min-height: 100%;
 }
 
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
 .col-left {
   width: 15%;
-  background-color: pink;
+  background-color: white;
   display: flex;
   flex-direction: column;
   max-height: 20em;
@@ -46,31 +38,46 @@
   max-height: 20em;
 }
 
-#titre-menu {
+/*----------------------------------------*/
+/*le titre de la page et le logo*/
+#titre-logo {
+  display: flex;
+  margin: 20px 30px;
+}
+#titre-logo #logo {
+  width: 40px;
+  height: 40px;
+}
+#titre-logo #titre-app {
+  margin: 0px;
+  margin-left: 20px;
+}
+
+/*----------------------------------------*/
+/* page d'accueil */
+#accueil #titre-menu {
   padding-left: 10%;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
 }
-
-.button-menu {
+#accueil .button-menu {
   width: 50%;
   margin-left: 10%;
   margin-bottom: 4%;
 }
-
-.recherche-ressource {
+#accueil .recherche-user {
   width: -webkit-fill-available;
   margin: 1% 2%;
 }
-
-.ressources {
+#accueil .ressources {
   border: 1px solid;
   width: -webkit-fill-available;
   margin: 1% 2%;
   padding: 1%;
 }
 
+/*----------------------------------------*/
 /* formulaire général */
 .input-form {
   margin-bottom: 10%;
@@ -87,14 +94,12 @@
   justify-content: center;
   align-items: center;
 }
-
-#inscription-form {
+#inscription-user #inscription-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.input-inscription {
+#inscription-user #inscription-form .input-inscription {
   margin-bottom: 10%;
 }
 
@@ -105,13 +110,11 @@
   justify-content: center;
   align-items: center;
 }
-
-#connexion-form {
+#connexion-user #connexion-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.input-connexion {
+#connexion-user #connexion-form .input-connexion {
   margin-bottom: 10%;
 }

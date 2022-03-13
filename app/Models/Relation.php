@@ -24,10 +24,10 @@ class Relation extends Model
      }
      
      public function User1() {
-       return $this->hasone('App\Models\Utilisateur', 'IdUser1');
+       return $this->hasone('App\Models\User', 'IdUser1');
      }
 
      public function User2() {
-      return $this->hasone('App\Models\Utilisateur', 'IdUser2');
+      return $this->hasone('App\Models\User', 'IdUser2');
     }
 }

@@ -19,7 +19,7 @@ class Commentaire extends Model
     ];
 
     public function Utilisateur() {
-       return $this->belongsTo('App\Models\Utilisateur', 'IdUser');
+       return $this->belongsTo('App\Models\User', 'IdUser');
      }
      
      public function Ressources() {
