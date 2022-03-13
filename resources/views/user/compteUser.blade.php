@@ -41,6 +41,9 @@
             <!-- s'affiche que si l'id dans l'url et celui du user connecter sont les mêmes -->
             @auth
             <p id="adresse-mail">{{ Auth::user()->email}}</p>
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ url('/reset-password') }}">
+                    {{ __('Already registered?') }}
+                </a>
             <button id="changeMDP">changer de mot de passe</button>
 
             <form method="POST" action="{{ route('logout') }}">
