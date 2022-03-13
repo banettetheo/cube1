@@ -35,6 +35,7 @@
         </div>
         <div class="col-right flex column">
         @auth
+        @if (Route::is('monCompte'))
             <h1>Vos information :</h1>
             <p id="nom">{{ Auth::user()->name}}</p>
             <p id="prenom">{{ Auth::user()->Prenom}}</p>
@@ -49,9 +50,9 @@
                 @csrf
                 <x-button class="button-menu">{{ __('Déconnexion') }}</x-button>
             </form>
-            @endauth
+            @else
             <!------------------------------------------------------------->
-
+            
             <!-- s'affiche que si l'id dans l'url et celui du user connecter sont différent -->
             <!--une liste de type de relation récupérer sur la bdd-->
             <select name="type" id="relation-select">
@@ -60,6 +61,8 @@
                 <option value="famille">famille</option>
             </select>
             <button> ajouter la relation</button>
+            @endif
+            @endauth
             <!------------------------------------------------------------->
         </div>
     </section>

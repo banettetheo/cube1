@@ -19,18 +19,23 @@ use App\Http\Controllers\UtilisateurController;
 |
 */
 
-//  Route::get('/', function () {
-//      return view('welcome');
-//  });
+
+
+//Accueil
+Route::get('/',[AccueilController::class, 'index']);
+
+Route::middleware('auth')->group(function () {
+
+    //Ressources
+    Route::resource('ressources', RessourceController::class)->except(['index','store']);
+    Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
+
+});
 
 Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
 
 require __DIR__.'/auth.php';
 
-
-
-//Accueil
-Route::get('/',[AccueilController::class, 'index']);
     
 // //Authentification
 // Route::get('/inscription',[AuthentificationController::class, 'inscription']);
@@ -42,9 +47,6 @@ Route::get('/',[AccueilController::class, 'index']);
 //Route::get('/mon-compte',[CompteController::class, 'monProfil']);
 
 
-//Ressources
-Route::resource('ressources', RessourceController::class)->except(['index','store']);
-Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
 
 
 //Relation
