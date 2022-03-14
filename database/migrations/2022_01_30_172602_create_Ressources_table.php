@@ -13,8 +13,8 @@ class CreateRessourcesTable extends Migration {
 			$table->softDeletes();
 			$table->string('Titre');
 			$table->string('Contenue');
-			$table->integer('Nombre_vue');
-			$table->integer('Nombre_like');
+			$table->integer('Nombre_vue')->default(0);
+			$table->integer('Nombre_like')->default(0);
 			$table->integer('IdCategorie')->unsigned();
 			$table->integer('IdUtilisateur_createur')->unsigned();
 			$table->integer('IdType')->unsigned();

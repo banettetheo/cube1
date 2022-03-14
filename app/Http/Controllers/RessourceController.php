@@ -48,10 +48,10 @@ class RessourceController extends Controller
 
     $ressource = Ressources::create([
       'Titre' => $validated['titre'],
-      'Contenue' => $validated['content'],
-      'IdCategorie' => $validated['categorie'],
+      'Contenue' => $validated['contenu'],
+      'IdCategorie' => $validated['idCategorie'],
       'IdUtilisateur_createur' => 1,
-      'IdType' => $validated['type'],
+      'IdType' => $validated['idType'],
       'Lien_ressources' => $validated['url'],
     ]);
     return redirect()->route('ressources.show',$ressource->id);

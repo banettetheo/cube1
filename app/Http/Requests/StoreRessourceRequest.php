@@ -27,10 +27,10 @@ class StoreRessourceRequest extends FormRequest
     {
         return [
             'titre' => 'required|max:255|min:5',
-            'content' => 'required|max:255|min:10',
-            'categorie' => 'required|integer',
-            //'idUtilisateur' =>'required|integer',
-            'type' => 'required|integer',
+            'contenu' => 'required|max:255|min:10',
+            'idCategorie' => 'required|integer',
+            'idUtilisateur' =>'required|integer',
+            'idType' => 'required|integer',
             'url' => 'required|max:255',
         ];
     }
@@ -39,9 +39,9 @@ class StoreRessourceRequest extends FormRequest
     {
         return[
             'titre.required'=>'Le titre est requis',
-            'content.required'=>'Le contenu est requis',
-            'categorie.required'=>'La catégorie est requis',
-            'type.required'=>'Le type est requis',
+            'contenu.required'=>'Le contenu est requis',
+            'idCategorie.required'=>'La catégorie est requis',
+            'idType.required'=>'Le type est requis',
             'url.required'=>'L\'url est requis'
         ];
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Ressources;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRessourceRequest;
 use Illuminate\Http\Request;
 use App\Repositories\RessourceRepository;
 
@@ -36,9 +37,18 @@ class RessourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRessourceRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $ressource = Ressources::create([
+            'Titre' => $validated['titre'],
+            'Contenue' => $validated['contenu'],
+            'IdCategorie' => $validated['idCategorie'],
+            'IdUtilisateur_createur' => 1,
+            'IdType' => $validated['idType'],
+            'Lien_ressources' => $validated['url'],
+          ]);
     }
 
     /**
