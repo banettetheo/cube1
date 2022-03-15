@@ -176,6 +176,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Andyabih\\LaravelToUML\\' => 22,
         ),
     );
 
@@ -508,6 +509,10 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Andyabih\\LaravelToUML\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/andyabih/laravel-to-uml/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -521,6 +526,11 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
     );
 
     public static $classMap = array (
+        'Andyabih\\LaravelToUML\\Facades\\LaravelToUML' => __DIR__ . '/..' . '/andyabih/laravel-to-uml/src/Facades/LaravelToUML.php',
+        'Andyabih\\LaravelToUML\\Http\\Controllers\\Controller' => __DIR__ . '/..' . '/andyabih/laravel-to-uml/src/Http/Controllers/Controller.php',
+        'Andyabih\\LaravelToUML\\Http\\Controllers\\LaravelToUMLController' => __DIR__ . '/..' . '/andyabih/laravel-to-uml/src/Http/Controllers/LaravelToUMLController.php',
+        'Andyabih\\LaravelToUML\\LaravelToUML' => __DIR__ . '/..' . '/andyabih/laravel-to-uml/src/LaravelToUML.php',
+        'Andyabih\\LaravelToUML\\LaravelToUMLServiceProvider' => __DIR__ . '/..' . '/andyabih/laravel-to-uml/src/LaravelToUMLServiceProvider.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\API\\CategorieController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CategorieController.php',
@@ -528,6 +538,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Http\\Controllers\\API\\TypeRessourceController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/TypeRessourceController.php',
         'App\\Http\\Controllers\\AccueilController' => __DIR__ . '/../..' . '/app/Http/Controllers/AccueilController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
+        'App\\Http\\Controllers\\Auth\\ChangerMdpController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ChangerMdpController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationPromptController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationPromptController.php',
@@ -541,9 +552,11 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Http\\Controllers\\CompteController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompteController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FavorisModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavorisModelController.php',
+        'App\\Http\\Controllers\\Moderateur\\RessourceValidationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Moderateur/RessourceValidationController.php',
         'App\\Http\\Controllers\\RelationController' => __DIR__ . '/../..' . '/app/Http/Controllers/RelationController.php',
         'App\\Http\\Controllers\\RessourceController' => __DIR__ . '/../..' . '/app/Http/Controllers/RessourceController.php',
         'App\\Http\\Controllers\\TypeModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/TypeModelController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\UtilisateurController' => __DIR__ . '/../..' . '/app/Http/Controllers/UtilisateurController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -579,6 +592,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Repositories\\RessourceRepository' => __DIR__ . '/../..' . '/app/Repositories/RessourceRepository.php',
         'App\\Repositories\\TypeRessourceRepository' => __DIR__ . '/../..' . '/app/Repositories/TypeRessourceRepository.php',
         'App\\Repositories\\UtilisateurRepository' => __DIR__ . '/../..' . '/app/Repositories/UtilisateurRepository.php',
+        'App\\Rules\\MatchAncienMdp' => __DIR__ . '/../..' . '/app/Rules/MatchAncienMdp.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
@@ -706,6 +720,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'Database\\Seeders\\Type_RelationSeeder' => __DIR__ . '/../..' . '/database/seeders/Type_RelationSeeder.php',
         'Database\\Seeders\\Type_favorisSeeder' => __DIR__ . '/../..' . '/database/seeders/Type_favorisSeeder.php',
         'Database\\Seeders\\Type_ressourceSeeder' => __DIR__ . '/../..' . '/database/seeders/Type_ressourceSeeder.php',
+        'Database\\Seeders\\UserSeeder' => __DIR__ . '/../..' . '/database/seeders/UserSeeder.php',
         'Database\\Seeders\\UtilisateurSeeder' => __DIR__ . '/../..' . '/database/seeders/UtilisateurSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
