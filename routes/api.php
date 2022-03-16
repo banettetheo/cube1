@@ -26,12 +26,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::apiResource("ressources", RessourceController::class, [
+    'as' => 'api'
+])->only(['index']);
+
 Route::middleware('auth:sanctum')->group(function () {
 
     //Gestion de l'API
-    Route::apiResource("ressources", RessourceController::class, [
-        'as' => 'api'
-    ]);
+
 
     Route::apiResource("categories", CategorieController::class, [
         'as' => 'api'

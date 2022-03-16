@@ -21,6 +21,19 @@ class RessourceRepository
     }
 
 
+    public function allPublic(){
+        $touteLesRessources = $this->all();
+        $ressourcesTries = [];
+        foreach ($touteLesRessources as $uneRessource){
+            if($uneRessource['etat']['id']==4){
+                array_push($ressourcesTries, $uneRessource);
+            }
+        }
+        return $ressourcesTries;
+        
+    }
+
+
 
     public function findById(int $id){
         $laRessource = Ressources::findOrFail($id);
@@ -38,7 +51,7 @@ class RessourceRepository
             'categorie' => $ressource->Categorie->only('Nom'),
             'utilisateur' => $ressource->Utilisateur->only('Nom', 'Prenom'),
             'type' => $ressource->Type->only('Nom'),
-            'etat' => $ressource->Etat->only('Nom'),
+            'etat' => $ressource->Etat->only('id','Nom'),
             'lienRessource' => $ressource->Lien_ressources,
             'commentaires' => Commentaire::where('IdRessources', $ressource->id)
                 ->get()
