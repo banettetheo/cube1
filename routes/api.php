@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -39,4 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("types-ressource", TypeRessourceController::class, [
         'as' => 'api'
     ])->only(['index']);
+
+    //Deconnexion
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
