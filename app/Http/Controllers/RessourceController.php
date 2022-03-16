@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ressources;
-use App\Http\Requests\StoreRessourceRequest;
+use App\Http\Requests\Ressource\StoreUpdateRessourceRequest;
 use App\Repositories\RessourceRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class RessourceController extends Controller 
 {
@@ -42,18 +44,11 @@ class RessourceController extends Controller
    *
    * @return Response
    */
-  public function store(StoreRessourceRequest $request)
+  public function store(StoreUpdateRessourceRequest $request)
   {
     $validated = $request->validated();
 
-    $ressource = Ressources::create([
-      'Titre' => $validated['titre'],
-      'Contenue' => $validated['contenu'],
-      'IdCategorie' => $validated['idCategorie'],
-      'IdUtilisateur_createur' => 1,
-      'IdType' => $validated['idType'],
-      'Lien_ressources' => $validated['url'],
-    ]);
+    $ressource = Ressources::create($validated);
     return redirect()->route('ressources.show',$ressource->id);
   }
 
@@ -102,7 +97,10 @@ class RessourceController extends Controller
    */
   public function destroy($id)
   {
-    return view ('accueil');
+    $request = Request::create('api/ressources/'.$id,'DELETE');
+    Route::dispatch($request);
+
+    return redirect()->route('monCompte');
 
   }
   

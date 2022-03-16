@@ -4,7 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Ressources;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRessourceRequest;
+use App\Http\Requests\Ressource\StoreUpdateRessourceRequest;
+use App\Http\Requests\Ressource\UpdateRessourceRequest;
+use App\Models\Commentaire;
+use App\Models\Jointure_ress_utilisateur;
+use App\Repositories\LienRessourceRepository;
 use Illuminate\Http\Request;
 use App\Repositories\RessourceRepository;
 
@@ -13,10 +17,12 @@ class RessourceController extends Controller
 {
 
     private $ressourceRepository;
+    private $lienRessourceRepository;
 
-    public function __construct(RessourceRepository $ressourceRepository)
+    public function __construct(RessourceRepository $ressourceRepository, LienRessourceRepository $lienRessourceRepository)
     {
       $this->ressourceRepository = $ressourceRepository;
+      $this->lienRessourceRepository = $lienRessourceRepository;
     }
   
     
@@ -37,18 +43,11 @@ class RessourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRessourceRequest $request)
+    public function store(StoreUpdateRessourceRequest $request)
     {
         $validated = $request->validated();
 
-        $ressource = Ressources::create([
-            'Titre' => $validated['titre'],
-            'Contenue' => $validated['contenu'],
-            'IdCategorie' => $validated['idCategorie'],
-            'IdUtilisateur_createur' => 1,
-            'IdType' => $validated['idType'],
-            'Lien_ressources' => $validated['url'],
-          ]);
+        Ressources::create($validated);
     }
 
     /**
@@ -72,9 +71,12 @@ class RessourceController extends Controller
      * @param  \App\Models\Ressources  $ressources
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ressources $ressources)
+    public function update(StoreUpdateRessourceRequest $request, $id)
     {
-        //
+        $ressource = Ressources::find($id);
+        $validated = $request->validated();
+        
+        $ressource->update($validated);
     }
 
     /**
@@ -83,8 +85,17 @@ class RessourceController extends Controller
      * @param  \App\Models\Ressources  $ressources
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ressources $ressources)
+    public function destroy($id)
     {
-        //
+        $ressource = $this->ressourceRepository->findById($id);
+        $lesLiensRessource = $this->lienRessourceRepository->findByIdRessource($id);
+        
+        foreach($lesLiensRessource as $unLienRessource){
+            Jointure_ress_utilisateur::destroy($unLienRessource['id']);
+        }
+         foreach($ressource['commentaires'] as $unCommentaire){
+            Commentaire::destroy($unCommentaire['id']);
+        }
+        Ressources::destroy($id);
     }
 }
