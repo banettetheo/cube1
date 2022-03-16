@@ -14,7 +14,7 @@ class Jointure_ress_utilisateur extends Model
 
     protected $fillable = [
       'IdUtilisateur',
-      'idRessource',
+      'IdRessource',
       'deleted_at'
     ];
 

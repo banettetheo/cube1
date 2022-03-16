@@ -40,10 +40,11 @@ class RessourceRepository
             'type' => $ressource->Type->only('Nom'),
             'etat' => $ressource->Etat->only('Nom'),
             'lienRessource' => $ressource->Lien_ressources,
-            'commentaires' => Commentaire::where('idRessources', $ressource->id)
+            'commentaires' => Commentaire::where('IdRessources', $ressource->id)
                 ->get()
                 ->map(function ($commentaire) {
                     return [
+                        'id' => $commentaire->id,
                         //'dateCreation' => $Commentaire->id,
                         'utilisateur' => $commentaire->Utilisateur->only('Nom', 'Prenom'),
                         'contenu' => $commentaire->Contenue
