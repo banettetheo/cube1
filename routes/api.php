@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->group(function () {
+
 //Gestion de l'API
 Route::apiResource("ressources", RessourceController::class, [
     'as' => 'api'
@@ -33,3 +35,4 @@ Route::apiResource("categories", CategorieController::class, [
 Route::apiResource("types-ressource", TypeRessourceController::class, [
     'as' => 'api'
 ])->only(['index']);
+});
