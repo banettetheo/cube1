@@ -34,9 +34,11 @@ class RessourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $lesRessources = $this->ressourceRepository->allPublic();
+        if($request->favori){
+        }
         return response()->json($lesRessources);
     }
 
@@ -44,23 +46,19 @@ class RessourceController extends Controller
 
     public function indexUtilisateur(Request $request)
     {
-        $partages = $request->partagees;
-
-        $result=array();
-
-        $lesRessources = $this->ressourceRepository->allPartages(auth()->user()->id);
-        $result = $lesRessources;
-        if($request->favoris){
-            $result = $result->merge($this->favorisRepository->whereFavoris(auth()->user()->id));
+        $authID = auth()->user()->id;
+        $result = $this->ressourceRepository->allPartages($authID);
+        if($request->favori){
+            $result = $result->merge($this->favorisRepository->whereFavoris($authID));
         }
         if($request->partagee){
-            $result = $result->merge($this->lienRessourceRepository->findRessourceByIdUser(auth()->user()->id));
+            $result = $result->merge($this->lienRessourceRepository->findRessourceByIdUser($authID));
         }
         if($request->mise_de_cote){
-            $result = $result->merge($this->favorisRepository->whereMiseDeCote(auth()->user()->id));
+            $result = $result->merge($this->favorisRepository->whereMiseDeCote($authID));
         }
         
-        return $result;
+        return response()->json($result);
     }
 
 
