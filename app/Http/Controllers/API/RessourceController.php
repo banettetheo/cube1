@@ -53,9 +53,9 @@ class RessourceController extends Controller
         if($request->favoris){
             $result = $result->merge($this->favorisRepository->whereFavoris(auth()->user()->id));
         }
-        // if($request->partage){
-        //     $result = $result->merge($this->favorisRepository->whereFavoris(auth()->user()->id));
-        // }
+        if($request->partage){
+            $result = $result->merge($this->lienRessourceRepository->findRessourceByIdUser(auth()->user()->id));
+        }
         
         return $result;
     }

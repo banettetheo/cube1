@@ -40,7 +40,10 @@ class RessourceRepository
         ])
         ->get()
         ->map(function ($ressource) {
-            return $this->one($ressource);
+            $uneRessource= $this->one($ressource);
+            $info = ['typeDeRessource' => 'privee'];
+            $result = array_merge($info, $uneRessource);
+            return $result;
         });
         return $lesRessources;
         
