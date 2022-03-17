@@ -21,15 +21,28 @@ class RessourceRepository
     }
 
 
+
     public function allPublic(){
-        $touteLesRessources = $this->all();
-        $ressourcesTries = [];
-        foreach ($touteLesRessources as $uneRessource){
-            if($uneRessource['etat']['id']==4){
-                array_push($ressourcesTries, $uneRessource);
-            }
-        }
+        $ressourcesTries = Ressources::where('IdEtat',4)
+        ->get()
+        ->map(function ($ressource) {
+            return $this->one($ressource);
+        });
+
         return $ressourcesTries;
+        
+    }
+
+    public function allPartages($userId){
+        $lesRessources = Ressources::where([
+            ['IdEtat',1],
+            ['IdUtilisateur_createur',$userId]
+        ])
+        ->get()
+        ->map(function ($ressource) {
+            return $this->one($ressource);
+        });
+        return $lesRessources;
         
     }
 

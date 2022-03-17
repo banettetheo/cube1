@@ -8,6 +8,7 @@ use App\Http\Requests\Ressource\StoreUpdateRessourceRequest;
 use App\Http\Requests\Ressource\UpdateRessourceRequest;
 use App\Models\Commentaire;
 use App\Models\Jointure_ress_utilisateur;
+use App\Repositories\Favoris\FavorisRepository;
 use App\Repositories\LienRessourceRepository;
 use Illuminate\Http\Request;
 use App\Repositories\RessourceRepository;
@@ -18,11 +19,13 @@ class RessourceController extends Controller
 
     private $ressourceRepository;
     private $lienRessourceRepository;
+    private $favorisRepository;
 
-    public function __construct(RessourceRepository $ressourceRepository, LienRessourceRepository $lienRessourceRepository)
+    public function __construct(RessourceRepository $ressourceRepository, LienRessourceRepository $lienRessourceRepository, FavorisRepository $favorisRepository)
     {
       $this->ressourceRepository = $ressourceRepository;
       $this->lienRessourceRepository = $lienRessourceRepository;
+      $this->favorisRepository = $favorisRepository;
     }
   
     
@@ -36,6 +39,27 @@ class RessourceController extends Controller
         $lesRessources = $this->ressourceRepository->allPublic();
         return response()->json($lesRessources);
     }
+
+
+
+    public function indexUtilisateur(Request $request)
+    {
+        $partages = $request->partagees;
+
+        $result=array();
+
+        $lesRessources = $this->ressourceRepository->allPartages(auth()->user()->id);
+        $result = $lesRessources;
+        if($request->favoris){
+            $result = $result->merge($this->favorisRepository->whereFavoris(auth()->user()->id));
+        }
+        // if($request->partage){
+        //     $result = $result->merge($this->favorisRepository->whereFavoris(auth()->user()->id));
+        // }
+        
+        return $result;
+    }
+
 
     /**
      * Store a newly created resource in storage.

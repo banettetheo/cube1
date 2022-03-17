@@ -18,31 +18,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::post('register', [AuthController::class, 'register'],['as' => 'api']);
+Route::post('login', [AuthController::class, 'login'],['as' => 'api']);
+
+Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->only(['index']);
+
+
+//MIDDLEWARE CONNEXION
+Route::middleware('auth:sanctum')->group(function () {
+    //Ressources
+    Route::get("ressources/mes-ressources", [RessourceController::class, 'indexUtilisateur'], ['as' => 'api']);
+    Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->except(['index']);
+    Route::apiResource("categories", CategorieController::class, ['as' => 'api'])->only(['index']);
+    Route::apiResource("types-ressource", TypeRessourceController::class, ['as' => 'api'])->only(['index']);
+    Route::post('logout', [AuthController::class, 'logout'],['as' => 'api']);
 });
 
-
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::apiResource("ressources", RessourceController::class, [
-    'as' => 'api'
-])->only(['index']);
-
-Route::middleware('auth:sanctum')->group(function () {
-
-    //Gestion de l'API
-
-
-    Route::apiResource("categories", CategorieController::class, [
-        'as' => 'api'
-    ])->only(['index']);
-
-    Route::apiResource("types-ressource", TypeRessourceController::class, [
-        'as' => 'api'
-    ])->only(['index']);
-
-    //Deconnexion
-    Route::post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
