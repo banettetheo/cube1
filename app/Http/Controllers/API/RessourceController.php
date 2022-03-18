@@ -27,7 +27,6 @@ class RessourceController extends Controller
         $this->ressourceRepository = $ressourceRepository;
         $this->lienRessourceRepository = $lienRessourceRepository;
         $this->favorisRepository = $favorisRepository;
-
     }
 
 
@@ -72,7 +71,7 @@ class RessourceController extends Controller
             }
         }
 
-        
+
 
         return response()->json($lesRessources);
     }
@@ -120,33 +119,32 @@ class RessourceController extends Controller
     public function show(Ressources $ressource, Request $request)
     {
 
-        $autorisation=false;
-        $result =["message" => "Vous n'avez pas la permission"];
-        if($ressource->IdEtat==4){
-            $autorisation=true;
-        }
-        elseif(auth('api')->user()!=null){
-            $authID=auth('api')->user()->id;
+        $autorisation = false;
+        $result = ["message" => "Vous n'avez pas la permission"];
+        if ($ressource->IdEtat == 4) {
+            $autorisation = true;
+        } elseif (auth('api')->user() != null) {
+            $authID = auth('api')->user()->id;
             $createurRessource = $ressource->Utilisateur()->get();
-            if($createurRessource[0]['id'] == $authID){
-                $autorisation=true;
-            }else{
+            if ($createurRessource[0]['id'] == $authID) {
+                $autorisation = true;
+            } else {
                 $lesRessourcesPartages = $this->lienRessourceRepository->findRessourceByIdUser($authID);
-                foreach($lesRessourcesPartages as $uneRessource){
-                    if($uneRessource['id'] == $ressource->id){
-                        $autorisation=true;
+                foreach ($lesRessourcesPartages as $uneRessource) {
+                    if ($uneRessource['id'] == $ressource->id) {
+                        $autorisation = true;
                     }
                 }
             }
         }
 
-        if($autorisation){
+        if ($autorisation) {
             $result = $this->ressourceRepository->one($ressource);
         }
 
         // return response()->json($result);
         return response()->json($result);
-        // return auth('api')->user();
+            // return auth('api')->user();
         ;
     }
 
@@ -161,7 +159,7 @@ class RessourceController extends Controller
      */
     public function update(StoreUpdateRessourceRequest $request, $id)
     {
-        $result =["message" => "Vous n'avez pas les droits"];
+        $result = ["message" => "Vous n'avez pas les droits"];
 
         $autorisation = false;
         $ressourceAModif = Ressources::find($id);
@@ -171,14 +169,23 @@ class RessourceController extends Controller
 
         if ($this->ressourceRepository->findCreateur($ressource['id']) == $idAuth) {
             //Si elle est privé, il faut supprimer les liens avec
-            $autorisation=true;
-        }elseif($this->lienRessourceRepository->findCorrespRessourcesUtilisateurs($idAuth,$id)){
-            $autorisation=true;
+            $autorisation = true;
+        } elseif ($this->lienRessourceRepository->findCorrespRessourcesUtilisateurs($idAuth, $id)) {
+            $autorisation = true;
         }
 
-        if($autorisation){
+        if ($autorisation) {
             $ressourceAModif->update($validated);
-            $result =["message" => "Mise à jour effectuée"];
+            try {
+                if ($validated['IdEtat'] == 1) {
+                    $lesLiensRessource = $this->lienRessourceRepository->findByIdRessource($id);
+                    foreach ($lesLiensRessource as $unLienRessource) {
+                        Jointure_ress_utilisateur::destroy($unLienRessource['id']);
+                    }
+                }
+            } catch (Exception $e) {
+            }
+            $result = ["message" => "Mise à jour effectuée"];
         }
         return response()->json($result);
     }
@@ -191,7 +198,7 @@ class RessourceController extends Controller
      */
     public function destroy($id)
     {
-        $result =["message" => "Vous n'avez pas les droits"];
+        $result = ["message" => "Vous n'avez pas les droits"];
         $ressource = $this->ressourceRepository->findById($id);
         if ($this->ressourceRepository->findCreateur($ressource['id']) == auth()->user()->id) {
             $lesLiensRessource = $this->lienRessourceRepository->findByIdRessource($id);
@@ -203,11 +210,9 @@ class RessourceController extends Controller
                 Commentaire::destroy($unCommentaire['id']);
             }
             Ressources::destroy($id);
-            $result =["message" => "Suppression effectuée"];
-        }else{
-            
+            $result = ["message" => "Suppression effectuée"];
+        } else {
         }
         return response()->json($result);
-
     }
 }
