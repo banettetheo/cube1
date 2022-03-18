@@ -145,7 +145,7 @@ class RessourceRepository
             'titre' => $ressource->Titre,
             'contenu' => $ressource->Contenue,
             'categorie' => $ressource->Categorie->only('Nom'),
-            'utilisateur' => $ressource->Utilisateur->only('Nom', 'Prenom'),
+            'utilisateur' => $ressource->Utilisateur->only('name', 'Prenom'),
             'type' => $ressource->Type->only('Nom'),
             'etat' => $ressource->Etat->only('id','Nom'),
             'lienRessource' => $ressource->Lien_ressources,
