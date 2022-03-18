@@ -75,7 +75,7 @@ class RessourceRepository
 
 
 
-    public function allPartages($userId){
+    public function allPrivees($userId){
         $lesRessources = Ressources::where([
             ['IdEtat',1],
             ['IdUtilisateur_createur',$userId]
@@ -135,6 +135,13 @@ class RessourceRepository
         $laRessource = Ressources::findOrFail($id);
         $ressource = $this->one($laRessource);
         return $ressource;
+    }
+
+    public function findCreateur(int $idRessource){
+        $uneRessource = Ressources::findOrFail($idRessource);
+        $idCreateur = $uneRessource->IdUtilisateur_createur;
+        return $idCreateur;
+
     }
 
 

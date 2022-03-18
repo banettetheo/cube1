@@ -24,19 +24,23 @@ class StoreUpdateRessourceRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {   
+        $addValue=[];
         $key = 'required';
         if($this->method()=='PUT'){
             $key= 'sometimes';
+            $addValue = ['IdEtat' => $key . '|integer|between:1,3'];
         }
-        return [
+        $value = [
             'Titre' => $key . '|max:255|min:5',
             'Contenue' => $key . '|max:255|min:10',
             'IdCategorie' => $key . '|integer',
-            'IdUtilisateur_createur' => $key . '|integer',
             'IdType' => $key . '|integer',
             'Lien_ressources' => $key . '|max:255',
         ];
+
+        $result = array_merge($value, $addValue);
+        return $result;
     }
 
     public function messages()
