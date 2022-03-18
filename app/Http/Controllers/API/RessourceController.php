@@ -50,20 +50,25 @@ class RessourceController extends Controller
 
         try{
             $idType = $validated['type'];
+        }catch(Exception $e){}
+        try{
             $idCategorie = $validated['categorie'];
         }catch(Exception $e){}
         
 
         if($idType!=null){
-            $lesRessources = ($this->ressourceRepository->AllPublicByType($idType));
+            $lesRessources = $this->ressourceRepository->AllPublicByType($idType);
         }
         if($idCategorie!=null){
-            $lesRessources = ($this->ressourceRepository->findByICategorie($idCategorie));
+            if($idType!=null){
+                $lesRessources = $this->ressourceRepository->AllPublicByTypeAndCateg($idType, $idCategorie);
+            }else{
+                $lesRessources = $this->ressourceRepository->AllPublicByCategorie($idCategorie);
+            }
         }
          
         
-        return $lesRessources;
-        // return response()->json($lesRessources);
+        return response()->json($lesRessources);
     }
 
 
