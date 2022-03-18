@@ -121,7 +121,7 @@ class RessourceController extends Controller
     {
 
         $autorisation=false;
-        $result =["message" => "unauthorized"];
+        $result =["message" => "Vous n'avez pas la permission"];
         if($ressource->IdEtat==4){
             $autorisation=true;
         }
@@ -161,13 +161,26 @@ class RessourceController extends Controller
      */
     public function update(StoreUpdateRessourceRequest $request, $id)
     {
+        $result =["message" => "Vous n'avez pas les droits"];
+
+        $autorisation = false;
         $ressourceAModif = Ressources::find($id);
         $ressource = $this->ressourceRepository->findById($id);
         $validated = $request->validated();
-        if ($this->ressourceRepository->findCreateur($ressource['id']) == auth()->user()->id) {
+        $idAuth = auth()->user()->id;
+
+        if ($this->ressourceRepository->findCreateur($ressource['id']) == $idAuth) {
             //Si elle est privé, il faut supprimer les liens avec
-            $ressourceAModif->update($validated);
+            $autorisation=true;
+        }elseif($this->lienRessourceRepository->findCorrespRessourcesUtilisateurs($idAuth,$id)){
+            $autorisation=true;
         }
+
+        if($autorisation){
+            $ressourceAModif->update($validated);
+            $result =["message" => "Mise à jour effectuée"];
+        }
+        return response()->json($result);
     }
 
     /**
@@ -178,6 +191,7 @@ class RessourceController extends Controller
      */
     public function destroy($id)
     {
+        $result =["message" => "Vous n'avez pas les droits"];
         $ressource = $this->ressourceRepository->findById($id);
         if ($this->ressourceRepository->findCreateur($ressource['id']) == auth()->user()->id) {
             $lesLiensRessource = $this->lienRessourceRepository->findByIdRessource($id);
@@ -189,6 +203,11 @@ class RessourceController extends Controller
                 Commentaire::destroy($unCommentaire['id']);
             }
             Ressources::destroy($id);
+            $result =["message" => "Suppression effectuée"];
+        }else{
+            
         }
+        return response()->json($result);
+
     }
 }
