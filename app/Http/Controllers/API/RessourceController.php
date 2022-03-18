@@ -12,7 +12,7 @@ use App\Repositories\Favoris\FavorisRepository;
 use App\Repositories\LienRessourceRepository;
 use Illuminate\Http\Request;
 use App\Repositories\RessourceRepository;
-
+use Exception;
 
 class RessourceController extends Controller
 {
@@ -23,12 +23,12 @@ class RessourceController extends Controller
 
     public function __construct(RessourceRepository $ressourceRepository, LienRessourceRepository $lienRessourceRepository, FavorisRepository $favorisRepository)
     {
-      $this->ressourceRepository = $ressourceRepository;
-      $this->lienRessourceRepository = $lienRessourceRepository;
-      $this->favorisRepository = $favorisRepository;
+        $this->ressourceRepository = $ressourceRepository;
+        $this->lienRessourceRepository = $lienRessourceRepository;
+        $this->favorisRepository = $favorisRepository;
     }
-  
-    
+
+
     /**
      * Display a listing of the resource.
      *
@@ -36,10 +36,34 @@ class RessourceController extends Controller
      */
     public function index(Request $request)
     {
+        
+        $validated = $request->validate([
+            'type' => 'sometimes|int',
+            'categorie' => 'sometimes|int',
+        ]);
+        
         $lesRessources = $this->ressourceRepository->allPublic();
-        if($request->favori){
+        
+        
+        $idType=null;
+        $idCategorie=null;
+
+        try{
+            $idType = $validated['type'];
+            $idCategorie = $validated['categorie'];
+        }catch(Exception $e){}
+        
+
+        if($idType!=null){
+            $lesRessources = ($this->ressourceRepository->AllPublicByType($idType));
         }
-        return response()->json($lesRessources);
+        if($idCategorie!=null){
+            $lesRessources = ($this->ressourceRepository->findByICategorie($idCategorie));
+        }
+         
+        
+        return $lesRessources;
+        // return response()->json($lesRessources);
     }
 
 
@@ -48,16 +72,16 @@ class RessourceController extends Controller
     {
         $authID = auth()->user()->id;
         $result = $this->ressourceRepository->allPartages($authID);
-        if($request->favori){
+        if ($request->favori) {
             $result = $result->merge($this->favorisRepository->whereFavoris($authID));
         }
-        if($request->partagee){
+        if ($request->partagee) {
             $result = $result->merge($this->lienRessourceRepository->findRessourceByIdUser($authID));
         }
-        if($request->mise_de_cote){
+        if ($request->mise_de_cote) {
             $result = $result->merge($this->favorisRepository->whereMiseDeCote($authID));
         }
-        
+
         return response()->json($result);
     }
 
@@ -83,10 +107,10 @@ class RessourceController extends Controller
      */
     public function show(Ressources $ressource)
     {
-        $laRessource =[
+        $laRessource = [
             'ressource' => $this->ressourceRepository->one($ressource)
-          ];
-          return response()->json($laRessource);
+        ];
+        return response()->json($laRessource);
     }
 
     /**
@@ -100,7 +124,7 @@ class RessourceController extends Controller
     {
         $ressource = Ressources::find($id);
         $validated = $request->validated();
-        
+
         $ressource->update($validated);
     }
 
@@ -114,11 +138,11 @@ class RessourceController extends Controller
     {
         $ressource = $this->ressourceRepository->findById($id);
         $lesLiensRessource = $this->lienRessourceRepository->findByIdRessource($id);
-        
-        foreach($lesLiensRessource as $unLienRessource){
+
+        foreach ($lesLiensRessource as $unLienRessource) {
             Jointure_ress_utilisateur::destroy($unLienRessource['id']);
         }
-         foreach($ressource['commentaires'] as $unCommentaire){
+        foreach ($ressource['commentaires'] as $unCommentaire) {
             Commentaire::destroy($unCommentaire['id']);
         }
         Ressources::destroy($id);

@@ -33,6 +33,21 @@ class RessourceRepository
         
     }
 
+
+
+    public function AllPublicByType(int $id){
+        $ressourcesTriees = array();
+        $toutesLesRessources = $this->allPublic();
+        foreach($toutesLesRessources as $uneRessource){
+            if($this->returnType($uneRessource)==$id){
+                array_push($ressourcesTriees,$uneRessource);
+            }
+
+        }
+        return $ressourcesTriees;
+    }
+
+
     public function allPartages($userId){
         $lesRessources = Ressources::where([
             ['IdEtat',1],
@@ -47,6 +62,34 @@ class RessourceRepository
         });
         return $lesRessources;
         
+    }
+
+
+
+    public function findByICategorie(int $id){
+        $lesRessources = Ressources::where('IdCategorie', $id)
+            ->get()
+            ->map(function ($ressource) {
+                return $this->one($ressource);
+            });
+        return $lesRessources;
+    }
+
+
+
+    private function returnType($ressource){
+        $uneRessource = Ressources::findOrFail($ressource['id']);
+        $typeRessource = $uneRessource->Type->only('id');
+        return $typeRessource['id'];
+    }
+
+    public function findByIdType(int $id){
+        $lesRessources = Ressources::where('IdType', $id)
+            ->get()
+            ->map(function ($ressource) {
+                return $this->one($ressource);
+           });
+        return $lesRessources;
     }
 
 

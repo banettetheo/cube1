@@ -47,7 +47,7 @@ class FavorisRepository
             ->get()
             ->map(function ($unFavoris) {
                 $uneRessource= $this->ressourceRepository->findById($unFavoris->IdRessources);
-                $info = ['typeDeRessource' => 'MiseDeCote'];
+                $info = ['typeDeRessource' => 'miseDeCote'];
                 $result = array_merge($info, $uneRessource);
                 return $result;
             });
