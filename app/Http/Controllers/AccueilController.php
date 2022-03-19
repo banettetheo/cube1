@@ -14,13 +14,6 @@ use Illuminate\Support\Facades\Route;
 class AccueilController extends Controller
 {
 
-    private $ressourceRepository;
-
-    public function __construct(RessourceRepository $ressourceRepository)
-    {
-        $this->ressourceRepository = $ressourceRepository;
-    }
-
     public function index()
     {
         //Récupération des ressources
@@ -32,28 +25,16 @@ class AccueilController extends Controller
         $responseTypesRessources = Route::dispatch($request)->getContent();
 
         //Récupération des catégories
-        $request = Request::create('/api/types-ressources', 'GET', []);
+        $request = Request::create('/api/categories', 'GET', []);
         $responseCategories = Route::dispatch($request)->getContent();
 
 
 
         $lesRessources = json_decode($responseRessources, true);
         $lesTypesRessources = json_decode($responseTypesRessources, true);
-        $lesCategories = json_decode($responseTypesRessources, true);
+        $lesCategories = json_decode($responseCategories, true);
 
 
-
-
-
-
-
-        $lesCategories = Categorie::all()
-            ->map(function ($categorie) {
-                return [
-                    'id' => $categorie->id,
-                    'nom' => $categorie->Nom
-                ];
-            });
 
 
 
@@ -65,13 +46,6 @@ class AccueilController extends Controller
                     'Prenom' => $utilisateur->Prenom
                 ];
             });
-
-        $responsecode = 200;
-
-        $header = array(
-            'Content-Type' => 'application/json; charset=UTF-8',
-            'charset' => 'utf-8'
-        );
 
 
         return view('accueil', [
