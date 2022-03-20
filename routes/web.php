@@ -31,6 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('ressources', RessourceController::class)->except(['index','store']);
     Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
 
+    //Compte
+    Route::get('mon-compte',[CompteController::class, 'index'])->name('monCompte');
+
+
     //Modération
     Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
     
@@ -39,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
+// Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
 
 require __DIR__.'/auth.php';
 
