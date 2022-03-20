@@ -1,30 +1,26 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/widget/comment_widget.dart';
 import 'actionbtn.dart';
 
 class FeedBox extends StatelessWidget {
-  final String userName;
-  final String contentText;
-  final String contentImg;
-  const FeedBox({
-    Key? key,
-    required this.userName,
-    required this.contentImg,
-    required this.contentText,
-  }) : super(key: key);
+  final ressource;
+  const FeedBox({Key? key, required this.ressource}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
-    const mainBlue = const Color(0xff03989e);
+    Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
+    Color mainBlue = const Color(0xff03989e);
     return Container(
-        margin: EdgeInsets.only(bottom: 20.0),
+        margin: const EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           color: mainBlue,
         ),
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Row(
@@ -34,7 +30,7 @@ class FeedBox extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(userName,
+                      Text(ressource["utilisateur"]["Nom"],
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,
@@ -50,15 +46,16 @@ class FeedBox extends StatelessWidget {
               const SizedBox(
                 height: 10.0,
               ),
-              if (contentText != "")
+              if (ressource["contenu"] != "")
                 Text(
-                  contentText,
+                  ressource["contenu"],
                   style: const TextStyle(color: Colors.white, fontSize: 16.0),
                 ),
               const SizedBox(
                 height: 10.0,
               ),
-              if (contentImg != "") Image.network(contentImg),
+              if (ressource["lienRessource"] != "")
+                Image.network(ressource["lienRessource"]),
               const SizedBox(
                 height: 10.0,
               ),
@@ -77,34 +74,23 @@ class FeedBox extends StatelessWidget {
                       () => showGeneralDialog(
                           context: context,
                           pageBuilder: (bc, ania, anis) {
-                            return SizedBox.expand(
-                              child: Container(
-                                color: mainBlue,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      FlutterLogo(
-                                        size: 200,
-                                      ),
-                                      /*for (var comment in items) {
-                                        
-                                      }*/
-                                      Text(
-                                        "This is a Full Screen Dialog",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            decoration: TextDecoration.none),
-                                      ),
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text("Close"))
-                                    ],
-                                  ),
+                            return Container(
+                              color: bgBlue,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    for (var comment
+                                        in ressource["commentaires"])
+                                      CommentWidget(comment: comment),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Close"))
+                                  ],
                                 ),
                               ),
                             );

@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/model/user.dart';
-import 'package:flutter_cube/widget/profile_widget.dart';
 import 'package:flutter_cube/widget/text_field_widget.dart';
 
 class EditAccountPage extends StatelessWidget {
@@ -17,7 +14,7 @@ class EditAccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
+        leading: const BackButton(
           color: Colors.black,
         ),
         elevation: 0,
@@ -43,11 +40,11 @@ class EditAccountPage extends StatelessWidget {
           const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              shape: StadiumBorder(),
+              shape: const StadiumBorder(),
               onPrimary: Colors.white,
             ),
             onPressed: () {},
-            child: Text("Sauvegarder les paramètres"),
+            child: const Text("Sauvegarder les paramètres"),
           ),
         ],
       ),

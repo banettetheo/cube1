@@ -1,46 +1,36 @@
 import 'package:flutter/material.dart';
 
 class DropdownItemWidget extends StatefulWidget {
+  var data = [];
+
+  DropdownItemWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+
   @override
   _DropdownItemState createState() => _DropdownItemState();
 }
 
 class _DropdownItemState extends State<DropdownItemWidget> {
   var _selectedValue;
-  var _categories = <DropdownMenuItem>[];
 
   @override
   void initState() {
     super.initState();
-    _loadItems();
-  }
-
-  _loadItems() {
-    var items = [
-      {"name": "jij1"},
-      {"name": "jij2"},
-      {"name": "jij3"},
-      {"name": "jij4"},
-    ];
-    items.forEach((item) {
-      setState(() {
-        _categories.add(DropdownMenuItem(
-          child: Text(item["name"].toString()),
-          value: item["name"].toString(),
-        ));
-      });
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
+      menuMaxHeight: 200.0,
       value: _selectedValue,
       items: [
-        DropdownMenuItem(
-          child: Text("jij"),
-          value: "jij",
-        )
+        for (var item in widget.data)
+          DropdownMenuItem(
+            child: Text(item["nom"]),
+            value: item["nom"],
+          )
       ],
       onChanged: (value) {
         setState(() {

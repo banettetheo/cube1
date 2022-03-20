@@ -1,9 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_cube/main.dart';
 import 'package:flutter_cube/model/user.dart';
 import 'package:flutter_cube/page/account_page.dart';
 import 'package:flutter_cube/page/friends_page.dart';
@@ -199,21 +196,21 @@ class _NavigationDrawer extends State<NavigationDrawer> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text("Se déconnecter?"),
-            content: Text("Le menu de connexion s'affichera"),
+            title: const Text("Se déconnecter?"),
+            content: const Text("Le menu de connexion s'affichera"),
             actions: [
               FlatButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => const LoginScreen(),
                     ));
                   },
-                  child: Text("Oui")),
+                  child: const Text("Oui")),
               FlatButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Non")),
+                  child: const Text("Non")),
             ],
           ),
         );
@@ -223,21 +220,21 @@ class _NavigationDrawer extends State<NavigationDrawer> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text("Se connecter?"),
-            content: Text("Le menu de connexion s'affichera"),
+            title: const Text("Se connecter?"),
+            content: const Text("Le menu de connexion s'affichera"),
             actions: [
               FlatButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => const LoginScreen(),
                     ));
                   },
-                  child: Text("Oui")),
+                  child: const Text("Oui")),
               FlatButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Non")),
+                  child: const Text("Non")),
             ],
           ),
         );
