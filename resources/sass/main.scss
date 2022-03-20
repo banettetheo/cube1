@@ -1,11 +1,20 @@
 //variables
+
+//colors
 $color-primary: #03989e;
-$color-secondary: white;
+$color-secondary: #f1f9f9;
+$color-tertiary : #65a581;
+$color-default: black;
+
+//font
+$font-menu: 25px;
+$font-style-italic: italic;
 
 //css en commun avec toutes les pages
 .body-main{
     background-color: $color-primary;
-    margin: 0px;
+    margin: auto;
+    width: 70%;
 }
 
 .main-flex{
@@ -22,42 +31,56 @@ $color-secondary: white;
     flex-direction: column;
 }
 
-.col-left{
-    width: 15%;
-    background-color: $color-secondary;
-    display: flex;
-    flex-direction: column;
-    max-height: 20em;
-}
-
 .col-center{
-    width: 50%;
+    width: 75%;
     height: auto;
-    background-color: aliceblue;
+    background-color: $color-secondary;
+    padding: 1%;
 }
 
 .col-right{
     width: 15%;
-    background-color: pink;
+    background-color: $color-secondary;
     max-height: 20em;
+    padding: 1%;
 }
 
 /*----------------------------------------*/
 
 /*le titre de la page et le logo*/
 
-#titre-logo{
+.header-menu{
     display: flex;
-    margin: 20px 30px;
-    
-    #logo{
-        width: 40px;
-        height: 40px;
+    align-items: center;
+    #titre-logo{ 
+        width: 25%;
+        #logo{
+            width: 50%;
+        }
+        
+        #titre-app{
+            margin: 0px;
+            margin-left: 20px;
+        }
     }
-    
-    #titre-app{
-        margin: 0px;
-        margin-left: 20px;
+    .menu{
+        display: flex;
+        width: 75%;
+        .button-menu{
+            width: auto;
+            margin-left: 1%;
+            text-decoration: none;
+            color: $color-secondary;
+            font-size: $font-menu;
+            &:hover{
+                color: $color-tertiary;
+            }
+        }
+        p{
+            margin: 0px 0px 0px 1%;
+            font-size: $font-menu;
+            color: $color-secondary;
+        }
     }
 }
 
@@ -66,27 +89,192 @@ $color-secondary: white;
 /* page d'accueil */
 
 #accueil{
-    #titre-menu{
-        padding-left: 10%;
-        width: min-content;
-    }
-    
-    .button-menu{
-        width: 50%;
-        margin-left: 10%;
-        margin-bottom: 4%;
-    }
-    
     .recherche-user{
         width: -webkit-fill-available;
-        margin: 1% 2%;
+        width: 30%;
+        display: flex;
+        .recherche{
+            height: fit-content;
+            align-self: center;
+            width: 60%;
+        }
+        .valid-recherche{
+            height: fit-content;
+            align-self: center;
+            margin-left: 3%;
+            background-color: #03989e;
+            color: #f1f9f9;
+            font-style: italic;
+            border-radius: 10px 0px;
+        }
     }
     
     .ressources{
         border: 1px solid;
         width: -webkit-fill-available;
-        margin: 1% 2%;
+        margin-top: 1%;
         padding: 1%;
+        .header-ressource{
+            margin-bottom: 2%;
+            h2{
+                margin-bottom: 0;
+            }
+            hr{
+                margin: 0px;
+            }
+            h3{
+                margin: 1% 2% 1% 0;
+                font-size: 13px;
+            }
+        }
+        #contentRessource{
+            width: 100%;
+        }
+        .footer-ressource{
+            display: flex;
+            justify-content: space-between;
+            .vue-like{
+                display: flex;
+                justify-content: space-evenly;
+                width: 15%;
+                p{
+                    margin: 0;
+                }
+            }
+        }
+        .group-btn-footer{
+            display: flex;
+            p{
+                margin: 0 7px;
+            }
+            .btn-footer{
+                text-decoration: none;
+                color: $color-default;
+                font-style: $font-style-italic;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+
+    .filter{
+        width: 70%;
+        .filtre-ressource{
+            margin-left: 1%;
+            .filtre-select{
+                margin-top: 1%;
+                background-color: transparent;
+                border-radius: 8px;
+            }
+        }
+        .valid-filtre{
+            height: fit-content;
+            align-self: center;
+            margin-left: 3%;
+            background-color: #03989e;
+            color: #f1f9f9;
+            font-style: italic;
+            border-radius: 10px 0px;
+            width: 11%;
+        }
+    }
+
+    .col-right{
+        .list-game{
+            display: flex;
+            flex-wrap: wrap;
+            a{
+                width: 40px;
+                min-height: 40px;
+                margin-right: 12%;
+                margin-bottom: 14%;
+                background-color: aqua;
+                .img-game{
+                }
+                .snake-bg{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -280px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .zutom-bg{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -282px;
+                    background-position-y: -153px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game1{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -24px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game2{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -282px;
+                    background-position-y: -24px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game3{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -89px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game4{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -282px;
+                    background-position-y: -90px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game5{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -142px;
+                    background-position-y: -217px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game6{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -213px;
+                    background-position-y: -217px;
+                    background-size: 1160%;
+                    display: block;
+                }
+                .img-game7{
+                    background: url(https://i.pinimg.com/originals/0e/ee/c5/0eeec5c785532c6eaf862477555187e1.png) center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -218px;
+                    background-size: 1160%;
+                    display: block;
+                }
+            }
+        }
     }
 }
 
@@ -100,6 +288,7 @@ $color-secondary: white;
 
 .btn-validation{
     width: 90%;
+    margin-bottom: 10%;
 }
 
 /* page inscription */
@@ -121,7 +310,7 @@ $color-secondary: white;
     }
 }
 
-
+/*----------------------------------------*/
 
 /* page connexion */
 
@@ -142,5 +331,179 @@ $color-secondary: white;
     }
 }
 
+/*----------------------------------------*/
 
+/* page compte utilisateur */
 
+#compte-user{
+    .col-left{
+        width: 20%;
+        padding: 1%;
+        a{
+            text-decoration: none;
+            color: $color-default;
+            font-style: $font-style-italic;
+            font-size: $font-menu;
+            margin-top: 1%;
+            &:hover{
+                color: $color-secondary;
+            }
+        }
+    }
+    .col-center{
+        h2{
+            margin: 0;
+        }
+        .gerer-ressources{
+            .ressources{
+                border: 1px solid;
+                width: -webkit-fill-available;
+                margin-top: 1%;
+                padding: 1%;
+                .header-ressource{
+                    margin-bottom: 2%;
+                    h2{
+                        margin-bottom: 0;
+                    }
+                    hr{
+                        margin: 0px;
+                    }
+                    h3{
+                        margin: 1% 2% 1% 0;
+                        font-size: 13px;
+                    }
+                }
+                #contentRessource{
+                    width: 100%;
+                }
+                .footer-ressource{
+                    display: flex;
+                    justify-content: space-between;
+                    .vue-like{
+                        display: flex;
+                        justify-content: space-evenly;
+                        width: 15%;
+                        p{
+                            margin: 0;
+                        }
+                    }
+                }
+                .group-btn-footer{
+                    display: flex;
+                    width: 60%;
+                    justify-content: end;
+                    align-items: center;
+                    p{
+                        margin: 0 7px;
+                    }
+                    .btn-footer{
+                        text-decoration: none;
+                        color: $color-default;
+                        font-style: $font-style-italic;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                    .crud-share{
+                        color: $color-default;
+                        background-color: transparent;
+                        margin: 0 1%;
+                        border-radius: 10px;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .col-right{
+        h1{
+            margin: 0;
+            font-size: 21px;
+            margin-bottom: 4%;
+        }
+        p{
+            margin: 1% 0;
+        }
+        a{
+            margin: 5% 0;
+            color: $color-tertiary;
+            &:hover{
+                color: $color-primary;
+            }
+        }
+        .form-deconnexion{
+            margin: 10% 0;
+            button{
+                border-radius: 10px;
+                background-color: transparent;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+
+/* page creation de ressource */
+
+#creer-ressource{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 2% 2%;
+    background-color: $color-secondary;
+    .form-main{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        .form-left{
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            .form-select{
+                display: flex;
+                margin-bottom: 3%;
+                justify-content: space-evenly;
+                height: 30px;
+                #cat-select{
+                    width: 51%;
+                    margin-right: 1%;
+                }
+                #type-select{
+                    width: 46%;
+                }
+            }
+            #titre{
+                margin-bottom: 3%;
+                width: 50%;
+                height: 68%;
+                height: 30px;
+            }
+            #url{
+                margin-bottom: 3%;
+                width: 50%;
+                height: 87%;
+                height: 30px;
+            }
+        }
+        .form-right{
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            #content{
+                height: 73%;
+                margin-bottom: 3%;
+            }
+            #btn-creer-ressource{
+                width: 40%;
+                margin: auto;
+            }
+        }
+    }
+
+}

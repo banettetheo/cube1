@@ -1,37 +1,37 @@
 <x-app-layout>
-    <section id="creer-ressource" class="">
-        <form action="" class="" method="post">
+    <section id="creer-ressource">
+        <form action="" method="post" class="form-main">
+            <div class="form-left">
 
-            <label for="nom">le titre de votre ressource </label>
-            <input type="text" id="titre" value="titre" />
+                <input type="text" id="titre" value="titre" name="title" placeholder="le titre de votre ressource"/>
+                <div class="form-select">
+                    <!--une liste de catégorie récupérer sur la bdd-->
+                    <select name="categorie" id="cat-select">
+                        <option value="" selected>selectionner la catégorie de votre ressource</option>
+                        <option value="exemple" name="exemple">exemple</option>
+                        <option value="exemple" name="exemple">exemple</option>
+                    </select>
 
-            <label for="cat-select">selectionner la catégorie de votre ressource</label><br>
-            <!--une liste de catégorie récupérer sur la bdd-->
-            <select name="categorie" id="cat-select">
-                <option value="" selected>selectionner la catégorie de votre ressource</option>
-                <option value="exemple">exemple</option>
-                <option value="exemple">exemple</option>
-            </select>
+                    <!--une liste de type récupérer sur la bdd-->
+                    <select name="type" id="type-select">
+                        <option value="" selected>selectionner le type de votre ressource</option>
+                        <option value="exemple" name="exemple">exemple</option>
+                        <option value="exemple" name="exemple">exemple</option>
+                    </select>
+                </div>
 
-            <label for="type-select">selectionner le type de votre ressource</label><br>
-            <!--une liste de type récupérer sur la bdd-->
-            <select name="type" id="type-select">
-                <option value="" selected>selectionner le type de votre ressource</option>
-                <option value="exemple">exemple</option>
-                <option value="exemple">exemple</option>
-            </select>
+                <input type="url" id="url" placeholder="ajouter une url à votre ressource" name="url"/>
 
-            <label for="content">insérer une description de votre ressource ou le contenu</label>
-            <textarea id="content" row="5" cols="33"></textarea>
+                <input type="file" id="file" name="file" placeholder="ajouter un firchier à votre ressource"/>
 
-            <label for="url">ajouter une url à votre ressource</label>
-            <input type="url" id="url" placeholder="ajout une url" />
+            </div>
 
-            <label for="file">ajouter un firchier à votre ressource</label>
-            <input type="file" id="file" name="file" />
+            <div class="form-right">
 
-            <input type="submit" value="Valider" />
+                <textarea id="content" row="5" cols="33" name="content" placeholder="insérer une description de votre ressource ou le contenu"></textarea>
 
+                <input id="btn-creer-ressource" type="submit" value="créer votre ressource"/>
+            </div>
         </form>
     </section>
 </x-app-layout>
