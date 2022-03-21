@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/page/register_page.dart';
 import 'package:flutter_cube/widget/text_field_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,7 +50,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: "",
                   onChanged: (username) {
                     _username = username;
-                    inspect(_username);
                   }),
               const SizedBox(
                 height: 26.0,
@@ -99,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: const StadiumBorder(),
                     onPrimary: Colors.white,
                     primary: mainBlue),
-                onPressed: () {},
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const RegisterPage())),
                 child: const Text("S'enregistrer"),
               ),
             ],

@@ -9,10 +9,12 @@ import 'package:flutter_cube/page/login_page.dart';
 import 'package:flutter_cube/page/notification_page.dart';
 import 'package:flutter_cube/page/post_page.dart';
 
-class NavigationDrawer extends StatefulWidget {
-  final List data;
+import '../page/edit_account_page.dart';
 
-  const NavigationDrawer({
+class NavigationDrawer extends StatefulWidget {
+  var data;
+
+  NavigationDrawer({
     Key? key,
     required this.data,
   }) : super(key: key);
@@ -27,14 +29,13 @@ class _NavigationDrawer extends State<NavigationDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.data.isNotEmpty) {
+    if (widget.data["user"] != null) {
       user = User(
-          id: 1,
-          prenom: widget.data[0]["title"],
-          nom: widget.data[1]["title"],
-          email: widget.data[2]["title"],
-          mdp: widget.data[3]["title"],
-          moderateur: false);
+          id: widget.data["user"]["id"],
+          prenom: widget.data["user"]["Prenom"],
+          nom: widget.data["user"]["name"],
+          email: widget.data["user"]["email"],
+          moderateur: widget.data["user"]["Moderateur"]);
       return Drawer(
         child: Material(
           color: const Color(0xff03989e),
@@ -42,11 +43,11 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             padding: padding,
             children: [
               buildHeader(
-                  urlImage: user.prenom,
+                  //urlImage: user.prenom,
                   userName: user.nom,
                   email: user.email,
                   onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AccountPage(
+                      builder: (context) => EditAccountPage(
                             user: user,
                           )))),
               const SizedBox(height: 16),
@@ -70,12 +71,12 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               const SizedBox(height: 20.0),
               const Divider(color: Colors.white70),
               const SizedBox(height: 20.0),
-              buildMenuItem(
+              /*buildMenuItem(
                 text: 'Notifications',
                 icon: Icons.notifications,
                 onClicked: () => selectedItem(context, 3),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 16),*/
               buildMenuItem(
                 text: 'Déconnexion',
                 icon: Icons.logout,
@@ -120,7 +121,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
   }
 
   Widget buildHeader({
-    required String urlImage,
+    //required String urlImage,
     required String userName,
     required String email,
     required VoidCallback onClicked,
@@ -131,9 +132,9 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             padding: padding.add(const EdgeInsets.symmetric(vertical: 40)),
             child: Row(
               children: [
-                CircleAvatar(
+                /*CircleAvatar(
                     radius: 30, backgroundImage: NetworkImage(urlImage)),
-                const SizedBox(width: 25.0),
+                const SizedBox(width: 25.0),*/
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

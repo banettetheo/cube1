@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 // #enddocregion MyApp
 
 class HomePage extends StatefulWidget {
-  var _userJson = [];
+  var _userJson;
   var _feed = [];
 
   @override
@@ -37,19 +37,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final url = "https://jsonplaceholder.typicode.com/posts";
+  final url = "http://10.0.2.2:8000/api/login";
   final url2 = "http://10.0.2.2:8000/api/ressources";
 
   void fetchUser() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      final response = await get(Uri.parse(url));
-      final jsonData = jsonDecode(response.body);
-
-      setState(() {
-        widget._userJson = jsonData;
+      var response = await post(Uri.parse(url), headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json"
+      }, body: {
+        "email": prefs.getString('usernameCube'),
+        "password": prefs.getString('passwordCube')
+      }).then((value) {
+        print(value.body);
+        setState(() {
+          widget._userJson = jsonDecode(value.body);
+        });
       });
+      print(widget._userJson);
     } catch (e) {
       inspect(e);
     }

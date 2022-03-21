@@ -30,7 +30,7 @@ class FeedBox extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(ressource["utilisateur"]["Nom"],
+                      Text(ressource["utilisateur"]["Prenom"],
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,
