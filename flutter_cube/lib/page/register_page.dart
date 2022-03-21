@@ -30,7 +30,7 @@ class RegisterPage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         children: [
           Text(
-            "S'enregister",
+            "S'enregistrer",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.white, fontSize: 25, fontStyle: FontStyle.normal),
