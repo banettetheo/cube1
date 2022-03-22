@@ -9,54 +9,49 @@ use App\Models\Type_ressource;
 use App\Models\User;
 use App\Repositories\RessourceRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class AccueilController extends Controller
 {
 
-    private $ressourceRepository;
-
-    public function __construct(RessourceRepository $ressourceRepository)
+    public function index(Request $request)
     {
-        $this->ressourceRepository = $ressourceRepository;
-    }
+        $default = $request;
+        //Récupération des ressources
+        $request = Request::create('/api/ressources', 'GET', []);
+        $responseRessources = Route::dispatch($request)->getContent();
 
-    public function index(){
+        //Récupération des types de ressource
+        $request = Request::create('/api/types-ressources', 'GET', []);
+        $responseTypesRessources = Route::dispatch($request)->getContent();
 
-        $lesRessources = $this->ressourceRepository->all();
-
-        $lesCategories = Categorie::all()
-        ->map(function ($categorie) {
-            return [
-                'id' => $categorie->id,
-                'nom' => $categorie->Nom
-            ];
-        });
+        //Récupération des catégories
+        $request = Request::create('/api/categories', 'GET', []);
+        $responseCategories = Route::dispatch($request)->getContent();
 
 
-        $lesTypesRessource = Type_ressource::all()
-            ->map(function ($typeRessource) {
-            return [
-                'id' => $typeRessource->id,
-                'nom' => $typeRessource->Nom
-            ];
-        });
+
+        $lesRessources = json_decode($responseRessources, true);
+        $lesTypesRessources = json_decode($responseTypesRessources, true);
+        $lesCategories = json_decode($responseCategories, true);
+
+
+
         $lesUtilisateurs = User::all()
-        ->map(function ($utilisateur) {
-            return [
-                'id' => $utilisateur->id,
-                'nom' => $utilisateur->name,
-                'prenom' => $utilisateur->Prenom
-            ];
-        });
+            ->map(function ($utilisateur) {
+                return [
+                    'id' => $utilisateur->id,
+                    'name' => $utilisateur->name,
+                    'Prenom' => $utilisateur->Prenom
+                ];
+            });
 
 
         return view('accueil', [
             'ressources' => $lesRessources,
             'categories' => $lesCategories,
-            'typesRessource' => $lesTypesRessource,
-            'utilisateurs' => $lesUtilisateurs
+            'typesRessources' => $lesTypesRessources,
+            'utilisateurs' => $lesUtilisateurs,
         ]);
     }
-
-
 }

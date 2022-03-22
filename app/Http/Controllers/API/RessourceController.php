@@ -38,7 +38,6 @@ class RessourceController extends Controller
      */
     public function index(Request $request)
     {
-
         $validated = $request->validate([
             'type' => 'sometimes|int',
             'categorie' => 'sometimes|int',
@@ -47,31 +46,19 @@ class RessourceController extends Controller
         $lesRessources = $this->ressourceRepository->allPublic();
 
 
-        $idType = null;
-        $idCategorie = null;
+        $type = $request->type;
+        $categorie = $request->categorie;
 
-        try {
-            $idType = $validated['type'];
-        } catch (Exception $e) {
+        if ($type != null) {
+            $lesRessources = $this->ressourceRepository->AllPublicByType($validated['type']);
         }
-        try {
-            $idCategorie = $validated['categorie'];
-        } catch (Exception $e) {
-        }
-
-
-        if ($idType != null) {
-            $lesRessources = $this->ressourceRepository->AllPublicByType($idType);
-        }
-        if ($idCategorie != null) {
-            if ($idType != null) {
-                $lesRessources = $this->ressourceRepository->AllPublicByTypeAndCateg($idType, $idCategorie);
+        if ($categorie != null) {
+            if ($type != null) {
+                $lesRessources = $this->ressourceRepository->AllPublicByTypeAndCateg($validated['type'], $validated['categorie']);
             } else {
-                $lesRessources = $this->ressourceRepository->AllPublicByCategorie($idCategorie);
+                $lesRessources = $this->ressourceRepository->AllPublicByCategorie($validated['categorie']);
             }
         }
-
-
 
         return response()->json($lesRessources);
     }
@@ -95,6 +82,23 @@ class RessourceController extends Controller
         return response()->json($result);
     }
 
+    public function indexPrive()
+    {
+        $authID = auth()->user()->id;
+        $result = $this->ressourceRepository->allPrivees($authID);
+        $result = $result->merge($this->lienRessourceRepository->findRessourceByIdUser($authID));
+        return response()->json($result);
+    }
+
+    public function indexTableauBord()
+    {
+        $authID = auth()->user()->id;
+        $result = $this->favorisRepository->whereFavoris($authID);
+        $result = $result->merge($this->favorisRepository->whereMiseDeCote($authID));
+        return response()->json($result);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -116,36 +120,58 @@ class RessourceController extends Controller
      * @param  \App\Models\Ressources  $ressource
      * @return \Illuminate\Http\Response
      */
-    public function show(Ressources $ressource, Request $request)
+    public function show($id)
     {
-
-        $autorisation = false;
         $result = ["message" => "Vous n'avez pas la permission"];
-        if ($ressource->IdEtat == 4) {
-            $autorisation = true;
-        } elseif (auth('api')->user() != null) {
-            $authID = auth('api')->user()->id;
-            $createurRessource = $ressource->Utilisateur()->get();
-            if ($createurRessource[0]['id'] == $authID) {
+        $resultAut = $this->accesRessource($id,true);
+
+        if ($resultAut['autorisation']) {
+            $result = $this->ressourceRepository->one($resultAut['ressource']);
+        }
+
+        return response()->json($result);
+
+    }
+
+
+    public function edit($id){
+        $result = ["message" => "Vous n'avez pas la permission"];
+        $resultAut = $this->accesRessource($id,false);
+
+        if ($resultAut['autorisation']) {
+            $result = $this->ressourceRepository->one($resultAut['ressource']);
+        }
+
+        return response()->json($result);
+    }
+
+
+    private function accesRessource(int $id, bool $show)
+    {
+        $ressource = $this->ressourceRepository->findByIdDefault($id);
+        $autorisation = false;
+        if ($ressource != null) {
+            if ($ressource->IdEtat == 4 && $show) {
                 $autorisation = true;
-            } else {
-                $lesRessourcesPartages = $this->lienRessourceRepository->findRessourceByIdUser($authID);
-                foreach ($lesRessourcesPartages as $uneRessource) {
-                    if ($uneRessource['id'] == $ressource->id) {
-                        $autorisation = true;
+            } elseif (auth('api')->user() != null) {
+                $authID = auth('api')->user()->id;
+                $createurRessource = $ressource->Utilisateur()->get();
+                if ($createurRessource[0]['id'] == $authID) {
+                    $autorisation = true;
+                } else {
+                    $lesRessourcesPartages = $this->lienRessourceRepository->findRessourceByIdUser($authID);
+                    foreach ($lesRessourcesPartages as $uneRessource) {
+                        if ($uneRessource['id'] == $ressource->id) {
+                            $autorisation = true;
+                        }
                     }
                 }
             }
         }
-
-        if ($autorisation) {
-            $result = $this->ressourceRepository->one($ressource);
-        }
-
-        // return response()->json($result);
-        return response()->json($result);
-            // return auth('api')->user();
-        ;
+        return [
+            'autorisation' => $autorisation,
+            'ressource' => $ressource
+        ];
     }
 
 

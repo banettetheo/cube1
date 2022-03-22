@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View()->composer(['ressources.createRessource', 'accueil'], CategorieComposer::class);
-        View()->composer(['ressources.createRessource', 'accueil'], TypeRessourceComposer::class);
+        // View()->composer(['ressources.createRessource', 'accueil'], CategorieComposer::class);
+        // View()->composer(['ressources.createRessource', 'accueil'], TypeRessourceComposer::class);
     }
 }

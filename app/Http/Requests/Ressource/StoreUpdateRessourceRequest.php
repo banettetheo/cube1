@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Ressource;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateRessourceRequest extends FormRequest
@@ -15,7 +16,6 @@ class StoreUpdateRessourceRequest extends FormRequest
     {
         //A configurer une fois l'authentification de faite
         return true;
-
     }
 
     /**
@@ -24,11 +24,11 @@ class StoreUpdateRessourceRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   
-        $addValue=[];
+    {
+        $addValue = [];
         $key = 'required';
-        if($this->method()=='PUT'){
-            $key= 'sometimes';
+        if ($this->method() == 'PUT') {
+            $key = 'sometimes';
             $addValue = ['IdEtat' => $key . '|integer|between:1,3'];
         }
         $value = [
@@ -45,13 +45,19 @@ class StoreUpdateRessourceRequest extends FormRequest
 
     public function messages()
     {
-        return[
-            'Titre.required'=>'Le titre est requis',
-            'Contenue.required'=>'Le contenu est requis',
-            'IdCategorie.required'=>'La catégorie est requis',
-            'IdUtilisateur_createur.required'=>'L\'utilisateur est requis',
-            'IdType.required'=>'Le type est requis',
-            'Lien_ressources.required'=>'L\'url est requis'
+        return [
+            'Titre.required' => 'Le titre est requis',
+            'Contenue.required' => 'Le contenu est requis',
+            'IdCategorie.required' => 'La catégorie est requis',
+            'IdUtilisateur_createur.required' => 'L\'utilisateur est requis',
+            'IdType.required' => 'Le type est requis',
+            'Lien_ressources.required' => 'L\'url est requis'
         ];
+    }
+
+    public $validator = null;
+    protected function failedValidation(Validator $validator)
+    {
+        $this->validator = $validator;
     }
 }
