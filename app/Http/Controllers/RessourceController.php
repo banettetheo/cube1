@@ -1,22 +1,26 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
 use App\Models\Ressources;
 use App\Http\Requests\Ressource\StoreUpdateRessourceRequest;
+use App\Providers\RouteServiceProvider;
 use App\Repositories\RessourceRepository;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-class RessourceController extends Controller 
+class RessourceController extends Controller
 {
-    private $ressourceRepository;
+  private $ressourceRepository;
 
   public function __construct(RessourceRepository $ressourceRepository)
   {
     $this->ressourceRepository = $ressourceRepository;
   }
-  
+
 
 
   // /**
@@ -36,7 +40,23 @@ class RessourceController extends Controller
    */
   public function create()
   {
-    return view ('ressources/createRessource');
+
+    //Récupération des types de ressource
+    $request = Request::create('/api/types-ressources', 'GET', []);
+    $responseTypesRessources = Route::dispatch($request)->getContent();
+
+    //Récupération des catégories
+    $request = Request::create('/api/categories', 'GET', []);
+    $responseCategories = Route::dispatch($request)->getContent();
+
+
+    $lesTypesRessources = json_decode($responseTypesRessources, true);
+    $lesCategories = json_decode($responseCategories, true);
+
+    return view('ressources/createRessource', [
+      'categories' => $lesCategories,
+      'typesRessources' => $lesTypesRessources,
+    ]);
   }
 
   /**
@@ -46,10 +66,16 @@ class RessourceController extends Controller
    */
   public function store(StoreUpdateRessourceRequest $request)
   {
-    $validated = $request->validated();
 
-    $ressource = Ressources::create($validated);
-    return redirect()->route('ressources.show',$ressource->id);
+    $validated = $request->validated();
+    $dataValide = array_merge($validated, (['IdUtilisateur_createur' => auth()->id()]));
+    if ($request->validator->fails()) {
+      return Redirect::back()->withErrors($validated);
+    } else {
+      $request = Request::create('/api/ressources', 'POST', []);
+      $responseTypesRessources = Route::dispatch($request)->getContent();
+      return redirect()->intended(RouteServiceProvider::HOME);
+    }
   }
 
   /**
@@ -60,11 +86,22 @@ class RessourceController extends Controller
    */
   public function show($id)
   {
-    $ressource =[
-      'ressource' => $this->ressourceRepository->findById($id)
-    ];
+    $request = Request::create('/api/ressources/' . $id, 'GET', []);
+    $responseRessources = Route::dispatch($request)->getContent();
+    $laRessource = json_decode($responseRessources, true);
 
-    return view ('ressources/zoomRessource',$ressource);
+
+    if ($laRessource != null) {
+      if (array_key_exists('message', $laRessource)) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+      } else {
+        return view('ressources/zoomRessource', [
+          'ressource' => $laRessource
+        ]);
+      }
+    } else {
+      return redirect()->intended(RouteServiceProvider::HOME);
+    }
   }
 
   /**
@@ -75,7 +112,37 @@ class RessourceController extends Controller
    */
   public function edit($id)
   {
-    return view ('ressources/modifRessource');
+    //Récupération de la ressource
+    $request = Request::create('/api/ressources/' . $id . '/modifier', 'GET', []);
+    $responseRessource = Route::dispatch($request)->getContent();
+    $laRessource = json_decode($responseRessource, true);
+
+    if ($laRessource != null) {
+      if (array_key_exists('message', $laRessource)) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+      } else {
+        //Récupération des types de ressource
+        $request = Request::create('/api/types-ressources', 'GET', []);
+        $responseTypesRessources = Route::dispatch($request)->getContent();
+
+        //Récupération des catégories
+        $request = Request::create('/api/categories', 'GET', []);
+        $responseCategories = Route::dispatch($request)->getContent();
+
+
+        $lesTypesRessources = json_decode($responseTypesRessources, true);
+        $lesCategories = json_decode($responseCategories, true);
+
+        return view('ressources/modifRessource', [
+          'ressource' => $laRessource,
+          // 'categories' => $lesCategories,
+          'categories' => $laRessource,
+          'typesRessources' => $lesTypesRessources,
+        ]);
+      }
+    } else {
+      return redirect()->intended(RouteServiceProvider::HOME);
+    }
   }
 
   /**
@@ -84,9 +151,18 @@ class RessourceController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(StoreUpdateRessourceRequest $request, $id)
   {
-    return view ('ressources/zoomRessource');
+    $validated = $request->validated();
+    if ($request->validator->fails()) {
+      return Redirect::back()->withErrors($validated);
+    } else {
+      $request = Request::create('/api/ressources/' . $id, 'PUT', []);
+      Route::dispatch($request);
+      return redirect()->route('ressources.show',$id);
+    }
+    // return redirect()->intended(RouteServiceProvider::HOME);
+
   }
 
   /**
@@ -97,13 +173,9 @@ class RessourceController extends Controller
    */
   public function destroy($id)
   {
-    $request = Request::create('api/ressources/'.$id,'DELETE');
+    $request = Request::create('api/ressources/' . $id, 'DELETE');
     Route::dispatch($request);
 
-    return redirect()->route('monCompte');
-
+    return redirect()->intended(RouteServiceProvider::HOME);
   }
-  
 }
-
-?>

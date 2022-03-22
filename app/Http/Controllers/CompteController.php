@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\EtatRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 class CompteController extends Controller
 {
+
+
+    private $etatRepository;
+
+    public function __construct(EtatRepository $etatRepository)
+    {
+      $this->etatRepository = $etatRepository;
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,15 +27,18 @@ class CompteController extends Controller
      */
     public function index()
     {
-        $request = Request::create('/api/mon-compte/ressources', 'GET', []);
-        $responseRessources = Route::dispatch($request)->getContent();
-
+        // $req = request()->all();
+        $requestq = Request::create('/api/mon-compte/ressources/privees', 'GET',[]);
+        $responseRessources = Route::dispatch($requestq)->getContent();
         $lesRessources = json_decode($responseRessources, true);
+        
+        $lesEtats = $this->etatRepository->getEtatAccesModifUtilisateur();
 
         return view(
             'user/compteUser',
             [
-                'ressources' => $lesRessources
+                'ressources' => $lesRessources,
+                'etats' => $lesEtats,
             ]
         );
     }

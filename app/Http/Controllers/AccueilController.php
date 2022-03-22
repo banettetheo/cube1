@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 class AccueilController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        $default = $request;
         //Récupération des ressources
         $request = Request::create('/api/ressources', 'GET', []);
         $responseRessources = Route::dispatch($request)->getContent();
@@ -36,8 +37,6 @@ class AccueilController extends Controller
 
 
 
-
-
         $lesUtilisateurs = User::all()
             ->map(function ($utilisateur) {
                 return [
@@ -52,7 +51,7 @@ class AccueilController extends Controller
             'ressources' => $lesRessources,
             'categories' => $lesCategories,
             'typesRessources' => $lesTypesRessources,
-            'utilisateurs' => $lesUtilisateurs
+            'utilisateurs' => $lesUtilisateurs,
         ]);
     }
 }

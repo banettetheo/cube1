@@ -23,13 +23,13 @@ use App\Http\Controllers\UtilisateurController;
 
 
 //Accueil
-Route::get('/',[AccueilController::class, 'index']);
+Route::get('/',[AccueilController::class, 'index'])->name('accueil');
 
 Route::middleware('auth')->group(function () {
 
     //Ressources
-    Route::resource('ressources', RessourceController::class)->except(['index','store']);
-    Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
+    // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
+    Route::resource('ressources', RessourceController::class)->except(['index']);
 
     //Compte
     Route::get('mon-compte',[CompteController::class, 'index'])->name('monCompte');

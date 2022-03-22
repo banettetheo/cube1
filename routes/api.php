@@ -31,7 +31,10 @@ Route::apiResource("categories", CategorieController::class, ['as' => 'api'])->o
 //MIDDLEWARE CONNEXION
 Route::middleware('auth:sanctum')->group(function () {
     //Ressources
+    Route::get("ressources/{id}/modifier", [RessourceController::class, 'edit'], ['as' => 'api']);
     Route::get("mon-compte/ressources", [RessourceController::class, 'indexUtilisateur'], ['as' => 'api']);
+    Route::get("mon-compte/ressources/privees", [RessourceController::class, 'indexPrive'], ['as' => 'api']);
+    Route::get("mon-compte/ressources/tableau-de-bord", [RessourceController::class, 'indexTableauBord'], ['as' => 'api']);
     Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->except(['index','show']);
     Route::post('logout', [AuthController::class, 'logout'],['as' => 'api']);
 });
