@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategorieController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\RelationController;
 use App\Http\Controllers\API\RessourceController;
 use App\Http\Controllers\API\TypeRessourceController;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("mon-compte/ressources/privees", [RessourceController::class, 'indexPrive'], ['as' => 'api']);
     Route::get("mon-compte/ressources/tableau-de-bord", [RessourceController::class, 'indexTableauBord'], ['as' => 'api']);
     Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->except(['index','show']);
+    Route::apiResource("relations", RelationController::class, ['as' => 'api']);
     Route::post('logout', [AuthController::class, 'logout'],['as' => 'api']);
 });
 

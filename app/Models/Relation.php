@@ -20,14 +20,14 @@ class Relation extends Model
     ];
 
    public function IdRelation() {
-       return $this->hasOne('App\Models\Type_Relation', 'IdTypeRelation');
+       return $this->belongsTo('App\Models\Type_Relation', 'IdTypeRelation');
      }
      
      public function User1() {
-       return $this->hasone('App\Models\User', 'IdUser1');
+       return $this->belongsTo('App\Models\User', 'IdUser1');
      }
 
      public function User2() {
-      return $this->hasone('App\Models\User', 'IdUser2');
+      return $this->belongsTo('App\Models\User', 'IdUser2');
     }
 }
