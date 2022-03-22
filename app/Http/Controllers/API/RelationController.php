@@ -5,16 +5,19 @@ namespace App\Http\Controllers\API;
 use App\Models\Categorie;
 use App\Http\Controllers\Controller;
 use App\Repositories\RelationRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class RelationController extends Controller
 {
 
     private $relationRepository;
+    private $userRepository;
 
-    public function __construct(RelationRepository $relationRepository)
+    public function __construct(RelationRepository $relationRepository, UserRepository $userRepository)
     {
         $this->relationRepository = $relationRepository;
+        $this->userRepository = $userRepository;
     }
 
 
@@ -47,10 +50,13 @@ class RelationController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function show(Categorie $categorie)
+    public function show(Request $request, $id)
     {
-        //
+        $unUtilisateur = $this->userRepository->getUtilisateur($id);
+        return response()->json($unUtilisateur);
     }
+
+
 
     /**
      * Update the specified resource in storage.
