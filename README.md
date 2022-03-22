@@ -1,66 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Projet cube 1 - Groupe 1
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Le Ministère des Solidarités et de la Santé souhaite une application mobile et un site web afin de proposer des ressources et outils pour à la fois créer, renforcer et enrichir les relations des citoyens en accord avec les autres ministères. 
 
-## About Laravel
+(Scénario fictif )
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Objectif du projet
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Permettre au Ministère des Solidarités et de la Santé, d’avoir une plateforme accessible à tous les citoyens peu importe leurs âges, situations sociales, ou origines. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+L’objectif étant d’améliorer la qualité de vie ainsi que de bâtir des liens relationnels de qualité entre les citoyens. 
 
-## Learning Laravel
+Cette plateforme va devoir rendre accessible diverses ressources pour les usagers. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+La plateforme devra inclure un catalogue avec différentes sections en fonction du type de la ressources, ou de son contenue (catégories). 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Elle devra permettre à ces utilisateurs de créer, modifier & supprimer leurs ressources. 
 
-## Laravel Sponsors
+De plus les citoyens auront la possibilité de partager leurs ressources avec les autres citoyens ou même de la rendre publique. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Documentation
 
-### Premium Partners
+[Lien vers la doc ici ]
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+## Créer la base de donnée
 
-## Contributing
+```bash
+php artisan migrate:fresh --seed 
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Naviguer sur le site
 
-## Code of Conduct
+Compte administrateur :
+```
+Email           paul@administrateur.com
+Mot de passe    123456789
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Front office
+```
+Accueil         <base URL>
+Connexion       <base URL>/connexion
+Inscription     <base URL>/inscription
+```
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Utilisateur connecté ====================
+```
+Mon compte      <base URL>/mon-compte
+Changer de mdp  <base URL>/changer-mot-de-passe
+```
+
+Les ressources
+```
+Consulter       <base URL>/ressources/{id}
+Créer           <base URL>/ressources/creer
+Modifier        <base URL>/ressources/{id}/modifier
+Supprimer       <base URL>/ressources/{id}/supprimer
+```
+
+Modérateur 
+```
+Ressources à valider   <base URL>/moderateur/ressources-a-valider
+```
+
+## API
+Les ressources
+```
+Consulter      <base URL>/api/ressources/{id}
+```
+
+## Contribution
+Le projet cube1 est un projet a titre éducatif vous êtes libre de le cloner et de faire ce que vous voulez avec mais aucune amélioration ne seras accepter. 
+## Framework
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)..
 
 ## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)..
