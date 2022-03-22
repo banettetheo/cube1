@@ -14,7 +14,7 @@
                         <!--une liste de catégorie récupérer sur la bdd-->
                         <select name="categorie" id="cat-select" class="filtre-select">
                             <option value="" selected>selectionner la catégorie de votre ressource</option>
-                            <option value="exemple">exemple</option>
+                            <option value="exemple">exemple1</option>
                             <option value="exemple">exemple</option>
                         </select>
                     </div>
@@ -70,10 +70,10 @@
                 avec un foreach  -->
                 <div class="user">
                     <!--le nom prenom de l'utilisateur-->
-                    <h3 id="userNom"></h3>
-                    <h3 id="userPrenom"></h3>
+                    <h3 id="userNom">le nom de l'utilisateur</h3>
+                    <h3 id="userPrenom">le prenom de l'utilisateur</h3>
                     <!-- accède au compteUser de l'utilisateur (suite dans le fichier compteUser.blade.php le commentaire sous la section)-->
-                    <button> voir l'utilisateur </button>
+                    <a href=""> voir l'utilisateur </a>
                 </div>
             </div>
         </div>

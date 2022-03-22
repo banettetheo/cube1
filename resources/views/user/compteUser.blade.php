@@ -6,8 +6,10 @@
     à la place on a un ajouter en tant que -->
         <div class="col-left">
             @auth
+            <a href="" class="button-menu">-Vos ressources mise de côté</a><br><br>
+            <a href="" class="button-menu">-Vos ressources favorites</a><br><br>
             @if ( Auth::user()->Moderateur)
-            <a href="{{ route('ressources-a-valider.index') }}" class="button-menu">Valider des ressources</a>
+            <a href="{{ route('ressources-a-valider.index') }}" class="button-menu">-Valider des ressources</a>
             @endif
             @endauth
         </div>
@@ -36,12 +38,34 @@
                             <p id="footerRessourceVue">nbr vue</p>
                             <!--affichage du nombre de like-->
                             <p id="footerRessourceLike">nbr like</p>
+                            <a href="" class="lire-suite"> lire la suite </a>
                         </div>
                         <div class="group-btn-footer">
-                            <a href="" class="btn-footer"> lire la suite </a>
+                            <select name="IdEtat" id="IdEtat">
+                                <option value="" selected>selectionner le type de publication</option>
+                                <option value="exemple">exemple</option>
+                                <option value="exemple">exemple</option>
+                            </select>
+                            <button id="publiRessource" class="crud-share">publier la ressource</button>
                             <button id="supprRessource" class="crud-share">supprimer la ressource</button>
                             <button id="modifRessource" class="crud-share">modifier la ressource</button>
-                            <button id="publiRessource" class="crud-share">publier la ressource</button>
+                            <button id="publiRessource" onclick="openForm()" class="crud-share">partager la ressource</button>
+                            <div class="login-popup">
+                                <div class="form-popup" id="popupForm">
+                                    <form action="" class="form-container">
+                                        @csrf
+                                        <h2>Veuillez sélection un ou des utilisateurs pour partager</h2>
+                                        <div class="user-relation">
+                                            <!--@ - for - each-->
+                                            <input type="checkbox" name="">le nom de l'utilisateur le prenom de l'utilisateur</input>
+                                        </div>
+                                        <div class="confirmation-share">
+                                            <button type="submit" class="btn-share">partager</button>
+                                            <button type="button" class="btn-cancel" onclick="closeForm()">Fermer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,5 +105,13 @@
             <!------------------------------------------------------------->
         </div>
     </section>
+    <script>
+      function openForm() {
+        document.getElementById("popupForm").style.display = "block";
+      }
 
+      function closeForm() {
+        document.getElementById("popupForm").style.display = "none";
+      }
+    </script>
 </x-app-layout>

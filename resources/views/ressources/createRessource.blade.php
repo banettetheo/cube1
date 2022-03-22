@@ -1,9 +1,10 @@
 <x-app-layout>
     <section id="creer-ressource">
         <form action="" method="post" class="form-main">
+            @csrf
             <div class="form-left">
 
-                <input type="text" id="titre" value="titre" name="title" placeholder="le titre de votre ressource"/>
+                <input type="text" id="titre" value="" name="Titre" placeholder="le titre de votre ressource"/>
                 <div class="form-select">
                     <!--une liste de catégorie récupérer sur la bdd-->
                     <select name="categorie" id="cat-select">
@@ -20,7 +21,7 @@
                     </select>
                 </div>
 
-                <input type="url" id="url" placeholder="ajouter une url à votre ressource" name="url"/>
+                <input type="url" id="url" placeholder="ajouter une url à votre ressource" name="Lien_ressources"/>
 
                 <input type="file" id="file" name="file" placeholder="ajouter un firchier à votre ressource"/>
 
@@ -28,7 +29,7 @@
 
             <div class="form-right">
 
-                <textarea id="content" row="5" cols="33" name="content" placeholder="insérer une description de votre ressource ou le contenu"></textarea>
+                <textarea id="content" row="5" cols="33" name="Contenue" placeholder="insérer une description de votre ressource ou le contenu"></textarea>
 
                 <input id="btn-creer-ressource" type="submit" value="créer votre ressource"/>
             </div>
