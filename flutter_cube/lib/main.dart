@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
   void fetchUser() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-
       var response = await post(Uri.parse(url), headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         "Accept": "application/json"
