@@ -1,6 +1,59 @@
 {
     "packages": [
         {
+            "name": "andyabih/laravel-to-uml",
+            "version": "1.0.3",
+            "version_normalized": "1.0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andyabih/laravel-to-uml.git",
+                "reference": "d925215a7dbcaf813cabc8d83178e9f601c63b57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andyabih/laravel-to-uml/zipball/d925215a7dbcaf813cabc8d83178e9f601c63b57",
+                "reference": "d925215a7dbcaf813cabc8d83178e9f601c63b57",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "6.0"
+            },
+            "time": "2021-04-07T07:32:11+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Andyabih\\LaravelToUML\\LaravelToUMLServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelToUML": "Andyabih\\LaravelToUML\\Facades\\LaravelToUML"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Andyabih\\LaravelToUML\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Abi Haidar",
+                    "email": "andy@yllw.com"
+                }
+            ],
+            "description": "Automagically generate UML diagrams of your Laravel code.",
+            "support": {
+                "issues": "https://github.com/andyabih/laravel-to-uml/issues",
+                "source": "https://github.com/andyabih/laravel-to-uml/tree/1.0.3"
+            },
+            "install-path": "../andyabih/laravel-to-uml"
+        },
+        {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
             "version_normalized": "2.0.3.0",
@@ -1463,6 +1516,66 @@
             "install-path": "../hamcrest/hamcrest-php"
         },
         {
+            "name": "laravel/breeze",
+            "version": "v1.8.2",
+            "version_normalized": "1.8.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "5b034ac325ee8cb34bef3a03daad1d900fcc1a8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/5b034ac325ee8cb34bef3a03daad1d900fcc1a8c",
+                "reference": "5b034ac325ee8cb34bef3a03daad1d900fcc1a8c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^8.42|^9.0",
+                "illuminate/support": "^8.42|^9.0",
+                "illuminate/validation": "^8.42|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "time": "2022-02-21T18:18:37+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Breeze\\BreezeServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+            "keywords": [
+                "auth",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/breeze/issues",
+                "source": "https://github.com/laravel/breeze"
+            },
+            "install-path": "../laravel/breeze"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.75.0",
             "version_normalized": "8.75.0.0",
@@ -1702,32 +1815,32 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.12.2",
-            "version_normalized": "2.12.2.0",
+            "version": "v2.14.2",
+            "version_normalized": "2.14.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "76b2d552c00477d520338889160f80a0cfb5fc55"
+                "reference": "dc5d749ba9bfcfd68d8f5c272238f88bea223e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/76b2d552c00477d520338889160f80a0cfb5fc55",
-                "reference": "76b2d552c00477d520338889160f80a0cfb5fc55",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/dc5d749ba9bfcfd68d8f5c272238f88bea223e66",
+                "reference": "dc5d749ba9bfcfd68d8f5c272238f88bea223e66",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "illuminate/contracts": "^6.9|^7.0|^8.0",
-                "illuminate/database": "^6.9|^7.0|^8.0",
-                "illuminate/support": "^6.9|^7.0|^8.0",
+                "illuminate/contracts": "^6.9|^7.0|^8.0|^9.0",
+                "illuminate/database": "^6.9|^7.0|^8.0|^9.0",
+                "illuminate/support": "^6.9|^7.0|^8.0|^9.0",
                 "php": "^7.2|^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
                 "phpunit/phpunit": "^8.0|^9.3"
             },
-            "time": "2021-11-16T16:57:07+00:00",
+            "time": "2022-02-16T14:40:23+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -8207,6 +8320,7 @@
         "fakerphp/faker",
         "filp/whoops",
         "hamcrest/hamcrest-php",
+        "laravel/breeze",
         "laravel/sail",
         "mockery/mockery",
         "myclabs/deep-copy",

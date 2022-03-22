@@ -64,7 +64,6 @@ Ressources à valider   <base URL>/moderateur/ressources-a-valider
 ```
 
 ## API
-
 Les ressources
 ```
 Consulter      <base URL>/api/ressources/{id}
@@ -72,6 +71,9 @@ Consulter      <base URL>/api/ressources/{id}
 
 ## Contribution
 Le projet cube1 est un projet a titre éducatif vous êtes libre de le cloner et de faire ce que vous voulez avec mais aucune amélioration ne seras accepter. 
+## Framework
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)..
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+

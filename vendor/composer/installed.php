@@ -1,15 +1,24 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'v8.6.9',
-        'version' => '8.6.9.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'ee3952c966dc6c2d3172f30a20592a0a8f90ad51',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
+        'andyabih/laravel-to-uml' => array(
+            'pretty_version' => '1.0.3',
+            'version' => '1.0.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../andyabih/laravel-to-uml',
+            'aliases' => array(),
+            'reference' => 'd925215a7dbcaf813cabc8d83178e9f601c63b57',
+            'dev_requirement' => false,
+        ),
         'asm89/stack-cors' => array(
             'pretty_version' => 'v2.0.3',
             'version' => '2.0.3.0',
@@ -385,6 +394,15 @@
                 0 => '*',
             ),
         ),
+        'laravel/breeze' => array(
+            'pretty_version' => 'v1.8.2',
+            'version' => '1.8.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/breeze',
+            'aliases' => array(),
+            'reference' => '5b034ac325ee8cb34bef3a03daad1d900fcc1a8c',
+            'dev_requirement' => true,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v8.75.0',
             'version' => '8.75.0.0',
@@ -395,12 +413,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v8.6.9',
-            'version' => '8.6.9.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'ee3952c966dc6c2d3172f30a20592a0a8f90ad51',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -413,12 +431,12 @@
             'dev_requirement' => true,
         ),
         'laravel/sanctum' => array(
-            'pretty_version' => 'v2.12.2',
-            'version' => '2.12.2.0',
+            'pretty_version' => 'v2.14.2',
+            'version' => '2.14.2.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/sanctum',
             'aliases' => array(),
-            'reference' => '76b2d552c00477d520338889160f80a0cfb5fc55',
+            'reference' => 'dc5d749ba9bfcfd68d8f5c272238f88bea223e66',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(
@@ -769,8 +787,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

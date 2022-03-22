@@ -1,0 +1,6 @@
+node_modules
+/vendor/
+.vs
+nbproject
+package-lock.json
+public
