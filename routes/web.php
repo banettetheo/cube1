@@ -28,6 +28,8 @@ use App\Http\Controllers\Auth\ChangerMdpController;
 
 //Accueil
 Route::get('/',[AccueilController::class, 'index'])->name('accueil');
+route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
+
 
 Route::middleware('auth')->group(function () {
     //Ressources
@@ -42,7 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
     
     //Relations
-    Route::resource('relations', RelationController::class);
+    route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
+    Route::resource('mon-compte/relations', RelationController::class)->except(['create','store']);
 
 });
 

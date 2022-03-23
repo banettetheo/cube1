@@ -25,9 +25,7 @@ class UserRepository
 
     public function getUtilisateur($id){
         $unUtilisateur = User::findOrFail($id)->only('id','name','Prenom','Moderateur');
-        return [
-            'user' => $unUtilisateur
-        ];
+        return $unUtilisateur;
     }
 
     public function one(User $unUser){
