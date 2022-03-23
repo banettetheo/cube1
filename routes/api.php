@@ -27,6 +27,8 @@ Route::post('login', [AuthController::class, 'login'],['as' => 'api']);
 Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->only(['index','show']);
 Route::apiResource("types-ressources", TypeRessourceController::class, ['as' => 'api'])->only(['index']);
 Route::apiResource("categories", CategorieController::class, ['as' => 'api'])->only(['index']);
+Route::get("utilisateurs/{id}", [RelationController::class, 'show'], ['as' => 'api']);
+
 
 
 //MIDDLEWARE CONNEXION
@@ -37,7 +39,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("mon-compte/ressources/privees", [RessourceController::class, 'indexPrive'], ['as' => 'api']);
     Route::get("mon-compte/ressources/tableau-de-bord", [RessourceController::class, 'indexTableauBord'], ['as' => 'api']);
     Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->except(['index','show']);
-    Route::get("utilisateurs/{id}", [RelationController::class, 'show'], ['as' => 'api']);
     Route::post("utilisateurs/{id}", [RelationController::class, 'store'], ['as' => 'api']);
     Route::apiResource("relations", RelationController::class, ['as' => 'api'])->except(['show','store']);
     Route::post('logout', [AuthController::class, 'logout'],['as' => 'api']);

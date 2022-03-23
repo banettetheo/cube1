@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 
 class RelationController extends Controller 
 {
@@ -14,7 +16,13 @@ class RelationController extends Controller
    */
   public function index()
   {
-    return view('user/mesRelations');
+     //Récupération des catégories
+     $request = Request::create('/api/relations', 'GET', []);
+     $responseLesRelations = Route::dispatch($request)->getContent();
+ 
+     $lesRelations = json_decode($responseLesRelations, true);
+   
+     return view('user/mesRelations',['relations' => $lesRelations]);
   }
 
   /**
@@ -22,9 +30,13 @@ class RelationController extends Controller
    *
    * @return Response
    */
-  public function create()
+  public function create($id)
   {
-    
+    $request = Request::create('/api/utilisateurs/'.$id, 'GET', []);
+    $responseUtilisateur = Route::dispatch($request)->getContent();;
+
+    $utilisateur = json_decode($responseUtilisateur, true);
+    return view('user/compteUser',['utilisateur' => $utilisateur]);
   }
 
   /**
