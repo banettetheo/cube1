@@ -99,7 +99,7 @@
                 <option value="ami">ami</option>
                 <option value="famille">famille</option>
             </select>
-            <button> ajouter la relation</button>
+            <button class="ajoutRelation"> ajouter la relation</button>
             @endif
             @endauth
             <!------------------------------------------------------------->

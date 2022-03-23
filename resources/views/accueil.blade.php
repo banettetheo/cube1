@@ -2,7 +2,7 @@
     <section id="accueil" class="main-flex">
 
         <div class="col-center">
-            <div class="flex">
+            <div class="flex header-recherche-filtre">
                 <div class="recherche-user">
                     <!--barre de recherche pour trouver un autre utilisateur-->
                     <input type="text" class="recherche" placeholder="Rechercher un utilisateur">
@@ -81,8 +81,8 @@
         <div class="col-right">
             <h1> Jeu vidéo </h1>
             <div class="list-game">
-                <a href="https://snake.io/">
-                    <i class="img-game snake-bg"></i>
+                <a href="https://zutom.z-lan.fr/">
+                    <i class="img-game zutom-bg"></i>
                 </a>
                 <a href="">
                     <i class="img-game img-game1"></i>
@@ -93,8 +93,8 @@
                 <a href="">
                     <i class="img-game img-game3"></i>
                 </a>
-                <a href="https://zutom.z-lan.fr/">
-                    <i class="img-game zutom-bg"></i>
+                <a href="https://snake.io/">
+                    <i class="img-game snake-bg"></i>
                 </a>
                 <a href="">
                     <i class="img-game img-game4"></i>
