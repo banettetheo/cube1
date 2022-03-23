@@ -29,7 +29,7 @@
                         <hr>
                     </div>
                     <!--le contenu text de la ressource (description ou article)-->
-                    <textarea id="contentRessource"></textarea>
+                    <p id="contentRessource"></p>
                     <div class="footer-ressource">
                         <div class="vue-like">
                             <!--affichage du nombre de commentaire-->
