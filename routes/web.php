@@ -9,6 +9,10 @@ use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
 use App\Http\Controllers\Moderateur\RessourceValidationController;
 use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use App\Http\Controllers\Auth\ChangerMdpController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +30,6 @@ use App\Http\Controllers\UtilisateurController;
 Route::get('/',[AccueilController::class, 'index'])->name('accueil');
 
 Route::middleware('auth')->group(function () {
-
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
     Route::resource('ressources', RessourceController::class)->except(['index']);
@@ -42,6 +45,30 @@ Route::middleware('auth')->group(function () {
     Route::resource('relations', RelationController::class);
 
 });
+
+
+
+// BACK - OFFICE ==============
+Route::middleware('guest')->group(function () {
+
+    Route::get('administration/connexion', [AuthenticatedSessionController::class, 'create']);
+});
+
+// Route::middleware('auth')->group(function () {
+//     //Compte
+//     Route::get('administration/accueil',[AccueilController::class, 'indexAdmin'])->name('admin.accueil');
+//     Route::get('administration/gestion-comptes',[CompteController::class, 'index'])->name('admin.gestionComptes');
+
+//     Route::get('administration/gestion-catalogues',[CompteController::class, 'index'])->name('admin.gestionCatalogues');
+//     Route::get('administration/gestion-catalogues/categories',[CategorieController::class, 'index'])->name('admin.gestionCatalogues.categories');
+//     Route::get('administration/gestion-catalogues/types-ressource',[CompteController::class, 'index'])->name('admin.gestionCatalogues.typesRessource');
+//     Route::get('administration/tableaux-de-bords',[StatistiquesController::class, 'index'])->name('admin.tableauxBords');
+//     Route::get('administration/gestion-ressources',[RessourcesController::class, 'index'])->name('admin.gestionRessources');
+//     Route::get('administration/gestion-relations',[RelationController::class, 'index'])->name('admin.gestionRelations');
+//     Route::get('administration/super-admin',[SuperAdminController::class, 'index'])->name('admin.superAdmin');
+
+
+// });
 
 // Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
 
