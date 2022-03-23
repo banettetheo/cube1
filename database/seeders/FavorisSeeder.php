@@ -15,10 +15,12 @@ class FavorisSeeder extends Seeder
     public function run()
     {
         //
-        Favoris::create([
-            'Utilisateur_id' => 1,
-            'IdRessources' => 1,
-            'Type_favoris_id' =>1,
-        ]);
+       // Favoris::create([
+       //     'Utilisateur_id' => 1,
+      //      'IdRessources' => 1,
+      //      'Type_favoris_id' =>1,
+      //  ]);
+
+      Favoris::factory(50)->create();
     }
 }
