@@ -9,6 +9,10 @@ use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
 use App\Http\Controllers\Moderateur\RessourceValidationController;
 use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use App\Http\Controllers\Auth\ChangerMdpController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +30,32 @@ use App\Http\Controllers\UtilisateurController;
 Route::get('/',[AccueilController::class, 'index'])->name('accueil');
 
 Route::middleware('auth')->group(function () {
-
     //Ressources
+    // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
+    Route::resource('ressources', RessourceController::class)->except(['index']);
+
+    //Compte
+    Route::get('mon-compte',[CompteController::class, 'index'])->name('monCompte');
+
+
+    //Modération
+    Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
+    
+    //Relations
+    Route::resource('relations', RelationController::class);
+
+});
+
+
+
+// BACK - OFFICE ==============
+    Route::get('administration/connexion', [AuthenticatedSessionController::class, 'create'])
+    ->name('administrateur.login');
+
+    Route::post('administration/connexion', [AuthenticatedSessionController::class, 'store']);
+
+Route::middleware('auth')->group(function () {
+    //Back_office
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
     Route::resource('ressources', RessourceController::class)->except(['index']);
 
