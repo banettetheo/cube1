@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Ressource\StoreUpdateRelationRequest;
+use App\Models\Type_Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -46,18 +47,25 @@ class RelationController extends Controller
     $utilisateur = json_decode($responseUtilisateur, true);
     $lesTypes = json_decode($responseLesTypes, true);
     $lesRelations = json_decode($responseLesRelations, true);
-    $infoRelationUser = 'Aucune';
+
+
+    $relationUser = Type_Relation::findOrFail(5)->only('id','Nom');
+    $infoRelationUser = [
+      'idRelation' => null,
+      'idType' => $relationUser['id'],
+      'nomType' => $relationUser['Nom']
+    ];
     
     foreach ($lesRelations as $uneRelation){
       if($uneRelation['utilisateur']['id']==$id){
         $infoRelationUser = [
-          'id' => $uneRelation['typeRelation']['id'],
-          'nom' => $uneRelation['typeRelation']['Nom']
+          'idRelation' => $uneRelation['id'],
+          'idType' => $uneRelation['typeRelation']['id'],
+          'nomType' => $uneRelation['typeRelation']['Nom']
         ];
         break;
       }
     }
-
 
     return view('user/compteUser', [
       'utilisateur' => $utilisateur,
