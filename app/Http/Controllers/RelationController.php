@@ -39,14 +39,30 @@ class RelationController extends Controller
     $request = Request::create('/api/relations/types', 'GET', []);
     $responseLesTypes = Route::dispatch($request)->getContent();;
 
+    $request = Request::create('/api/relations', 'GET', []);
+    $responseLesRelations = Route::dispatch($request)->getContent();;
+
 
     $utilisateur = json_decode($responseUtilisateur, true);
     $lesTypes = json_decode($responseLesTypes, true);
+    $lesRelations = json_decode($responseLesRelations, true);
+    $infoRelationUser = 'Aucune';
+    
+    foreach ($lesRelations as $uneRelation){
+      if($uneRelation['utilisateur']['id']==$id){
+        $infoRelationUser = [
+          'id' => $uneRelation['typeRelation']['id'],
+          'nom' => $uneRelation['typeRelation']['Nom']
+        ];
+        break;
+      }
+    }
 
 
     return view('user/compteUser', [
       'utilisateur' => $utilisateur,
-      'types' => $lesTypes
+      'types' => $lesTypes,
+      'relationActuelle' => $infoRelationUser
     ]);
   }
 
@@ -78,8 +94,9 @@ class RelationController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function edit($id)
+  public function edit()
   {
+
   }
 
   /**
@@ -88,8 +105,11 @@ class RelationController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(StoreUpdateRelationRequest $request, $id)
   {
+    $request = Request::create('/api/relations/' . $id, 'PUT', []);
+    Route::dispatch($request);
+    return redirect()->route('relations.index');
   }
 
   /**
@@ -100,5 +120,8 @@ class RelationController extends Controller
    */
   public function destroy($id)
   {
+    $request = Request::create('/api/relations/' . $id, 'DELETE', []);
+    Route::dispatch($request);
+    return redirect()->route('relations.index');
   }
 }
