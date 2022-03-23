@@ -33,4 +33,15 @@ class RelationRepository
             'utilisateur' => $uneRelation->User2->only('id','name','Prenom')
         ];
     }
+
+    public function verifExistanceRelation(int $idUser1 , int $idUser2){
+        $laRelation = Relation::where(['IdUser1'=>$idUser1, 'IdUser2' => $idUser2])->get();
+        return $laRelation;
+    }
+
+
+    public function getUtilisateurRelation(int $idRelation){
+        $uneRelation = Relation::findOrFail($idRelation)->only('IdUser1');
+        return $uneRelation['IdUser1'];
+    }
 }

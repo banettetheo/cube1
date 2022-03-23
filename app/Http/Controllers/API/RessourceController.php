@@ -134,6 +134,7 @@ class RessourceController extends Controller
     }
 
 
+    //Modifier une relation
     public function edit($id){
         $result = ["message" => "Vous n'avez pas la permission"];
         $resultAut = $this->accesRessource($id,false);
@@ -145,7 +146,7 @@ class RessourceController extends Controller
         return response()->json($result);
     }
 
-
+    //Véirifier les accès
     private function accesRessource(int $id, bool $show)
     {
         $ressource = $this->ressourceRepository->findByIdDefault($id);
@@ -183,6 +184,8 @@ class RessourceController extends Controller
      * @param  \App\Models\Ressources  $ressources
      * @return \Illuminate\Http\Response
      */
+
+     //Mettre à jour une relation
     public function update(StoreUpdateRessourceRequest $request, $id)
     {
         $result = ["message" => "Vous n'avez pas les droits"];
@@ -222,6 +225,8 @@ class RessourceController extends Controller
      * @param  \App\Models\Ressources  $ressources
      * @return \Illuminate\Http\Response
      */
+
+    //  Supprimer une relation
     public function destroy($id)
     {
         $result = ["message" => "Vous n'avez pas les droits"];

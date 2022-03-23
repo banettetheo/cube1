@@ -55,9 +55,9 @@ class StoreUpdateRessourceRequest extends FormRequest
         ];
     }
 
-    public $validator = null;
-    protected function failedValidation(Validator $validator)
-    {
-        $this->validator = $validator;
-    }
+    // public $validator = null;
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     $this->validator = $validator;
+    // }
 }
