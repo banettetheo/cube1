@@ -1,6 +1,5 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
 <div class="user">
         <!--le nom prenom email de l'utilisateur-->
         <h3 id="userNom"></h3>
@@ -12,4 +11,4 @@
     </div>
 
 </div>
-@endsection
+</x-app-layout>

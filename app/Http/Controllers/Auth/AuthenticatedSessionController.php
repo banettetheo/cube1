@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(auth()->user()->Admin){
-            return view('front-BO.connexionUser');
+            return view('front-BO.BO-accueil');
         }else{
             return redirect()->intended(RouteServiceProvider::HOME);
         }

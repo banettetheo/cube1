@@ -1,6 +1,5 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
 
     <div id="titre-logo">
         <img src="{{ URL::asset('image/LogoCube1.PNG'); }}" id="logo">
@@ -10,4 +9,4 @@
 
 
 </div>
-@endsection
+</x-app-layout>
