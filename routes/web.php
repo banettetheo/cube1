@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
     
     //Relations
-    route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relation.create');
+    route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
     Route::resource('mon-compte/relations', RelationController::class)->except(['create','store']);
 
 });

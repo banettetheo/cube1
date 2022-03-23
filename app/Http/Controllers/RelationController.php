@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-class RelationController extends Controller 
+class RelationController extends Controller
 {
 
   /**
@@ -17,13 +17,13 @@ class RelationController extends Controller
    */
   public function index()
   {
-     //Récupération des catégories
-     $request = Request::create('/api/relations', 'GET', []);
-     $responseLesRelations = Route::dispatch($request)->getContent();
- 
-     $lesRelations = json_decode($responseLesRelations, true);
-   
-     return view('user/mesRelations',['relations' => $lesRelations]);
+    //Récupération des catégories
+    $request = Request::create('/api/relations', 'GET', []);
+    $responseLesRelations = Route::dispatch($request)->getContent();
+
+    $lesRelations = json_decode($responseLesRelations, true);
+
+    return view('user/mesRelations', ['relations' => $lesRelations]);
   }
 
   /**
@@ -33,11 +33,21 @@ class RelationController extends Controller
    */
   public function create($id)
   {
-    $request = Request::create('/api/utilisateurs/'.$id, 'GET', []);
+    $request = Request::create('/api/utilisateurs/' . $id, 'GET', []);
     $responseUtilisateur = Route::dispatch($request)->getContent();;
 
+    $request = Request::create('/api/relations/types', 'GET', []);
+    $responseLesTypes = Route::dispatch($request)->getContent();;
+
+
     $utilisateur = json_decode($responseUtilisateur, true);
-    return view('user/compteUser',['utilisateur' => $utilisateur]);
+    $lesTypes = json_decode($responseLesTypes, true);
+
+
+    return view('user/compteUser', [
+      'utilisateur' => $utilisateur,
+      'types' => $lesTypes
+    ]);
   }
 
   /**
@@ -47,9 +57,9 @@ class RelationController extends Controller
    */
   public function store(StoreUpdateRelationRequest $request, $id)
   {
-    $request = Request::create('/api/utilisateurs/'.$id, 'GET', []);
-    $responseUtilisateur = Route::dispatch($request)->getContent();;
-
+    $request = Request::create('/api/utilisateurs/' . $id, 'POST', []);
+    Route::dispatch($request)->getContent();
+    return redirect()->route('relations.index');
   }
 
   /**
@@ -60,7 +70,6 @@ class RelationController extends Controller
    */
   public function show($id)
   {
-    
   }
 
   /**
@@ -71,7 +80,6 @@ class RelationController extends Controller
    */
   public function edit($id)
   {
-    
   }
 
   /**
@@ -82,7 +90,6 @@ class RelationController extends Controller
    */
   public function update($id)
   {
-    
   }
 
   /**
@@ -93,9 +100,5 @@ class RelationController extends Controller
    */
   public function destroy($id)
   {
-    
   }
-  
 }
-
-?>

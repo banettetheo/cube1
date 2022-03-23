@@ -162,8 +162,6 @@ class RelationController extends Controller
 
 
 
-
-
     public function showType(){
         return response()->json($this->relationRepository->getAllTypes());
     }
