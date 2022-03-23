@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("mon-compte/ressources/tableau-de-bord", [RessourceController::class, 'indexTableauBord'], ['as' => 'api']);
     Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->except(['index','show']);
     Route::post("utilisateurs/{id}", [RelationController::class, 'store'], ['as' => 'api']);
+    Route::get("relations/types", [RelationController::class, 'showType'], ['as' => 'api']);
     Route::apiResource("relations", RelationController::class, ['as' => 'api'])->except(['show','store']);
     Route::post('logout', [AuthController::class, 'logout'],['as' => 'api']);
 });

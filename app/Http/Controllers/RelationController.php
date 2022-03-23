@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Ressource\StoreUpdateRelationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -44,9 +45,11 @@ class RelationController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function store(StoreUpdateRelationRequest $request, $id)
   {
-    
+    $request = Request::create('/api/utilisateurs/'.$id, 'GET', []);
+    $responseUtilisateur = Route::dispatch($request)->getContent();;
+
   }
 
   /**

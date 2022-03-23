@@ -44,4 +44,16 @@ class RelationRepository
         $uneRelation = Relation::findOrFail($idRelation)->only('IdUser1');
         return $uneRelation['IdUser1'];
     }
+
+
+    public function getAllTypes(){
+        $lesTypes = Type_Relation::all()
+        ->map(function ($unType) {
+            return [
+                'id' => $unType->id,
+                'nom' => $unType->Nom,
+            ];
+        });
+        return $lesTypes;
+    }
 }

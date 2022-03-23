@@ -8,6 +8,7 @@ use App\Http\Requests\Ressource\StoreUpdateRelationRequest;
 use App\Models\Commentaire;
 use App\Models\Jointure_ress_utilisateur;
 use App\Models\Relation;
+use App\Models\Type_Relation;
 use App\Models\User;
 use App\Repositories\LienRessourceRepository;
 use App\Repositories\RelationRepository;
@@ -156,6 +157,14 @@ class RelationController extends Controller
         }else{
             $result = "Cette relation n'existe pas";
         }
-        return ['message' => $result];
+        return response()->json(['message' => $result]);
+    }
+
+
+
+
+
+    public function showType(){
+        return response()->json($this->relationRepository->getAllTypes());
     }
 }
