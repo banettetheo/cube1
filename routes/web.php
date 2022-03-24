@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\Administrateur\AccueilController as AdministrateurAccueilController;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
@@ -26,20 +27,23 @@ use App\Http\Controllers\Auth\ChangerMdpController;
 */
 
 
-
+Route::middleware('guest')->group(function () {
+    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+    route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
+    route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
+});
 //Accueil
-Route::get('/',[AccueilController::class, 'index'])->name('accueil');
-route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
-route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 
 
-Route::middleware('auth')->group(function () {
+
+// Route::middleware('auth')->group(function () {
+Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
-    Route::resource('ressources', RessourceController::class)->except(['index',"show"]);
+    Route::resource('ressources', RessourceController::class)->except(['index', "show"]);
 
     //Compte
-    Route::get('mon-compte',[CompteController::class, 'index'])->name('monCompte');
+    Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte');
 
     //Commentaires
     route::post('ressources/{id}', [CommentaireController::class, 'store'])->name('commentaires.store');
@@ -48,11 +52,10 @@ Route::middleware('auth')->group(function () {
 
     //Modération
     Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
-    
+
     //Relations
     route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
-    Route::resource('mon-compte/relations', RelationController::class)->except(['create','store']);
-
+    Route::resource('mon-compte/relations', RelationController::class)->except(['create', 'store']);
 });
 
 
@@ -63,6 +66,10 @@ Route::middleware('guest')->group(function () {
     Route::get('administration/connexion', [AuthenticatedSessionController::class, 'create']);
 });
 
+
+Route::group(['middleware' => ['auth', 'backoffice']], function () {
+    Route::get('administration/panel', [AdministrateurAccueilController::class, 'index'])->name('administration.panel.index');
+});
 // Route::middleware('auth')->group(function () {
 //     //Compte
 //     Route::get('administration/accueil',[AccueilController::class, 'indexAdmin'])->name('admin.accueil');
@@ -81,9 +88,9 @@ Route::middleware('guest')->group(function () {
 
 // Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-    
+
 // //Authentification
 // Route::get('/inscription',[AuthentificationController::class, 'inscription']);
 // Route::get('/connexion',[AuthentificationController::class, 'connexion']);

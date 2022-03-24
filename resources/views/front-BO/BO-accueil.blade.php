@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-administration-layout>
 
 
     <div id="titre-logo">
@@ -9,4 +9,4 @@
 
 
 </div>
-</x-app-layout>
+</x-administration-layout>
