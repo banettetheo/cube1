@@ -24,7 +24,7 @@ class RessourcesFactory extends Factory
             'IdCategorie' => $this->faker->numberBetween(1,13),
             'IdType' => $this->faker->numberBetween(1,9),
             'IdUtilisateur_createur' => $this->faker->numberBetween(1,50),
-            'IdEtat' =>  $this->faker->numberBetween(1,5),
+            'IdEtat' =>  $this->faker->numberBetween(2,5),
             'Lien_ressources' => $this->faker->imageUrl(10,5)
         ];
     }

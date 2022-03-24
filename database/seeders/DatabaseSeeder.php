@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder {
 			FavorisSeeder::class,
 			CommentaireSeeder::class,
 			RelationSeeder::class,
+			PresentationSeeder::class,
 		 ]);
 	}
 }
