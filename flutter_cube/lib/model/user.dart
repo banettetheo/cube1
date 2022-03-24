@@ -5,7 +5,7 @@ class User {
   final String email;
   final int moderateur;
   final int compteBan;
-  final String verifiedEmailAt;
+  final String? verifiedEmailAt;
   final String? createdAt;
   final String? updatedAt;
 

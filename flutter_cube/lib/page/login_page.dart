@@ -7,6 +7,8 @@ import 'package:flutter_cube/widget/text_field_widget.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../main.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -53,7 +55,15 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: bgBlue,
-        appBar: AppBar(elevation: 0, backgroundColor: bgBlue),
+        appBar: AppBar(leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute (
+              builder: (BuildContext context) => HomePage(),
+            ),
+          ),
+        ), elevation: 0, backgroundColor: bgBlue),
         body: Container(
           color: bgBlue,
           padding: const EdgeInsets.symmetric(horizontal: 35.0),
@@ -101,7 +111,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     const AlertDialog(
                       title: Text("Connexion réussie"),
                       content: Text("La page d'accueil va s'afficher"),);
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute (
+                        builder: (BuildContext context) => HomePage(),
+                      ),
+                    );
+                    //Navigator.pop(context);
                   } else {
                     const AlertDialog(
                       title: Text("Connexion échouée! réessayez!"),

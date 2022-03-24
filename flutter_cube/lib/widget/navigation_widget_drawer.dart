@@ -188,7 +188,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => FriendPage(token: widget.data["token"]),
-        ));
+        )).then((_) => setState);
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
@@ -216,18 +216,17 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               FlatButton(
                   onPressed: () async {
                     SharedPreferences prefs = await SharedPreferences.getInstance();
-                    Navigator.pop(context);
+                    prefs.setString('usernameCube', '');
+                    prefs.setString('passwordCube', '');
                     Navigator.pushReplacement(
                       context,
                         MaterialPageRoute (
-                          builder: (BuildContext context) => HomePage(),
+                          builder: (BuildContext context) => const LoginScreen(),
                         ),
                     );
-                    prefs.setString('usernameCube', '');
-                    prefs.setString('passwordCube', '');
-                    Navigator.of(context).push(MaterialPageRoute(
+                    /*Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LoginScreen(),
-                    ));
+                    ));*/
                   },
                   child: const Text("Oui")),
               FlatButton(
