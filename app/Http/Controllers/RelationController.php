@@ -56,14 +56,16 @@ class RelationController extends Controller
       'nomType' => $relationUser['Nom']
     ];
     
-    foreach ($lesRelations as $uneRelation){
-      if($uneRelation['utilisateur']['id']==$id){
-        $infoRelationUser = [
-          'idRelation' => $uneRelation['id'],
-          'idType' => $uneRelation['typeRelation']['id'],
-          'nomType' => $uneRelation['typeRelation']['Nom']
-        ];
-        break;
+    if($lesRelations != null){
+      foreach ($lesRelations as $uneRelation){
+        if($uneRelation['utilisateur']['id']==$id){
+          $infoRelationUser = [
+            'idRelation' => $uneRelation['id'],
+            'idType' => $uneRelation['typeRelation']['id'],
+            'nomType' => $uneRelation['typeRelation']['Nom']
+          ];
+          break;
+        }
       }
     }
 
