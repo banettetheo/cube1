@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategorieController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CommentaireController;
 use App\Http\Controllers\API\RelationController;
 use App\Http\Controllers\API\RessourceController;
 use App\Http\Controllers\API\TypeRessourceController;
@@ -39,6 +40,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("mon-compte/ressources/privees", [RessourceController::class, 'indexPrive'], ['as' => 'api']);
     Route::get("mon-compte/ressources/tableau-de-bord", [RessourceController::class, 'indexTableauBord'], ['as' => 'api']);
     Route::apiResource("ressources", RessourceController::class, ['as' => 'api'])->except(['index','show']);
+
+    //Commentaires
+    Route::post("commentaires/{id}", [CommentaireController::class, 'store'], ['as' => 'api']);
+    Route::delete("commentaires/{id}", [CommentaireController::class, 'destroy'], ['as' => 'api']);
+
     Route::post("utilisateurs/{id}", [RelationController::class, 'store'], ['as' => 'api']);
     Route::get("relations/types", [RelationController::class, 'showType'], ['as' => 'api']);
     Route::apiResource("relations", RelationController::class, ['as' => 'api'])->except(['show','store']);

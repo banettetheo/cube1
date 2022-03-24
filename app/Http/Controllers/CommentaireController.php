@@ -2,73 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class CommentaireController extends Controller 
 {
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return Response
-   */
-  public function index()
-  {
-    
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-    
-  }
 
   /**
    * Store a newly created resource in storage.
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function store(Request $request, $id)
   {
-    
+     //Récupération des ressources
+     $request = Request::create('/api/commentaires/'. $id, 'POST', []);
+     $responseRessources = Route::dispatch($request)->getContent();
+
+    return redirect()->route('ressources.show', $id);
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function show($id)
-  {
-    
-  }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function edit($id)
-  {
-    
-  }
-
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function update($id)
-  {
-    
-  }
 
   /**
    * Remove the specified resource from storage.
@@ -76,9 +32,15 @@ class CommentaireController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id)
+  public function destroy(Request $request, $id)
   {
-    
+      $ressource = Commentaire::findOrFail($id)->only('IdRessources');
+        //Récupération des ressources
+        $request = Request::create('/api/commentaires/'. $id, 'DELETE', []);
+        $responseRessources = Route::dispatch($request);
+   
+       return redirect('ressources/'.$ressource['IdRessources']); 
+      //  return redirect()->to("");
   }
   
 }
