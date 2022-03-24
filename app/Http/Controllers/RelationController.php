@@ -86,27 +86,7 @@ class RelationController extends Controller
     return redirect()->route('relations.index');
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function show($id)
-  {
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function edit()
-  {
-
-  }
-
+  
   /**
    * Update the specified resource in storage.
    *
