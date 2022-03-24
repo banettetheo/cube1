@@ -29,7 +29,7 @@ class PresentationSeeder extends Seeder
                 'IdRessource' =>$value->id
             ]);
             Commentaire::create([
-                'Contenue' => $faker->realText(200),
+               'Contenue' => $faker->realText(200),
                 'IdUser' =>$value->IdUtilisateur_createur,
                 'IdRessources' =>$value->id
             ]);
