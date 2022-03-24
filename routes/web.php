@@ -7,6 +7,7 @@ use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\Moderateur\RessourceValidationController;
 use App\Http\Controllers\UtilisateurController;
 /*
@@ -25,16 +26,21 @@ use App\Http\Controllers\UtilisateurController;
 //Accueil
 Route::get('/',[AccueilController::class, 'index'])->name('accueil');
 route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
+route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 
 
 Route::middleware('auth')->group(function () {
 
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
-    Route::resource('ressources', RessourceController::class)->except(['index']);
+    Route::resource('ressources', RessourceController::class)->except(['index',"show"]);
 
     //Compte
     Route::get('mon-compte',[CompteController::class, 'index'])->name('monCompte');
+
+    //Commentaires
+    route::post('ressources/{id}', [CommentaireController::class, 'store'])->name('commentaires.store');
+    route::delete('commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
 
     //Modération
