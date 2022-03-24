@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, dynamic>>(future: response, builder: (context, snapshot) {
+      if(snapshot.hasData) {
         return Scaffold(
             backgroundColor: bgBlue,
             drawer: NavigationDrawer(data: snapshot.data!),
@@ -124,7 +125,8 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-            ));
+            ));}
+      return const Center(child: CircularProgressIndicator(),);
     });
   }
 }
