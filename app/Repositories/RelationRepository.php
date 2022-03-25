@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Models\Relation;
 use App\Models\Type_Relation;
+use App\Models\User;
 
 class RelationRepository
 {
@@ -23,6 +24,23 @@ class RelationRepository
                 return $this->one($uneRelation);
             });;
         return $lesRelations;
+
+    }
+
+    
+    public function allUsers()
+    {
+        $lesUtilisateurs = User::where(['Admin'=>0, 'SuperAdmin'=>0])->get()
+            ->map(function ($unUtilisateur) {
+                return[
+                    'id'=>$unUtilisateur->id,
+                    'nom'=>$unUtilisateur->name,
+                    'prenom'=>$unUtilisateur->Prenom,
+                    'email'=>$unUtilisateur->email,
+                    'ban'=>$unUtilisateur->Compte_ban,
+                ];
+            });
+        return $lesUtilisateurs;
 
     }
 

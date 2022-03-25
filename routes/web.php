@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\Administrateur\AccueilController as AdministrateurAccueilController;
+use App\Http\Controllers\Administrateur\TableauBordController;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
@@ -10,7 +11,7 @@ use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\Moderateur\RessourceValidationController;
-use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Administrateur\UtilisateurController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\Auth\ChangerMdpController;
@@ -31,6 +32,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/', [AccueilController::class, 'index'])->name('accueil');
     route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
+
+
 });
 //Accueil
 
@@ -61,14 +64,11 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
 
 
 // BACK - OFFICE ==============
-Route::middleware('guest')->group(function () {
-
-    Route::get('administration/connexion', [AuthenticatedSessionController::class, 'create']);
-});
-
 
 Route::group(['middleware' => ['auth', 'backoffice']], function () {
-    Route::get('administration/panel', [AdministrateurAccueilController::class, 'index'])->name('administration.panel.index');
+    Route::get('administration/panel', [AdministrateurAccueilController::class, 'index'])->name('administration.panel');
+    Route::resource('administration/gestion-comptes', UtilisateurController::class,['as' => 'administration']);
+    Route::resource('administration/tableaux-de-bord', TableauBordController::class,['as' => 'administration']);
 });
 // Route::middleware('auth')->group(function () {
 //     //Compte
@@ -86,21 +86,6 @@ Route::group(['middleware' => ['auth', 'backoffice']], function () {
 
 // });
 
-// Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
 
 require __DIR__ . '/auth.php';
 
-
-// //Authentification
-// Route::get('/inscription',[AuthentificationController::class, 'inscription']);
-// Route::get('/connexion',[AuthentificationController::class, 'connexion']);
-// Route::get('/deconnexion',[AuthentificationController::class, 'deconnexion']);
-
-
-//Comptes
-//Route::get('/mon-compte',[CompteController::class, 'monProfil']);
-
-
-
-
-route::resource('utilisateur', UtilisateurController::class)->only(['show']);

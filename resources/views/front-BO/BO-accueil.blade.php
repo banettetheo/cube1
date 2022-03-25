@@ -1,12 +1,11 @@
 <x-administration-layout>
 
 
-    <div id="titre-logo">
-        <img src="{{ URL::asset('image/LogoCube1.PNG'); }}" id="logo">
-        <h1 id="titre-app">back-office (RE)SOURCES RELATIONNELLES</h1>
+    <h3 id="" class="color-charte-verte p-4">Accueil back-office (RE)SOURCES RELATIONNELLES</h3>
+    @auth
+    <div class="container m-4">
+        <p>Bonjour {{Auth::user()->Prenom}} !<br><br>
+            Bienvenue dans votre espace dédié à l'administration.</p>
+        @endAuth
     </div>
-    <p>Bienvenu dans le service de gestion des ressources et des utilisateurs de (RE)SOURCES RELATIONNELLES</p>
-
-
-</div>
 </x-administration-layout>
