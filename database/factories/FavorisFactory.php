@@ -15,6 +15,9 @@ class FavorisFactory extends Factory
     {
         return [
             //
+            'Utilisateur_id' => $this->faker->numberBetween(1,50),
+            'IdRessources' => $this->faker->numberBetween(1,180),
+            'Type_favoris_id' => $this->faker->numberBetween(1,3)
         ];
     }
 }
