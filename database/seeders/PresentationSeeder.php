@@ -28,11 +28,11 @@ class PresentationSeeder extends Seeder
                 'IdUtilisateur' =>$value->IdUtilisateur_createur,
                 'IdRessource' =>$value->id
             ]);
-            Commentaire::create([
-               'Contenue' => $faker->realText(200),
+             Commentaire::create([
+                'Contenue' => $faker->realText(200),
                 'IdUser' =>$value->IdUtilisateur_createur,
                 'IdRessources' =>$value->id
-            ]);
+            ]); 
             Favoris::create([
                 'Utilisateur_id' =>$value->IdUtilisateur_createur,
                 'IdRessources' =>$value->id,
@@ -40,6 +40,8 @@ class PresentationSeeder extends Seeder
             ]);           
 
         }
+
+        
         
 
     }
