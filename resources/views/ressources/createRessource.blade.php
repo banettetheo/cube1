@@ -1,23 +1,25 @@
 <x-app-layout>
     <section id="creer-ressource">
-        <form action="" method="post" class="form-main">
+        <form action="{{ route('ressources.store') }}" method="POST" class="form-main">
             @csrf
             <div class="form-left">
 
                 <input type="text" id="titre" value="" name="Titre" placeholder="le titre de votre ressource"/>
                 <div class="form-select">
                     <!--une liste de catégorie récupérer sur la bdd-->
-                    <select name="categorie" id="cat-select">
-                        <option value="" selected>selectionner la catégorie de votre ressource</option>
-                        <option value="exemple" name="exemple">exemple</option>
-                        <option value="exemple" name="exemple">exemple</option>
+                    <select name="IdCategorie" id="cat-select">
+                        <option value="" selected>selectionner la catégorie</option>
+                        @foreach($categories as $categorie)
+                            <option value="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</option>
+                        @endforeach
                     </select>
 
                     <!--une liste de type récupérer sur la bdd-->
-                    <select name="type" id="type-select">
-                        <option value="" selected>selectionner le type de votre ressource</option>
-                        <option value="exemple" name="exemple">exemple</option>
-                        <option value="exemple" name="exemple">exemple</option>
+                    <select name="IdType" id="type-select">
+                        <option value="" selected>selectionner le type</option>
+                        @foreach($typesRessources as $typesRessource)
+                            <option value="{{ $typesRessource['id'] }}">{{ $typesRessource['nom'] }}</option>
+                        @endforeach
                     </select>
                 </div>
 

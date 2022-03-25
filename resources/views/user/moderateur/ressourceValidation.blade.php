@@ -29,7 +29,7 @@
                         <hr>
                     </div>
                     <!--le contenu text de la ressource (description ou article)-->
-                    <textarea id="contentRessource"></textarea>
+                    <p id="contentRessource"></p>
                     <div class="footer-ressource">
                         <div class="vue-like">
                             <!--affichage du nombre de commentaire-->
@@ -48,7 +48,7 @@
         </div>
         <div class="col-right flex column">
         @auth 
-            <h1>Vos informations :</h1>
+            <h1>Vos informations</h1>
             <p id="nom">{{ Auth::user()->name}}</p>
             <p id="prenom">{{ Auth::user()->Prenom}}</p>
             <!------------------------------------------------------------->

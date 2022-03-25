@@ -28,13 +28,13 @@
         <div class="menu">
             @if (Route::has('login'))
                 @auth
-                        <a href="" class="button-menu">accueil</a>
+                        <a href="{{ route('accueil') }}" class="button-menu">accueil</a>
                         <p>/</p>
                         <a href="{{ route('monCompte') }}" class="button-menu">Mon compte</a>
                         <p>/</p>
                         <a href="{{ route('ressources.create') }}" class="button-menu">Créer une ressource</a>
                         <p>/</p>
-                        <a href="" class="button-menu">Mes relations</a>
+                        <a href="{{ route('relations.index') }}" class="button-menu">Mes relations</a>
                     @else
                         <a href="{{ route('login') }}" class="button-menu">Connexion</a>
                         <p>/</p>

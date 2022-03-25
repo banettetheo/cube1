@@ -45,7 +45,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("commentaires/{id}", [CommentaireController::class, 'store'], ['as' => 'api']);
     Route::delete("commentaires/{id}", [CommentaireController::class, 'destroy'], ['as' => 'api']);
 
+    //Relations & utilisateurs
     Route::post("utilisateurs/{id}", [RelationController::class, 'store'], ['as' => 'api']);
+    Route::get("utilisateurs", [RelationController::class, 'indexUtilisateurs'], ['as' => 'api']);
     Route::get("relations/types", [RelationController::class, 'showType'], ['as' => 'api']);
     Route::apiResource("relations", RelationController::class, ['as' => 'api'])->except(['show','store']);
     Route::post('logout', [AuthController::class, 'logout'],['as' => 'api']);

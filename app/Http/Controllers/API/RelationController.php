@@ -45,6 +45,18 @@ class RelationController extends Controller
         return response()->json($lesRelations);
     }
 
+    public function indexUtilisateurs()
+    {
+        if (auth()->user()->Admin || auth()->user()->SuperAdmin) {
+
+            $lesRelations = $this->relationRepository->allUsers();
+            return response()->json($lesRelations);
+        }
+        return response()->json(['message'=> "Vous n'avez pas les droits"]);
+    }
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -128,24 +140,23 @@ class RelationController extends Controller
         $idAuth = auth()->user()->id;
         $laRelation  = Relation::find($id);
 
-        if($laRelation !=null){
+        if ($laRelation != null) {
             $idUtilisateur2  = $laRelation['IdUser2'];
-    
+
             if ($this->relationRepository->getUtilisateurRelation($id) == $idAuth) {
                 $lesRessourcesPartageesUtilisateur = $this->lienRessourceRepository->findRessourceByIdUser($idUtilisateur2);
 
                 foreach ($lesRessourcesPartageesUtilisateur as $uneRessource) {
-                    if($this->ressourceRepository->findCreateur($uneRessource['id'])==$idAuth){
+                    if ($this->ressourceRepository->findCreateur($uneRessource['id']) == $idAuth) {
                         foreach ($uneRessource['commentaires'] as $unCommentaire) {
                             //Si le commentaire appartient à l'utilisateur de la relation
-                            if($unCommentaire['utilisateur']['id']==$idUtilisateur2){
+                            if ($unCommentaire['utilisateur']['id'] == $idUtilisateur2) {
                                 Commentaire::destroy($unCommentaire['id']);
                             }
-                            
                         }
                         //On supprime chaque lien de partage
-                        $lesIdLiens = $this->lienRessourceRepository->getLienByUserAndRess($idUtilisateur2,$uneRessource['id']);
-                        foreach($lesIdLiens as $unIdLien){
+                        $lesIdLiens = $this->lienRessourceRepository->getLienByUserAndRess($idUtilisateur2, $uneRessource['id']);
+                        foreach ($lesIdLiens as $unIdLien) {
                             Jointure_ress_utilisateur::destroy($unIdLien);
                         }
                     }
@@ -154,7 +165,7 @@ class RelationController extends Controller
                 Relation::destroy($laRelation['id']);
                 $result = "Suppression efffectué";
             }
-        }else{
+        } else {
             $result = "Cette relation n'existe pas";
         }
         return response()->json(['message' => $result]);
@@ -162,7 +173,8 @@ class RelationController extends Controller
 
 
 
-    public function showType(){
+    public function showType()
+    {
         return response()->json($this->relationRepository->getAllTypes());
     }
 }

@@ -1,23 +1,26 @@
 <x-app-layout>
     <section id="modif-ressource">
-        <form action="" method="post" class="form-main">
+        <form action="{{route('ressources.update, $ressource['id']')}}" method="POST" class="form-main">
             @csrf
+            @method('PUT')
             <div class="form-left">
 
                 <input type="text" id="titre" value="" name="Titre" placeholder="le titre de votre ressource"/>
                 <div class="form-select">
                     <!--une liste de catégorie récupérer sur la bdd-->
-                    <select name="categorie" id="cat-select">
+                    <select name="Idcategorie" id="cat-select">
                         <option value="" selected>selectionner la catégorie de votre ressource</option>
-                        <option value="exemple" name="exemple">exemple</option>
-                        <option value="exemple" name="exemple">exemple</option>
+                        @foreach($typesRessources as $typesRessource)
+                            <option value="{{ $typesRessource['id'] }}">{{ $typesRessource['nom'] }}</option>
+                        @endforeach
                     </select>
 
                     <!--une liste de type récupérer sur la bdd-->
-                    <select name="type" id="type-select">
+                    <select name="Idtype" id="type-select">
                         <option value="" selected>selectionner le type de votre ressource</option>
-                        <option value="exemple" name="exemple">exemple</option>
-                        <option value="exemple" name="exemple">exemple</option>
+                        @foreach($categories as $categorie)
+                            <option value="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</option>
+                        @endforeach
                     </select>
                 </div>
 
