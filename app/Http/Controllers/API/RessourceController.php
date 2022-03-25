@@ -110,7 +110,6 @@ class RessourceController extends Controller
     {
         $validated = $request->validated();
         $result = array_merge($validated, ['IdUtilisateur_createur' => auth()->user()->id]);
-
         Ressources::create($result);
     }
 

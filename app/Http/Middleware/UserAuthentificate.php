@@ -21,7 +21,7 @@ class UserAuthentificate
     {
 
         if(auth()->user()->Admin || auth()->user()->SuperAdmin){
-            return redirect()->route('administration.panel.index');
+            return redirect()->route('administration.panel');
         }
 
         return $next($request);

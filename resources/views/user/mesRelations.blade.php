@@ -16,15 +16,14 @@
         <div class="col-center">
             <h2>Liste de vos relations</h2>
             <!-- foreach des relation par rapport à l'utilisateur -->
+            @foreach ($relations as $relation)
             <div class="user">
                 <!--le nom prenom de l'utilisateur-->
-                <h3 id="userNom"></h3>
-                <h3 id="userPrenom"></h3>
-                <!-- boutton pour supprimer une relation-->
-                <button href=""> supprimer cette relation </button>
+                <p id="userNom">{{$relation['utilisateur']['name']}} {{$relation['utilisateur']['Prenom']}} : {{$relation['typeRelation']['Nom']}}<button href=""> voir l'utilisateur </button><button href=""> supprimer cette relation </button></p>
                 <!-- accède au compteUser de l'utilisateur -->
-                <button href=""> voir l'utilisateur </button>
+                
             </div>
+            @endforeach
         </div>
         <div class="col-right flex column">
         @auth

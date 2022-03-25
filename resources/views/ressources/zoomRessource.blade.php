@@ -1,6 +1,5 @@
 <x-app-layout>
 
-{{ @var_dump($ressource)}}
     <section id="zoom-ressource" class="">
         <div class="ressources">
             <div class="header-ressource">

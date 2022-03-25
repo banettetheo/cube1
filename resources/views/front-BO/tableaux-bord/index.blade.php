@@ -14,7 +14,7 @@
                     <!-- Card -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h6 class="card-title">Toute ressource confondu:</h6>
+                            <h6 class="card-title">Toutes ressources confondues:</h6>
                             <p class="card-text blue-text"><i class="fas fa-feather fa-3x pr-3 pl-3"></i><span class="ml-2" style="font-size: 30px;">{{$nbRessources}}</span></p>
                         </div>
                     </div>
