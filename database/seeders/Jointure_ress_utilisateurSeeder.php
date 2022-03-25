@@ -28,17 +28,24 @@ class Jointure_ress_utilisateurSeeder extends Seeder
      foreach($ress as $value)
      {
          $random = $faker->numberBetween(1,50);
-         Jointure_ress_utilisateur::create([
-             'IdUtilisateur' =>$value->IdUtilisateur_createur,
-             'IdRessource' =>$value->id
-         ]);
+         $id = $value->IdUtilisateur_createur;
+         $shuffle = rand(0,1);
+              
+              if($shuffle == 1)
+              {
+                  $final = $id;
+              }
+              else{
+                  $final = $random;
+              }
+
          Jointure_ress_utilisateur::create([
             'IdUtilisateur' =>$random,
             'IdRessource' =>$value->id
         ]);
           Commentaire::create([
              'Contenue' => $faker->realText(200),
-             'IdUser' => $value->IdUtilisateur_createur,
+             'IdUser' => $final,
              'IdRessources' =>$value->id
          ]); 
          Relation::create([
