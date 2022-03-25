@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
+class ComposerStaticInitc7ac56c0d0ed0ddbb446d81ab7c49a54
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -16,8 +16,6 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
@@ -33,8 +31,10 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
     );
 
@@ -540,6 +540,9 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Http\\Controllers\\API\\RessourceController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/RessourceController.php',
         'App\\Http\\Controllers\\API\\TypeRessourceController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/TypeRessourceController.php',
         'App\\Http\\Controllers\\AccueilController' => __DIR__ . '/../..' . '/app/Http/Controllers/AccueilController.php',
+        'App\\Http\\Controllers\\Administrateur\\AccueilController' => __DIR__ . '/../..' . '/app/Http/Controllers/Administrateur/AccueilController.php',
+        'App\\Http\\Controllers\\Administrateur\\TableauBordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Administrateur/TableauBordController.php',
+        'App\\Http\\Controllers\\Administrateur\\UtilisateurController' => __DIR__ . '/../..' . '/app/Http/Controllers/Administrateur/UtilisateurController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ChangerMdpController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ChangerMdpController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -559,6 +562,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Http\\Controllers\\StatistiqueController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatistiqueController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\Administration' => __DIR__ . '/../..' . '/app/Http/Middleware/Administration.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
@@ -566,6 +570,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
+        'App\\Http\\Middleware\\UserAuthentificate' => __DIR__ . '/../..' . '/app/Http/Middleware/UserAuthentificate.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\Auth\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/RegisterRequest.php',
@@ -599,6 +604,7 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
         'App\\Repositories\\UserRepository' => __DIR__ . '/../..' . '/app/Repositories/UserRepository.php',
         'App\\Repositories\\UtilisateurRepository' => __DIR__ . '/../..' . '/app/Repositories/UtilisateurRepository.php',
         'App\\Rules\\MatchAncienMdp' => __DIR__ . '/../..' . '/app/Rules/MatchAncienMdp.php',
+        'App\\View\\Components\\AdministrationLayout' => __DIR__ . '/../..' . '/app/View/Components/AdministrationLayout.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
@@ -5645,10 +5651,10 @@ class ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit9df312a40fbe1c48d8fdf9f40135e9fd::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc7ac56c0d0ed0ddbb446d81ab7c49a54::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc7ac56c0d0ed0ddbb446d81ab7c49a54::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitc7ac56c0d0ed0ddbb446d81ab7c49a54::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitc7ac56c0d0ed0ddbb446d81ab7c49a54::$classMap;
 
         }, null, ClassLoader::class);
     }
