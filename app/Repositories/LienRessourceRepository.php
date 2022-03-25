@@ -35,6 +35,19 @@ class LienRessourceRepository
         return $lesLienRessource;
     }
 
+    public function getLienByUserAndRess(int $idUtilisateur, int $idressource){
+        $lesLiensRessource = Jointure_ress_utilisateur::where(
+            ['IdUtilisateur'=> $idUtilisateur,
+            'IdRessource'=>$idressource])
+            ->get()
+            ->map(function ($unLien) {
+                return[
+                    'id' => $unLien->id
+                ];
+            });
+            return $lesLiensRessource;
+    
+    }
 
     public function findCorrespRessourcesUtilisateurs(int $idUtilisateur, int $idressource)
     {

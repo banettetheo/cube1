@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
 			$table->string('Prenom', 50);
 			$table->boolean('Moderateur')->default(0);
+			$table->boolean('Admin')->default(0);
+			$table->boolean('SuperAdmin')->default(0);
             $table->boolean('Compte_ban')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

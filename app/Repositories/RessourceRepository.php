@@ -16,10 +16,9 @@ class RessourceRepository
             ->map(function ($ressource) {
                 return $this->one($ressource);
             });
-
+            
         return $lesRessources;
     }
-
 
 
     public function allPublic()
@@ -176,7 +175,7 @@ class RessourceRepository
                     return [
                         'id' => $commentaire->id,
                         //'dateCreation' => $Commentaire->id,
-                        'utilisateur' => $commentaire->Utilisateur->only('name', 'Prenom'),
+                        'utilisateur' => $commentaire->Utilisateur->only('id','name', 'Prenom'),
                         'contenu' => $commentaire->Contenue
                     ];
                 }),
@@ -184,4 +183,5 @@ class RessourceRepository
             'nbVue' => $ressource->Nombre_vue
         ];
     }
+
 }
