@@ -100,19 +100,23 @@ $font-menu-responsive: 10px;
         width: -webkit-fill-available;
         width: 30%;
         display: flex;
-        .recherche{
-            height: fit-content;
-            align-self: center;
-            width: 60%;
-        }
-        .valid-recherche{
-            height: fit-content;
-            align-self: center;
-            margin-left: 3%;
-            background-color: $color-primary;
-            color: $color-secondary;
-            font-style: italic;
-            border-radius: 10px 0px;
+        form{
+            display: flex;
+            width: 100%;
+            .recherche{
+                height: fit-content;
+                align-self: center;
+                width: 60%;
+            }
+            .valid-recherche{
+                height: fit-content;
+                align-self: center;
+                margin-left: 3%;
+                background-color: $color-primary;
+                color: $color-secondary;
+                font-style: italic;
+                border-radius: 10px 0px;
+            }
         }
     }
     
@@ -1938,7 +1942,7 @@ $font-menu-responsive: 10px;
 
     #ressource-validation{
         .col-left{
-            width: 20%;
+            width: 17%;
             padding: 1%;
             a{
                 text-decoration: none;
@@ -1982,15 +1986,18 @@ $font-menu-responsive: 10px;
                     .footer-ressource{
                         display: flex;
                         justify-content: space-between;
+                        flex-direction: column;
                         .vue-like{
                             display: flex;
-                            justify-content: space-evenly;
-                            width: 15%;
+                            justify-content: start;
+                            width: 100%;
                             height: fit-content;
                             flex-wrap: wrap;
+                            font-size: 10px;
                             p{
                                 margin: 0;
                                 height: fit-content;
+                                margin-right: 3%;
                             }
                             .lire-suite{
                                 height: fit-content;
@@ -2001,47 +2008,123 @@ $font-menu-responsive: 10px;
                                 }
                             }
                         }
-                    }
-                    .group-btn-footer{
-                        display: flex;
-                        width: 60%;
-                        justify-content: end;
-                        align-items: center;
-                        flex-wrap: wrap;
-                        line-height: 30px;
-                        p{
-                            margin: 0 7px;
-                        }
-                        .btn-footer{
-                            text-decoration: none;
-                            color: $color-text-default;
-                            font-style: $font-style-italic;
-                            &:hover{
-                                color: $color-primary;
+                        .group-btn-footer{
+                            display: flex;
+                            width: 100%;
+                            justify-content: end;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            line-height: 30px;
+                            #IdEtat{
+                                font-size: 8px;
                             }
-                        }
-                        .crud-share{
-                            color: $color-text-default;
-                            background-color: transparent;
-                            margin: 0 1%;
-                            border-radius: 10px;
-                            margin-bottom: 1%;
-                            width: 37%;
-                            &:hover{
-                                color: $color-primary;
+                            p{
+                                margin: 0 7px;
                             }
-                        }
-                        #IdEtat{
-                            width: 40%;
+                            .btn-footer{
+                                text-decoration: none;
+                                color: $color-text-default;
+                                font-style: $font-style-italic;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                            .crud-share{
+                                color: $color-text-default;
+                                background-color: transparent;
+                                margin: 0 1%;
+                                border-radius: 10px;
+                                margin-bottom: 1%;
+                                width: 37%;
+                                font-size: 7px;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                            /* Positionnez la forme Popup */
+                            .login-popup {
+                                position: relative;
+                                text-align: center;
+                                width: 100%;
+                                /* Masquez la forme Popup */
+                                .form-popup {
+                                    display: none;
+                                    position: fixed;
+                                    left: 45%;
+                                    top: 27%;
+                                    transform: translate(-45%, 5%);
+                                    border: 2px solid #666;
+                                    z-index: 9;
+
+                                    /* Styles pour le conteneur de la forme */
+                                    .form-container {
+                                        max-width: 300px;
+                                        padding: 20px;
+                                        background-color: #fff;
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        h2{
+                                            margin-bottom: 5%;
+                                            font-size: $font-menu-responsive;
+                                        }
+
+                                        .user-relation{
+                                            margin-bottom: 5%;
+                                            line-height: 20px;
+                                        }
+
+                                        .confirmation-share{
+                                            /* Stylez le bouton de connexion */
+                                            .btn-share {
+                                                background-color: $color-primary;
+                                                color: $color-secondary;
+                                                padding: 10px;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 50%;
+                                                margin-bottom: 10px;
+                                                opacity: 0.8;
+                                                border-radius: 10px;
+                                                height: fit-content;
+                                                font-style: italic;
+                                                opacity: 0.6;
+                                                &:hover{
+                                                    opacity: 1;
+                                                }
+                                            }
+                                            /* Stylez le bouton pour annuler */
+                                            .btn-cancel {
+                                                background-color: #cc0000;
+                                                color: $color-secondary;
+                                                padding: 10px;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 50%;
+                                                margin-bottom: 10px;
+                                                opacity: 0.8;
+                                                border-radius: 10px;
+                                                height: fit-content;
+                                                font-style: italic;
+                                                opacity: 0.6;
+                                                &:hover{
+                                                    opacity: 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
         .col-right{
+            font-size: 8px;
             h1{
                 margin: 0;
-                font-size: 21px;
+                font-size: 8px;
                 margin-bottom: 4%;
             }
             p{
@@ -2050,15 +2133,20 @@ $font-menu-responsive: 10px;
             a{
                 margin: 5% 0;
                 color: $color-tertiary;
+                font-size: 6px;
                 &:hover{
                     color: $color-primary;
                 }
+            }
+            #adresse-mail{
+                font-size: 4px;
             }
             .form-deconnexion{
                 margin: 10% 0;
                 button{
                     border-radius: 10px;
                     background-color: transparent;
+                    font-size: 6px;
                     &:hover{
                         color: $color-primary;
                     }

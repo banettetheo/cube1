@@ -48,7 +48,7 @@
         </div>
         <div class="col-right flex column">
         @auth 
-            <h1>Vos informations :</h1>
+            <h1>Vos informations</h1>
             <p id="nom">{{ Auth::user()->name}}</p>
             <p id="prenom">{{ Auth::user()->Prenom}}</p>
             <!------------------------------------------------------------->

@@ -4,7 +4,7 @@
         <div class="col-center">
             <div class="flex header-recherche-filtre">
                 <div class="recherche-user">
-                    <form action="{{ route('utilisateur.search') }}" >
+                    <form action="" >
                          <!--barre de recherche pour trouver un autre utilisateur-->
                         <input type="text" class="recherche" name="name" placeholder="Rechercher un utilisateur">
                         <button  typre="submit" class="valid-recherche">rechercher</button>
