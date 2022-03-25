@@ -26,7 +26,9 @@ class User extends Authenticatable
         'Prenom',
         'email',
         'password',
-        'Moderateur'
+        'Moderateur',
+        'Admin',
+        'SuperAdmin'
     ];
 
     /**

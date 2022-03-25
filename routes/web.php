@@ -2,13 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\Administrateur\AccueilController as AdministrateurAccueilController;
+use App\Http\Controllers\Administrateur\TableauBordController;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\API\RessourceAPIController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\Moderateur\RessourceValidationController;
-use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\Administrateur\UtilisateurController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use App\Http\Controllers\Auth\ChangerMdpController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,43 +28,64 @@ use App\Http\Controllers\UtilisateurController;
 */
 
 
+Route::middleware('guest')->group(function () {
+    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+    route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
+    route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 
+
+});
 //Accueil
-Route::get('/',[AccueilController::class, 'index'])->name('accueil');
 
-Route::middleware('auth')->group(function () {
 
+
+// Route::middleware('auth')->group(function () {
+Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
-    Route::resource('ressources', RessourceController::class)->except(['index']);
+    Route::resource('ressources', RessourceController::class)->except(['index', "show"]);
 
     //Compte
-    Route::get('mon-compte',[CompteController::class, 'index'])->name('monCompte');
+    Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte');
+
+    //Commentaires
+    route::post('ressources/{id}', [CommentaireController::class, 'store'])->name('commentaires.store');
+    route::delete('commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
 
     //Modération
     Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
-    
-    //Relations
-    Route::resource('relations', RelationController::class);
 
+    //Relations
+    route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
+    Route::resource('mon-compte/relations', RelationController::class)->except(['create', 'store']);
 });
 
-// Route::get('/mon-compte', [CompteController::class, 'monCompte'])->middleware(['auth'])->name('monCompte');
-
-require __DIR__.'/auth.php';
-
-    
-// //Authentification
-// Route::get('/inscription',[AuthentificationController::class, 'inscription']);
-// Route::get('/connexion',[AuthentificationController::class, 'connexion']);
-// Route::get('/deconnexion',[AuthentificationController::class, 'deconnexion']);
 
 
-//Comptes
-//Route::get('/mon-compte',[CompteController::class, 'monProfil']);
+// BACK - OFFICE ==============
+
+Route::group(['middleware' => ['auth', 'backoffice']], function () {
+    Route::get('administration/panel', [AdministrateurAccueilController::class, 'index'])->name('administration.panel');
+    Route::resource('administration/gestion-comptes', UtilisateurController::class,['as' => 'administration']);
+    Route::resource('administration/tableaux-de-bord', TableauBordController::class,['as' => 'administration']);
+});
+// Route::middleware('auth')->group(function () {
+//     //Compte
+//     Route::get('administration/accueil',[AccueilController::class, 'indexAdmin'])->name('admin.accueil');
+//     Route::get('administration/gestion-comptes',[CompteController::class, 'index'])->name('admin.gestionComptes');
+
+//     Route::get('administration/gestion-catalogues',[CompteController::class, 'index'])->name('admin.gestionCatalogues');
+//     Route::get('administration/gestion-catalogues/categories',[CategorieController::class, 'index'])->name('admin.gestionCatalogues.categories');
+//     Route::get('administration/gestion-catalogues/types-ressource',[CompteController::class, 'index'])->name('admin.gestionCatalogues.typesRessource');
+//     Route::get('administration/tableaux-de-bords',[StatistiquesController::class, 'index'])->name('admin.tableauxBords');
+//     Route::get('administration/gestion-ressources',[RessourcesController::class, 'index'])->name('admin.gestionRessources');
+//     Route::get('administration/gestion-relations',[RelationController::class, 'index'])->name('admin.gestionRelations');
+//     Route::get('administration/super-admin',[SuperAdminController::class, 'index'])->name('admin.superAdmin');
 
 
+// });
 
 
-route::resource('utilisateur', UtilisateurController::class)->only(['show']);
+require __DIR__ . '/auth.php';
+
