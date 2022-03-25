@@ -4,9 +4,11 @@
         <div class="col-center">
             <div class="flex header-recherche-filtre">
                 <div class="recherche-user">
-                    <!--barre de recherche pour trouver un autre utilisateur-->
-                    <input type="text" class="recherche" placeholder="Rechercher un utilisateur">
-                    <button  class="valid-recherche">rechercher</button>
+                    <form action="{{ route('utilisateur.search') }}" >
+                         <!--barre de recherche pour trouver un autre utilisateur-->
+                        <input type="text" class="recherche" name="name" placeholder="Rechercher un utilisateur">
+                        <button  typre="submit" class="valid-recherche">rechercher</button>
+                    </form>
                 </div>
                 <div class="flex filter">
                     <div class="filtre-ressource">
@@ -69,8 +71,8 @@
                         </div>
                     </div>
                 @endforeach
-                    <!-- lors d'une recherche d'utilisateur avec la barre de recherche on affiche juste les utilisateur avec le même nom prenom de la barre de recherche
-                    avec un foreach  -->
+                <!-- lors d'une recherche d'utilisateur avec la barre de recherche on affiche juste les utilisateur avec le même nom prenom de la barre de recherche
+                avec un foreach  -->
                 @foreach ($utilisateurs as $utilisateur)
                     <div class="user">
                         <!--le nom prenom de l'utilisateur-->
@@ -84,7 +86,7 @@
         </div>
 
         <div class="col-right">
-            <h1> Jeu vidéo </h1>
+            <h1> Jeux vidéo </h1>
             <div class="list-game">
                 <a href="https://zutom.z-lan.fr/">
                     <i class="img-game zutom-bg"></i>
