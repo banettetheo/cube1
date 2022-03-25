@@ -20,9 +20,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        if(Route::current()->getName()=="administration.login"){
-            // return view('front-BO.auth.connexion');
-            return redirect()->route('administration.panel');
+        if(Route::current()->uri()=="administration/connexion"){
+            return view('front-BO.auth.connexion');
+            // return redirect()->route('administration.panel');
         }
         
         return view('user.connexionUser');
