@@ -13,12 +13,13 @@ class EditAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff03989e),
       appBar: AppBar(
         leading: const BackButton(
           color: Colors.black,
         ),
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xff03989e),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -27,7 +28,10 @@ class EditAccountPage extends StatelessWidget {
           //ProfileWidget(imagePath: user.imagePath, onClicked: () {}),
           const SizedBox(height: 24),
           TextFieldWidget(
-              label: "Nom complet",
+              label: "Nom", text: user.nom, maxLines: 1, onChanged: (name) {}),
+          const SizedBox(height: 24),
+          TextFieldWidget(
+              label: "Prénom",
               text: user.nom,
               maxLines: 1,
               onChanged: (name) {}),

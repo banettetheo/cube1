@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cube/page/register_page.dart';
 import 'package:flutter_cube/widget/text_field_widget.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,22 +17,53 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final String url = "http://10.0.2.2:8000/api/login";
   String _username = "";
   String _password = "";
   Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
   Color mainBlue = const Color(0xff03989e);
 
-  void setPreferences(username, password) async {
+  Future<void> setPreferences(String username, String password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('usernameCube', username);
     prefs.setString('passwordCube', password);
+  }
+
+  Future<Map<String, dynamic>> fetchAuth(String username, String password) async {
+    try{
+      var json;
+      var response = await post(Uri.parse(url), headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json"
+      }, body: {
+        "email": username,
+        "password": password
+      }).then((value) {
+        json = jsonDecode(value.body);
+      });
+      return json;
+    } catch(e) {
+      String err = '''
+      {
+        "erreur": "La requete n'est pas arrivée à son terme!",
+      }''';
+      return jsonDecode(err);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: bgBlue,
-        appBar: AppBar(elevation: 0, backgroundColor: bgBlue),
+        appBar: AppBar(leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute (
+              builder: (BuildContext context) => HomePage(),
+            ),
+          ),
+        ), elevation: 0, backgroundColor: bgBlue),
         body: Container(
           color: bgBlue,
           padding: const EdgeInsets.symmetric(horizontal: 35.0),
@@ -49,7 +85,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: "",
                   onChanged: (username) {
                     _username = username;
-                    inspect(_username);
                   }),
               const SizedBox(
                 height: 26.0,
@@ -69,8 +104,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: const StadiumBorder(),
                     onPrimary: Colors.white,
                     primary: mainBlue),
-                onPressed: () {
-                  setPreferences(_username, _password);
+                onPressed: () async {
+                  Map<String, dynamic> response = await fetchAuth(_username, _password);
+                  if (response.containsKey('user')) {
+                    setPreferences(_username, _password);
+                    const AlertDialog(
+                      title: Text("Connexion réussie"),
+                      content: Text("La page d'accueil va s'afficher"),);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute (
+                        builder: (BuildContext context) => HomePage(),
+                      ),
+                    );
+                    //Navigator.pop(context);
+                  } else {
+                    const AlertDialog(
+                      title: Text("Connexion échouée! réessayez!"),
+                      content: Text("Email ou mot de passe incorrect"),);
+                  }
                 },
                 child: const Text("Connexion"),
               ),
@@ -99,7 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: const StadiumBorder(),
                     onPrimary: Colors.white,
                     primary: mainBlue),
-                onPressed: () {},
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const RegisterPage())),
                 child: const Text("S'enregistrer"),
               ),
             ],

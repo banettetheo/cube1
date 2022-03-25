@@ -8,9 +8,13 @@ import 'package:flutter_cube/page/liked_post_page.dart';
 import 'package:flutter_cube/page/login_page.dart';
 import 'package:flutter_cube/page/notification_page.dart';
 import 'package:flutter_cube/page/post_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../main.dart';
+import '../page/edit_account_page.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  final List data;
+  final Map<String, dynamic> data;
 
   const NavigationDrawer({
     Key? key,
@@ -23,18 +27,28 @@ class NavigationDrawer extends StatefulWidget {
 
 class _NavigationDrawer extends State<NavigationDrawer> {
   final padding = const EdgeInsets.symmetric(horizontal: 20.0);
-  late User user;
+  late User? user;
+
+  void readData() {
+    if (widget.data.containsKey('user')) {
+      setState(() {
+        user = User.fromMap(widget.data);
+      });
+    } else {
+      user = null;
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    readData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.data.isNotEmpty) {
-      user = User(
-          id: 1,
-          prenom: widget.data[0]["title"],
-          nom: widget.data[1]["title"],
-          email: widget.data[2]["title"],
-          mdp: widget.data[3]["title"],
-          moderateur: false);
+    if (user != null) {
       return Drawer(
         child: Material(
           color: const Color(0xff03989e),
@@ -42,16 +56,16 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             padding: padding,
             children: [
               buildHeader(
-                  urlImage: user.prenom,
-                  userName: user.nom,
-                  email: user.email,
+                  //urlImage: user.prenom,
+                  userName: user!.nom,
+                  email: user!.email,
                   onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AccountPage(
-                            user: user,
+                      builder: (context) => EditAccountPage(
+                            user: user!,
                           )))),
               const SizedBox(height: 16),
               buildMenuItem(
-                text: 'Amis',
+                text: 'Relations',
                 icon: Icons.people,
                 onClicked: () => selectedItem(context, 0),
               ),
@@ -63,19 +77,19 @@ class _NavigationDrawer extends State<NavigationDrawer> {
               ),
               const SizedBox(height: 16),
               buildMenuItem(
-                text: 'Publications aimées',
+                text: 'Favoris',
                 icon: Icons.thumb_up,
                 onClicked: () => selectedItem(context, 2),
               ),
               const SizedBox(height: 20.0),
               const Divider(color: Colors.white70),
               const SizedBox(height: 20.0),
-              buildMenuItem(
+              /*buildMenuItem(
                 text: 'Notifications',
                 icon: Icons.notifications,
                 onClicked: () => selectedItem(context, 3),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 16),*/
               buildMenuItem(
                 text: 'Déconnexion',
                 icon: Icons.logout,
@@ -120,7 +134,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
   }
 
   Widget buildHeader({
-    required String urlImage,
+    //required String urlImage,
     required String userName,
     required String email,
     required VoidCallback onClicked,
@@ -131,9 +145,9 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             padding: padding.add(const EdgeInsets.symmetric(vertical: 40)),
             child: Row(
               children: [
-                CircleAvatar(
+                /*CircleAvatar(
                     radius: 30, backgroundImage: NetworkImage(urlImage)),
-                const SizedBox(width: 25.0),
+                const SizedBox(width: 25.0),*/
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -173,17 +187,17 @@ class _NavigationDrawer extends State<NavigationDrawer> {
     switch (i) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FriendsPage(),
-        ));
+          builder: (context) => FriendPage(token: widget.data["token"]),
+        )).then((_) => setState);
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PostPage(user: user),
+          builder: (context) => PostPage(user: user!),
         ));
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => LikedPostPage(),
+          builder: (context) => LikedPostPage(token: widget.data["token"]),
         ));
         break;
       case 3:
@@ -200,10 +214,19 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             content: const Text("Le menu de connexion s'affichera"),
             actions: [
               FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                  onPressed: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    prefs.setString('usernameCube', '');
+                    prefs.setString('passwordCube', '');
+                    Navigator.pushReplacement(
+                      context,
+                        MaterialPageRoute (
+                          builder: (BuildContext context) => const LoginScreen(),
+                        ),
+                    );
+                    /*Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LoginScreen(),
-                    ));
+                    ));*/
                   },
                   child: const Text("Oui")),
               FlatButton(
@@ -225,6 +248,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             actions: [
               FlatButton(
                   onPressed: () {
+                    Navigator.pop(context);
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LoginScreen(),
                     ));
