@@ -21,6 +21,7 @@ return array(
     'App\\Http\\Controllers\\API\\TypeRessourceController' => $baseDir . '/app/Http/Controllers/API/TypeRessourceController.php',
     'App\\Http\\Controllers\\AccueilController' => $baseDir . '/app/Http/Controllers/AccueilController.php',
     'App\\Http\\Controllers\\Administrateur\\AccueilController' => $baseDir . '/app/Http/Controllers/Administrateur/AccueilController.php',
+    'App\\Http\\Controllers\\Administrateur\\CategorieController' => $baseDir . '/app/Http/Controllers/Administrateur/CategorieController.php',
     'App\\Http\\Controllers\\Administrateur\\TableauBordController' => $baseDir . '/app/Http/Controllers/Administrateur/TableauBordController.php',
     'App\\Http\\Controllers\\Administrateur\\UtilisateurController' => $baseDir . '/app/Http/Controllers/Administrateur/UtilisateurController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
