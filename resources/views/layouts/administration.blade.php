@@ -71,9 +71,9 @@
                             <!-- <a class="nav-link text-white" href="">Gestion des catalogues</a> -->
                             <a class="sub-menu nav-link text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion des catalogues<div class='pl-2 fa fa-caret-down right'></div></a>
                             <ul>
-                                <a class="nav-link text-white" href="{{route('administration.gestion_catalogues.categories.index')}}">Types de ressource</a>
+                                <a class="nav-link text-white" href="{{route('administration.gestion-catalogues.categories.index')}}">Types de ressource</a>
                                 <a class="nav-link text-white" href="#tab3Id">Types de relation</a>
-                                <a class="nav-link text-white" href="{{route('administration.gestion_catalogues.categories.index')}}">Types de catégories</a>
+                                <a class="nav-link text-white" href="{{route('administration.gestion-catalogues.categories.index')}}">Types de catégories</a>
                             </ul>
                         </li>
                         <li class="nav-item">

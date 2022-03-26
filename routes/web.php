@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth', 'backoffice']], function () {
     Route::get('administration/panel', [AdministrateurAccueilController::class, 'index'])->name('administration.panel');
     Route::resource('administration/gestion-comptes', UtilisateurController::class, ['as' => 'administration']);
     Route::resource('administration/tableaux-de-bord', TableauBordController::class, ['as' => 'administration']);
-    Route::resource('administration/gestion-catalogues/categories', CategorieController::class, ['as' => 'administration.gestion_catalogues']);
+    Route::resource('administration/gestion-catalogues/categories', CategorieController::class, ['as' => 'administration.gestion-catalogues'])->except('show','edit','create');
 });
 // Route::middleware('auth')->group(function () {
 //     //Compte
