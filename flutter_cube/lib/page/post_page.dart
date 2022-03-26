@@ -8,12 +8,13 @@ import 'package:flutter_cube/widget/feedbox.dart';
 import 'package:http/http.dart';
 
 class PostPage extends StatefulWidget {
-  final User user;
-  var posts = [];
+  final String token;
+  final int userId;
 
-  PostPage({
+  const PostPage({
     Key? key,
-    required this.user,
+    required this.token,
+    required this.userId
   }) : super(key: key);
 
   @override
@@ -21,56 +22,66 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  final urlPosts = "http://10.0.2.2:8000/api/ressources";
+  final urlPosts = "http://10.0.2.2:8000/api/mon-compte/ressources";
   Color mainBlue = const Color(0xff03989e);
   Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
 
-  void fetchPosts() async {
-    try {
-      final response = await get(Uri.parse(urlPosts));
-      final jsonData = jsonDecode(response.body);
-
-      setState(() {
-        widget.posts = jsonData;
-        inspect(widget.posts);
-      });
-    } catch (e) {
-      inspect(e);
-    }
+  Future<List> fetchPosts() async {
+    late final List jsonData;
+    final response = await get(Uri.parse(urlPosts), headers: {
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "Accept": "application/json",
+      "Authorization": "Bearer ${widget.token}"
+    }).then((value) {
+      jsonData = jsonDecode(value.body);
+    });
+    return jsonData;
   }
 
   @override
   void initState() {
     super.initState();
-    fetchPosts();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgBlue,
-      appBar: AppBar(
-        title: const Text('Mes publications'),
-        centerTitle: true,
-        backgroundColor: mainBlue,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => NewResourcePage(user: widget.user),
-                ));
-              },
-              icon: const Icon(Icons.add))
-        ],
-      ),
-      body: SingleChildScrollView(
-          child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  for (var post in widget.posts) FeedBox(ressource: post)
-                ],
-              ))),
-    );
+    return FutureBuilder<List>(future: fetchPosts(), builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return Scaffold(
+          backgroundColor: bgBlue,
+          appBar: AppBar(
+            title: const Text('Mes publications'),
+            centerTitle: true,
+            backgroundColor: mainBlue,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => NewResourcePage(token: widget.token, userId: widget.userId,),
+                    ));
+                  },
+                  icon: const Icon(Icons.add))
+            ],
+          ),
+          body: SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      for (var post in snapshot.data!) FeedBox(ressource: post)
+                    ],
+                  ))),
+        );
+      }
+      return Scaffold(
+          backgroundColor: bgBlue,
+          appBar: AppBar(
+            title: const Text('Mes publications'),
+            centerTitle: true,
+            backgroundColor: mainBlue,
+          ),
+          body: const Center(child: CircularProgressIndicator(),)
+      );
+    });
   }
 }

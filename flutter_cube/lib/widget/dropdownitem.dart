@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DropdownItemWidget extends StatefulWidget {
-  var data = [];
+  final List data;
+  final ValueChanged<Object?>? onChanged;
 
-  DropdownItemWidget({
+  const DropdownItemWidget({
     Key? key,
     required this.data,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -13,7 +15,7 @@ class DropdownItemWidget extends StatefulWidget {
 }
 
 class _DropdownItemState extends State<DropdownItemWidget> {
-  var _selectedValue;
+  var selectedValue;
 
   @override
   void initState() {
@@ -24,19 +26,15 @@ class _DropdownItemState extends State<DropdownItemWidget> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       menuMaxHeight: 200.0,
-      value: _selectedValue,
+      value: selectedValue,
       items: [
         for (var item in widget.data)
           DropdownMenuItem(
             child: Text(item["nom"]),
-            value: item["nom"],
+            value: item["id"],
           )
       ],
-      onChanged: (value) {
-        setState(() {
-          _selectedValue = value;
-        });
-      },
+      onChanged: widget.onChanged,
     );
   }
 }

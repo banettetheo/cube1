@@ -192,7 +192,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PostPage(user: user!),
+          builder: (context) => PostPage(token: widget.data["token"], userId: user!.id),
         ));
         break;
       case 2:
