@@ -56,9 +56,12 @@ class _PostPageState extends State<PostPage> {
             actions: [
               IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => NewResourcePage(token: widget.token, userId: widget.userId,),
-                    ));
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute (
+                        builder: (BuildContext context) => NewResourcePage(token: widget.token, userId: widget.userId),
+                      ),
+                    );
                   },
                   icon: const Icon(Icons.add))
             ],

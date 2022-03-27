@@ -23,10 +23,10 @@ class NewResourcePage extends StatefulWidget {
 }
 
 class _NewResourcePageState extends State<NewResourcePage> {
-  late int categorie;
-  late int type;
-  late String titre;
-  late String contenu;
+  int categorie = 0;
+  int type = 0;
+  String titre = "";
+  String contenu = "";
   final urlCat = "http://10.0.2.2:8000/api/categories";
   final urlTypes = "http://10.0.2.2:8000/api/types-ressources";
   final urlPost = "http://10.0.2.2:8000/api/ressources";
@@ -45,7 +45,7 @@ class _NewResourcePageState extends State<NewResourcePage> {
     return jsonData;
   }
 
-  Future<void> postData() async {
+  Future<String> postData() async {
     final response = await post(Uri.parse(urlPost), headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       "Accept": "application/json",
@@ -58,9 +58,9 @@ class _NewResourcePageState extends State<NewResourcePage> {
       "IdUtilisateur_createur": widget.userId.toString(),
       "IdType": type.toString(),
       "Lien_ressources": "https://i.ytimg.com/vi/NBYPchPY8-g/maxresdefault.jpg",
-    }).then((value) {
-      print('jij');
     });
+    print(response.body);
+    return response.body;
   }
 
   @override
@@ -144,20 +144,22 @@ class _NewResourcePageState extends State<NewResourcePage> {
                   shape: const StadiumBorder(),
                   onPrimary: Colors.white,
                   primary: mainBlue),
-              onPressed: () {
-                FutureBuilder(future: postData(),builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PostPage(token: widget.token, userId: widget.userId),
-                    ));
-                  }
-                  return const AlertDialog(
-                    title: Text("Chargement..."),
-                    content: CircularProgressIndicator(),
+              onPressed: () async {
+                String response = await postData();
+                if (response.contains("invalid")) {
+                  const AlertDialog(title: const Text("Requête échouée!"),);
+                } else {
+                  print('jij');
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          PostPage(token: widget.token, userId: widget.userId),
+                    ),
                   );
-                });
+                }
               },
-              child: const Text("Sauvegarder la ressource"),
+              child: const Text("Sauvegarder la ressource")
             ),
           ],
         ),
