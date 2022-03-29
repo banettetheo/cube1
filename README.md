@@ -6,17 +6,17 @@ Le Ministère des Solidarités et de la Santé souhaite une application mobile e
 
 ## Objectif du projet
 
-Permettre au Ministère des Solidarités et de la Santé, d’avoir une plateforme accessible à tous les citoyens peu importe leurs âges, situations sociales, ou origines. 
+Assurer un accès à l'information (et partage de données) pour tous les citoyens issus de différents horizons (âge, situation sociale, origines)  . 
 
-L’objectif étant d’améliorer la qualité de vie ainsi que de bâtir des liens relationnels de qualité entre les citoyens. 
+L’objectif étant d’améliorer la qualité de vie et bâtir des liens relationnels de qualité entre les citoyens. 
 
-Cette plateforme va devoir rendre accessible diverses ressources pour les usagers. 
+Cette plateforme fournira diverses ressources pour les usagers. 
 
 La plateforme devra inclure un catalogue avec différentes sections en fonction du type de la ressources, ou de son contenue (catégories). 
 
-Elle devra permettre à ces utilisateurs de créer, modifier & supprimer leurs ressources. 
+Elle devra permettre à ses utilisateurs de créer, modifier & supprimer leurs ressources. 
 
-De plus les citoyens auront la possibilité de partager leurs ressources avec les autres citoyens ou même de la rendre publique. 
+De plus les citoyens auront la possibilité de partager leurs ressources avec les autres citoyens en les rendant publiques. 
 
 ## Documentation
 
@@ -30,9 +30,9 @@ php artisan migrate:fresh --seed
 
 ## Naviguer sur le site
 
-Compte administrateur :
+Compte moderateur :
 ```
-Email           paul@administrateur.com
+Email           paul@moderateur.com
 Mot de passe    123456789
 ```
 
@@ -70,7 +70,7 @@ Consulter      <base URL>/api/ressources/{id}
 ```
 
 ## Contribution
-Le projet cube1 est un projet a titre éducatif vous êtes libre de le cloner et de faire ce que vous voulez avec mais aucune amélioration ne seras accepter. 
+Le projet cube1 est un projet a titre éducatif. Toute modification ne sera acceptée. 
 ## Framework
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)..
 
