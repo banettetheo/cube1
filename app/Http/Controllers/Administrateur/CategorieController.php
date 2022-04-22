@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrateur;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Administration\CategorieRequest;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -15,19 +16,29 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $lesCategories = Categorie::all()->map(
+        //dd(Categorie::all());
+        // $lesCategories = Categorie::all()->map(
+        $lesCategories = Categorie::withTrashed()->get()
+        ->map(
             function ($uneCategorie) {
                 $categ = [
                     'id' => $uneCategorie['id'],
                     'nom' => $uneCategorie['Nom'],
                 ];
+                $updatedAt = $uneCategorie['updated_at'];
                 $deletedAt = $uneCategorie['deleted_at'];
-                if(!empty($updateDate)){
-                    $categ = array_merge($categ,  ['deleted_at' => $deletedAt]);
-                }else{
-                    $categ = array_merge($categ,  ['deleted_at' => '/']);
-                }
-                return $categ;
+
+                
+
+                $update = (!empty($updatedAt)?$updatedAt:"/");
+                $delete = (!empty($deletedAt)?$deletedAt:"/");
+                  $data = [
+                      'updated_at' => $update,
+                      'deleted_at' => $delete,
+                  ];
+
+            $result = array_merge($categ, $data);                  
+                return $result;
             }
         );
         return view('front-BO/gestion-catalogues/categories', [
@@ -35,15 +46,7 @@ class CategorieController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -56,27 +59,8 @@ class CategorieController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -85,9 +69,12 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategorieRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $laCateg = Categorie::find($id);
+        $laCateg->update($validated);
+        return redirect()->route('administration.gestion-catalogues.categories.index');
     }
 
     /**
@@ -98,6 +85,8 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $laCateg = Categorie::find($id);
+        $laCateg->delete();
+        return redirect()->route('administration.gestion-catalogues.categories.index');
     }
 }

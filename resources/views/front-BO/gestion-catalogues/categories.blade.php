@@ -17,6 +17,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nom</th>
+                                <th scope="col">Dernière modification</th>
                                 <th scope="col">Date de suppression</th>
                                 <th scope="col">Options</th>
                                 <!-- <th scope="col">Email</th>
@@ -29,20 +30,66 @@
                             <tr>
                                 <th scope="row">{{$categorie['id']}}</th>
                                 <td>{{$categorie['nom']}}</td>
+                                <td>{{$categorie['updated_at']}}</td>
                                 <td>{{$categorie['deleted_at']}}</td>
                                 <td>
                                     <div class="row">
                                         <div class="col-4">
-                                            <form method="POST" action="{{ route('administration.gestion_catalogues.categories.update', $categorie['id']) }}" class="form-deconnexion nav-link">
+                                            <!-- <form method="POST" action="{{ route('administration.gestion-catalogues.categories.update', $categorie['id']) }}" class="form-deconnexion nav-link">
                                                 @csrf
                                                 <button class="btn btn-warning">Mettre à jour</button>
+                                            </form> -->
+                                            @if ($categorie['deleted_at'] == "/")
+
+                                            <form method="POST" id="myForm" action="{{ route('administration.gestion-catalogues.categories.update', $categorie['id']) }}" class="form-deconnexion nav-link">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal{{($categorie['id'])}}">Mettre à jour</button>
+                                                <div class="modal fade" id="modal{{($categorie['id'])}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Modifier "{{$categorie['nom']}}"</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    Attention ! Cette modification entraînera un changement pour toute les ressources possédant cette catégorie
+                                                                </div>
+                                                                <div class="row justify-content-md-center">
+                                                                    <label for='nom' id="" class="col-3 col-form-label">Catégorie : </label>
+                                                                    <div class="col-6 pl-3">
+                                                                        <input type="text" id="nom" name="Nom" class="form-control" value="{{$categorie['nom']}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="modalConfirm{{($categorie['id'])}}">Annuler</button>
+                                                                <input type="submit" class="btn btn-success" value="Sauvegarder">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </form>
+                                        @endif
                                         </div>
                                         <div class="col-3">
-                                            <form method="POST" action="{{ route('administration.gestion_catalogues.categories.destroy', $categorie['id']) }}" class="form-deconnexion nav-link">
+                                            @if ($categorie['deleted_at'] == "/")
+                                            <form method="POST" action="{{ route('administration.gestion-catalogues.categories.destroy', $categorie['id']) }}" class="form-deconnexion nav-link">
                                                 @csrf
-                                                <button class="btn btn-danger">Supprimer</button>
+                                                @method('DELETE')
+                                                <button class="btn btn-danger">Désactiver</button>
+                                            </form>    
+                                            @else 
+                                            <form method="POST" action="{{ route('administration.gestion-catalogues.categories.destroy', $categorie['id']) }}" class="form-deconnexion nav-link">
+                                                @csrf
+                                                @method('UPDATE')
+                                                <button class="btn btn-danger">Restaurer</button>
                                             </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
@@ -51,15 +98,11 @@
                                         <button class="btn btn-warning">Désactiver</button>
                                     </form> -->
 
-
-
-                                </td>
+                                <!-- Modal -->
                             </tr>
                             @endforeach
-
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
