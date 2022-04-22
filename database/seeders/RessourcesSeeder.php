@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Ressources;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Illuminate\Support\Integer;
 
 class RessourcesSeeder extends Seeder
 {
@@ -16,6 +14,7 @@ class RessourcesSeeder extends Seeder
      */
     public function run()
     {
-        Ressources::factory(200)->create();
+        Ressources::factory(180)->create();
+       
     }
 }

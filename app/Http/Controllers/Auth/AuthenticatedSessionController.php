@@ -20,6 +20,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        if(Route::current()->uri()=="administration/connexion"){
+            return view('front-BO.auth.connexion');
+            // return redirect()->route('administration.panel');
+        }
+        
         return view('user.connexionUser');
     }
 
@@ -39,7 +44,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(auth()->user()->Admin){
+            return view('front-BO.BO-accueil');
+        }else{
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**

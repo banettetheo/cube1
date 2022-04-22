@@ -53,7 +53,7 @@ class RessourceController extends Controller
     $lesTypesRessources = json_decode($responseTypesRessources, true);
     $lesCategories = json_decode($responseCategories, true);
 
-    return view('ressources/createRessource', [
+    return view('ressources.createRessource', [
       'categories' => $lesCategories,
       'typesRessources' => $lesTypesRessources,
     ]);
@@ -69,13 +69,13 @@ class RessourceController extends Controller
 
     $validated = $request->validated();
     $dataValide = array_merge($validated, (['IdUtilisateur_createur' => auth()->id()]));
-    if ($request->validator->fails()) {
-      return Redirect::back()->withErrors($validated);
-    } else {
+    // if ($request->validator->fails()) {
+    //   return Redirect::back()->withErrors($validated);
+    // } else {
       $request = Request::create('/api/ressources', 'POST', []);
       $responseTypesRessources = Route::dispatch($request)->getContent();
       return redirect()->intended(RouteServiceProvider::HOME);
-    }
+    // }
   }
 
   /**
@@ -100,7 +100,10 @@ class RessourceController extends Controller
         ]);
       }
     } else {
-      return redirect()->intended(RouteServiceProvider::HOME);
+      // return redirect()->intended(RouteServiceProvider::HOME);
+      return view('ressources/zoomRessource', [
+        'ressource' => $laRessource
+      ]);
     }
   }
 
@@ -141,7 +144,7 @@ class RessourceController extends Controller
         ]);
       }
     } else {
-      return redirect()->intended(RouteServiceProvider::HOME);
+      // return redirect()->intended(RouteServiceProvider::HOME);
     }
   }
 
@@ -176,6 +179,6 @@ class RessourceController extends Controller
     $request = Request::create('api/ressources/' . $id, 'DELETE');
     Route::dispatch($request);
 
-    return redirect()->intended(RouteServiceProvider::HOME);
+    // return redirect()->intended(RouteServiceProvider::HOME);
   }
 }

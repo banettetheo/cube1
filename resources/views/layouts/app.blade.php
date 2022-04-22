@@ -19,20 +19,33 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<!--<body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">-->
 
 <body class="body-main">
-    <div id="titre-logo">
-        <img src="{{ URL::asset('image/LogoCube1.PNG'); }}" id="logo">
-        <h1 id="titre-app">(RE)SOURCES RELATIONNELLES</h1>
+    <div class="header-menu">
+        <div id="titre-logo">
+            <img href="" src="{{ URL::asset('image/LogoCube1.PNG'); }}" id="logo">
+        </div>
+        <div class="menu">
+            @if (Route::has('login'))
+                @auth
+                        <a href="{{ route('accueil') }}" class="button-menu">accueil</a>
+                        <p>/</p>
+                        <a href="{{ route('monCompte') }}" class="button-menu">Mon compte</a>
+                        <p>/</p>
+                        <a href="{{ route('ressources.create') }}" class="button-menu">Créer une ressource</a>
+                        <p>/</p>
+                        <a href="{{ route('relations.index') }}" class="button-menu">Mes relations</a>
+                    @else
+                        <a href="{{ route('login') }}" class="button-menu">Connexion</a>
+                        <p>/</p>
+                        @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="button-menu">Inscription</a>
+                        @endif
+                @endauth
+            @endif
+        </div>
     </div>
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-
-        </main>
+    {{ $slot }}
 </body>
 
 </html>

@@ -1,11 +1,21 @@
 //variables
+
+//colors
 $color-primary: #03989e;
-$color-secondary: white;
+$color-secondary: #f1f9f9;
+$color-tertiary : #65a581;
+$color-text-default: black;
+
+//font
+$font-menu: 25px;
+$font-style-italic: italic;
+$font-menu-responsive: 10px;
 
 //css en commun avec toutes les pages
 .body-main{
     background-color: $color-primary;
-    margin: 0px;
+    margin: auto;
+    width: 70%;
 }
 
 .main-flex{
@@ -22,42 +32,56 @@ $color-secondary: white;
     flex-direction: column;
 }
 
-.col-left{
-    width: 15%;
-    background-color: $color-secondary;
-    display: flex;
-    flex-direction: column;
-    max-height: 20em;
-}
-
 .col-center{
-    width: 50%;
+    width: 75%;
     height: auto;
-    background-color: aliceblue;
+    background-color: $color-secondary;
+    padding: 1%;
 }
 
 .col-right{
     width: 15%;
-    background-color: pink;
-    max-height: 20em;
+    background-color: $color-secondary;
+    max-height: 16em;
+    padding: 1%;
 }
 
 /*----------------------------------------*/
 
 /*le titre de la page et le logo*/
 
-#titre-logo{
+.header-menu{
     display: flex;
-    margin: 20px 30px;
-    
-    #logo{
-        width: 40px;
-        height: 40px;
+    align-items: center;
+    #titre-logo{ 
+        width: 25%;
+        #logo{
+            width: 50%;
+        }
+        
+        #titre-app{
+            margin: 0px;
+            margin-left: 20px;
+        }
     }
-    
-    #titre-app{
-        margin: 0px;
-        margin-left: 20px;
+    .menu{
+        display: flex;
+        width: 75%;
+        .button-menu{
+            width: auto;
+            margin-left: 1%;
+            text-decoration: none;
+            color: $color-secondary;
+            font-size: $font-menu;
+            &:hover{
+                color: $color-tertiary;
+            }
+        }
+        p{
+            margin: 0px 0px 0px 1%;
+            font-size: $font-menu;
+            color: $color-secondary;
+        }
     }
 }
 
@@ -66,27 +90,235 @@ $color-secondary: white;
 /* page d'accueil */
 
 #accueil{
-    #titre-menu{
-        padding-left: 10%;
-        width: min-content;
+    .col-center{
+        width: 80%;
     }
-    
-    .button-menu{
-        width: 50%;
-        margin-left: 10%;
-        margin-bottom: 4%;
+    .col-right{
+        width: 20%;
     }
-    
     .recherche-user{
         width: -webkit-fill-available;
-        margin: 1% 2%;
+        width: 30%;
+        display: flex;
+        form{
+            display: flex;
+            width: 100%;
+            .recherche{
+                height: fit-content;
+                align-self: center;
+                width: 60%;
+            }
+            .valid-recherche{
+                height: fit-content;
+                align-self: center;
+                margin-left: 3%;
+                background-color: $color-primary;
+                color: $color-secondary;
+                font-style: italic;
+                border-radius: 10px 0px;
+            }
+        }
     }
     
     .ressources{
         border: 1px solid;
         width: -webkit-fill-available;
-        margin: 1% 2%;
+        margin-top: 1%;
         padding: 1%;
+        .header-ressource{
+            margin-bottom: 2%;
+            h2{
+                margin-bottom: 0;
+            }
+            hr{
+                margin: 0px;
+            }
+            h3{
+                margin: 1% 2% 1% 0;
+                font-size: 13px;
+            }
+        }
+        #contentRessource{
+            width: 100%;
+            font-size: 17px;
+        }
+        .footer-ressource{
+            display: flex;
+            justify-content: space-between;
+            .vue-like{
+                display: flex;
+                justify-content: space-evenly;
+                width: 15%;
+                p{
+                    margin: 0;
+                }
+            }
+            .group-btn-footer{
+                display: flex;
+                p{
+                    margin: 0 7px;
+                }
+                .btn-footer{
+                    text-decoration: none;
+                    color: $color-text-default;
+                    font-style: $font-style-italic;
+                    &:hover{
+                        color: $color-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .filter{
+        width: 70%;
+        .filtre-ressource{
+            margin-left: 1%;
+            width: 50%;
+            font-size: 13px;
+            .filtre-select{
+                margin-top: 1%;
+                background-color: transparent;
+                border-radius: 8px;
+                width: 100%;
+                font-size: 11px;
+            }
+        }
+        .valid-filtre{
+            height: fit-content;
+            align-self: center;
+            margin-left: 3%;
+            background-color: $color-primary;
+            color: $color-secondary;
+            font-style: italic;
+            border-radius: 10px 0px;
+            width: 11%;
+        }
+    }
+
+    .user{
+        margin-top: 1%;
+        padding: 1%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        h3{
+            margin: 0 1% 0 0;
+        }
+        a{
+            color: $color-text-default;
+            text-decoration: none;
+            font-style: $font-style-italic;
+            &:hover{
+                color: $color-primary;
+            }
+        }
+    }
+
+    .col-right{
+        .list-game{
+            display: flex;
+            flex-wrap: wrap;
+            a{
+                width: 40px;
+                min-height: 40px;
+                margin-right: 12%;
+                margin-bottom: 14%;
+                background-color: $color-secondary;
+                .img-game{
+                }
+                .snake-bg{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -280px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .zutom-bg{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -282px;
+                    background-position-y: -153px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game1{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -26px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game2{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -282px;
+                    background-position-y: -26px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game3{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -89px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game4{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -282px;
+                    background-position-y: -90px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game5{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -142px;
+                    background-position-y: -217px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game6{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -213px;
+                    background-position-y: -217px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+                .img-game7{
+                    background: url('../../public/image/unknown.png') center no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position-x: -351px;
+                    background-position-y: -218px;
+                    background-size: 1160%;
+                    display: block;
+                    border-radius: 21px;
+                }
+            }
+        }
     }
 }
 
@@ -100,7 +332,10 @@ $color-secondary: white;
 
 .btn-validation{
     width: 90%;
+    margin-bottom: 10%;
 }
+
+/*----------------------------------------*/
 
 /* page inscription */
 
@@ -121,7 +356,7 @@ $color-secondary: white;
     }
 }
 
-
+/*----------------------------------------*/
 
 /* page connexion */
 
@@ -142,5 +377,1781 @@ $color-secondary: white;
     }
 }
 
+/*----------------------------------------*/
+
+/* page compte utilisateur */
+
+#compte-user{
+    .col-left{
+        width: 20%;
+        padding: 1%;
+        a{
+            text-decoration: none;
+            color: $color-text-default;
+            font-style: $font-style-italic;
+            font-size: $font-menu;
+            margin-top: 1%;
+            &:hover{
+                color: $color-secondary;
+            }
+        }
+    }
+    .col-center{
+        h2{
+            margin: 0;
+        }
+        .gerer-ressources{
+            .ressources{
+                border: 1px solid;
+                width: -webkit-fill-available;
+                margin-top: 1%;
+                padding: 1%;
+                .header-ressource{
+                    margin-bottom: 2%;
+                    h2{
+                        margin-bottom: 0;
+                    }
+                    hr{
+                        margin: 0px;
+                    }
+                    h3{
+                        margin: 1% 2% 1% 0;
+                        font-size: 13px;
+                    }
+                }
+                #contentRessource{
+                    width: 100%;
+                    font-size: 17px;
+                }
+                .footer-ressource{
+                    display: flex;
+                    justify-content: space-between;
+                    .vue-like{
+                        display: flex;
+                        justify-content: space-evenly;
+                        width: 15%;
+                        height: fit-content;
+                        flex-wrap: wrap;
+                        p{
+                            margin: 0;
+                            height: fit-content;
+                        }
+                        .lire-suite{
+                            height: fit-content;
+                            text-decoration: none;
+                            color: $color-text-default;
+                            &:hover{
+                                color: $color-primary;
+                            }
+                        }
+                    }
+                    .group-btn-footer{
+                        display: flex;
+                        width: 60%;
+                        justify-content: end;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        line-height: 30px;
+                        p{
+                            margin: 0 7px;
+                        }
+                        .btn-footer{
+                            text-decoration: none;
+                            color: $color-text-default;
+                            font-style: $font-style-italic;
+                            &:hover{
+                                color: $color-primary;
+                            }
+                        }
+                        .crud-share{
+                            color: $color-text-default;
+                            background-color: transparent;
+                            margin: 0 1%;
+                            border-radius: 10px;
+                            margin-bottom: 1%;
+                            width: 37%;
+                            &:hover{
+                                color: $color-primary;
+                            }
+                        }
+                        /* Positionnez la forme Popup */
+                        .login-popup {
+                            position: relative;
+                            text-align: center;
+                            width: 100%;
+                            /* Masquez la forme Popup */
+                            .form-popup {
+                                display: none;
+                                position: fixed;
+                                left: 45%;
+                                top: 27%;
+                                transform: translate(-45%, 5%);
+                                border: 2px solid #666;
+                                z-index: 9;
+
+                                 /* Styles pour le conteneur de la forme */
+                                .form-container {
+                                    max-width: 300px;
+                                    padding: 20px;
+                                    background-color: #fff;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    h2{
+                                        margin-bottom: 5%;
+                                    }
+
+                                    .user-relation{
+                                        margin-bottom: 5%;
+                                        line-height: 20px;
+                                    }
+
+                                    .confirmation-share{
+                                        /* Stylez le bouton de connexion */
+                                        .btn-share {
+                                            background-color: $color-primary;
+                                            color: $color-secondary;
+                                            padding: 10px;
+                                            border: none;
+                                            cursor: pointer;
+                                            width: 50%;
+                                            margin-bottom: 10px;
+                                            opacity: 0.8;
+                                            border-radius: 10px;
+                                            height: fit-content;
+                                            font-style: italic;
+                                            opacity: 0.6;
+                                            &:hover{
+                                                opacity: 1;
+                                            }
+                                        }
+                                        /* Stylez le bouton pour annuler */
+                                        .btn-cancel {
+                                            background-color: #cc0000;
+                                            color: $color-secondary;
+                                            padding: 10px;
+                                            border: none;
+                                            cursor: pointer;
+                                            width: 50%;
+                                            margin-bottom: 10px;
+                                            opacity: 0.8;
+                                            border-radius: 10px;
+                                            height: fit-content;
+                                            font-style: italic;
+                                            opacity: 0.6;
+                                            &:hover{
+                                                opacity: 1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .col-right{
+        h1{
+            margin: 0;
+            font-size: 21px;
+            margin-bottom: 4%;
+        }
+        p{
+            margin: 1% 0;
+        }
+        a{
+            margin: 5% 0;
+            color: $color-tertiary;
+            &:hover{
+                color: $color-primary;
+            }
+        }
+        .form-deconnexion{
+            margin: 10% 0;
+            button{
+                border-radius: 10px;
+                background-color: transparent;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+
+/* page creation de ressource */
+
+#creer-ressource{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 2% 2%;
+    background-color: $color-secondary;
+    .form-main{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        .form-left{
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            .form-select{
+                display: flex;
+                margin-bottom: 3%;
+                justify-content: space-evenly;
+                height: 30px;
+                #cat-select{
+                    width: 51%;
+                    margin-right: 1%;
+                }
+                #type-select{
+                    width: 46%;
+                }
+            }
+            #titre{
+                margin-bottom: 3%;
+                width: 50%;
+                height: 68%;
+                height: 30px;
+            }
+            #url{
+                margin-bottom: 3%;
+                width: 50%;
+                height: 87%;
+                height: 30px;
+            }
+        }
+        .form-right{
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            #content{
+                height: 73%;
+                margin-bottom: 3%;
+            }
+            #btn-creer-ressource{
+                width: 40%;
+                margin: auto;
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+
+/* page modification de ressource */
+
+#modif-ressource{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 2% 2%;
+    background-color: $color-secondary;
+    .form-main{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        .form-left{
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            .form-select{
+                display: flex;
+                margin-bottom: 3%;
+                justify-content: space-evenly;
+                height: 30px;
+                #cat-select{
+                    width: 51%;
+                    margin-right: 1%;
+                }
+                #type-select{
+                    width: 46%;
+                }
+            }
+            #titre{
+                margin-bottom: 3%;
+                width: 50%;
+                height: 68%;
+                height: 30px;
+            }
+            #url{
+                margin-bottom: 3%;
+                width: 50%;
+                height: 87%;
+                height: 30px;
+            }
+        }
+        .form-right{
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            #content{
+                height: 73%;
+                margin-bottom: 3%;
+            }
+            #btn-modif-ressource{
+                width: 40%;
+                margin: auto;
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+
+/* page zoom de ressource */
+
+#zoom-ressource{
+    .ressources{
+        border: 1px solid;
+        width: -webkit-fill-available;
+        margin-top: 1%;
+        padding: 1%;
+        background-color: $color-secondary;
+        .header-ressource{
+            margin-bottom: 2%;
+            h2{
+                margin-bottom: 0;
+            }
+            hr{
+                margin: 0px;
+            }
+            h3{
+                margin: 1% 2% 1% 0;
+                font-size: 13px;
+            }
+        }
+        #contentRessource{
+            width: 100%;
+            font-size: 17px;
+        }
+        .vue-like{
+            display: flex;
+            justify-content: space-evenly;
+            width: 15%;
+            p{
+                margin: 0;
+            }
+        }
+    }
+    .commentaires{
+        margin-top: 2%;
+        .inputCom{
+            width: 33%;
+            height: 25px;
+        }
+        h3{
+            margin-bottom: 0;
+        }
+        .comUser{
+            flex-direction: column;
+            border: 1px solid $color-text-default;
+            padding: 1%;
+            margin-bottom: 1%;
+            .comHeader{
+                display: flex;
+                h3{
+                    margin: 0 1% 0 0;
+                }
+            }
+            .comContent{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                #contentCom{
+                    width: 75%;
+                }
+                .suppCom{
+                    height: fit-content;
+                }
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+
+/* page relation utilisateur */
+
+#user-relation{
+    .col-left{
+        width: 20%;
+        padding: 1%;
+        a{
+            text-decoration: none;
+            color: $color-text-default;
+            font-style: $font-style-italic;
+            font-size: $font-menu;
+            margin-top: 1%;
+            &:hover{
+                color: $color-secondary;
+            }
+        }
+    }
+    .col-center{
+        h2{
+            margin: 0;
+        }
+        .gerer-ressources{
+            .ressources{
+                border: 1px solid;
+                width: -webkit-fill-available;
+                margin-top: 1%;
+                padding: 1%;
+                .header-ressource{
+                    margin-bottom: 2%;
+                    h2{
+                        margin-bottom: 0;
+                    }
+                    hr{
+                        margin: 0px;
+                    }
+                    h3{
+                        margin: 1% 2% 1% 0;
+                        font-size: 13px;
+                    }
+                }
+                #contentRessource{
+                    width: 100%;
+                    font-size: 17px;
+                }
+                .footer-ressource{
+                    display: flex;
+                    justify-content: space-between;
+                    .vue-like{
+                        display: flex;
+                        justify-content: space-evenly;
+                        width: 15%;
+                        height: fit-content;
+                        flex-wrap: wrap;
+                        p{
+                            margin: 0;
+                            height: fit-content;
+                        }
+                        .lire-suite{
+                            height: fit-content;
+                        }
+                    }
+                }
+                .group-btn-footer{
+                    display: flex;
+                    width: 60%;
+                    justify-content: end;
+                    align-items: center;
+                    p{
+                        margin: 0 7px;
+                    }
+                    .btn-footer{
+                        text-decoration: none;
+                        color: $color-text-default;
+                        font-style: $font-style-italic;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                    .crud-share{
+                        color: $color-text-default;
+                        background-color: transparent;
+                        margin: 0 1%;
+                        border-radius: 10px;
+                        width: 37%;
+                        margin-bottom: 1%;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .col-right{
+        h1{
+            margin: 0;
+            font-size: 21px;
+            margin-bottom: 4%;
+        }
+        p{
+            margin: 1% 0;
+        }
+        a{
+            margin: 5% 0;
+            color: $color-tertiary;
+            &:hover{
+                color: $color-primary;
+            }
+        }
+        .form-deconnexion{
+            margin: 10% 0;
+            button{
+                border-radius: 10px;
+                background-color: transparent;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+
+/* page de validation de ressource */
+
+#ressource-validation{
+    .col-left{
+        width: 20%;
+        padding: 1%;
+        a{
+            text-decoration: none;
+            color: $color-text-default;
+            font-style: $font-style-italic;
+            font-size: $font-menu;
+            margin-top: 1%;
+            &:hover{
+                color: $color-secondary;
+            }
+        }
+    }
+    .col-center{
+        h2{
+            margin: 0;
+        }
+        .gerer-ressources{
+            .ressources{
+                border: 1px solid;
+                width: -webkit-fill-available;
+                margin-top: 1%;
+                padding: 1%;
+                .header-ressource{
+                    margin-bottom: 2%;
+                    h2{
+                        margin-bottom: 0;
+                    }
+                    hr{
+                        margin: 0px;
+                    }
+                    h3{
+                        margin: 1% 2% 1% 0;
+                        font-size: 13px;
+                    }
+                }
+                #contentRessource{
+                    width: 100%;
+                    font-size: 17px;
+                }
+                .footer-ressource{
+                    display: flex;
+                    justify-content: space-between;
+                    .vue-like{
+                        display: flex;
+                        justify-content: space-evenly;
+                        width: 15%;
+                        height: fit-content;
+                        flex-wrap: wrap;
+                        p{
+                            margin: 0;
+                            height: fit-content;
+                        }
+                        .lire-suite{
+                            height: fit-content;
+                            text-decoration: none;
+                            color: $color-text-default;
+                            &:hover{
+                                color: $color-primary;
+                            }
+                        }
+                    }
+                }
+                .group-btn-footer{
+                    display: flex;
+                    width: 60%;
+                    justify-content: end;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    line-height: 30px;
+                    p{
+                        margin: 0 7px;
+                    }
+                    .btn-footer{
+                        text-decoration: none;
+                        color: $color-text-default;
+                        font-style: $font-style-italic;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                    .crud-share{
+                        color: $color-text-default;
+                        background-color: transparent;
+                        margin: 0 1%;
+                        border-radius: 10px;
+                        margin-bottom: 1%;
+                        width: 37%;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                    #IdEtat{
+                        width: 40%;
+                    }
+                }
+            }
+        }
+    }
+    .col-right{
+        h1{
+            margin: 0;
+            font-size: 21px;
+            margin-bottom: 4%;
+        }
+        p{
+            margin: 1% 0;
+        }
+        a{
+            margin: 5% 0;
+            color: $color-tertiary;
+            &:hover{
+                color: $color-primary;
+            }
+        }
+        .form-deconnexion{
+            margin: 10% 0;
+            button{
+                border-radius: 10px;
+                background-color: transparent;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}
 
 
+@media screen and (max-width: 375px) {
+
+    //css en commun avec toutes les pages
+    .body-main{
+        background-color: $color-primary;
+        width: 100%;
+    }
+
+    .main-flex{
+        display: flex;
+        justify-content: start;
+        min-height: 100%;
+    }
+
+    .flex{
+        display: flex;
+    }
+
+    .column{
+        flex-direction: column;
+    }
+
+    .col-center{
+        width: 65%;
+        height: auto;
+        background-color: $color-secondary;
+        padding: 1%;
+    }
+
+    .col-right{
+        width: 11%;
+        background-color: $color-secondary;
+        max-height: 16em;
+        padding: 1%;
+    }
+
+    /*----------------------------------------*/
+
+    /*le titre de la page et le logo*/
+
+    .header-menu{
+        display: flex;
+        align-items: center;
+        #titre-logo{ 
+            width: 10%;
+            #logo{
+                width: 100%;
+            }
+            
+            #titre-app{
+                margin: 0px;
+                margin-left: 20px;
+            }
+        }
+        .menu{
+            display: flex;
+            width: 75%;
+            margin-left: 5%;
+            .button-menu{
+                width: auto;
+                margin-left: 1%;
+                text-decoration: none;
+                color: $color-secondary;
+                font-size: $font-menu-responsive;
+                &:hover{
+                    color: $color-tertiary;
+                }
+            }
+            p{
+                margin: 0px 0px 0px 1%;
+                font-size: $font-menu-responsive;
+                color: $color-secondary;
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page d'accueil */
+
+    #accueil{
+        .col-center{
+            width: 75%;
+        }
+        .col-right{
+            width: 20%;
+        }
+        .header-recherche-filtre{
+            justify-content: space-between;
+        }
+        .recherche-user{
+            width: -webkit-fill-available;
+            width: 26%;
+            display: flex;
+            height: fit-content;
+            flex-direction: column;
+            .recherche{
+                height: fit-content;
+                align-self: center;
+                width: 89%;
+                font-size: 6px;
+            }
+            .valid-recherche{
+                height: fit-content;
+                align-self: end;
+                background-color: $color-primary;
+                color: $color-secondary;
+                font-style: italic;
+                border-radius: 10px 0px;
+                font-size: 8px;
+            }
+        }
+        
+        .ressources{
+            border: 1px solid;
+            width: -webkit-fill-available;
+            margin-top: 1%;
+            padding: 1%;
+            .header-ressource{
+                margin-bottom: 2%;
+                h2{
+                    margin-bottom: 0;
+                    font-size: $font-menu-responsive;
+                }
+                hr{
+                    margin: 0px;
+                }
+                h3{
+                    margin: 1% 2% 1% 0;
+                    font-size: 8px;
+                }
+            }
+            #contentRessource{
+                width: 100%;
+            }
+            .footer-ressource{
+                display: flex;
+                justify-content: space-between;
+                .vue-like{
+                    display: flex;
+                    justify-content: space-evenly;
+                    width: 15%;
+                    p{
+                        margin: 0;
+                        font-size: 8px;
+                    }
+                }
+                .group-btn-footer{
+                    display: flex;
+                    font-size: 9px;
+                    p{
+                        margin: 0 7px;
+                    }
+                    .btn-footer{
+                        text-decoration: none;
+                        color: $color-text-default;
+                        font-style: $font-style-italic;
+                        &:hover{
+                            color: $color-primary;
+                        }
+                    }
+                }
+            }
+        }
+
+        .filter{
+            width: 73%;
+            .filtre-ressource{
+                width: 40%;
+                font-size: 8px;
+                .filtre-select{
+                    margin-top: 1%;
+                    background-color: transparent;
+                    border-radius: 8px;
+                    width: 83%;
+                    font-size: 8px;
+                }
+            }
+            .valid-filtre{
+                height: fit-content;
+                align-self: center;
+                background-color: $color-primary;
+                color: $color-secondary;
+                font-style: italic;
+                border-radius: 10px 0px;
+                width: 20%;
+                font-size: 8px;
+            }
+        }
+
+        .user{
+            margin-top: 1%;
+            padding: 1%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 10px;
+            h3{
+                margin: 0 1% 0 0;
+            }
+            a{
+                color: $color-text-default;
+                text-decoration: none;
+                font-style: $font-style-italic;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+        }
+
+        .col-right{
+            height: fit-content;
+            h1{
+                font-size: 15px;
+            }
+            .list-game{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: end;
+                a{
+                    width: 20px;
+                    min-height: 20px;
+                    margin-right: 12%;
+                    margin-bottom: 14%;
+                    background-color: $color-secondary;
+                    .snake-bg{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -380px;
+                        background-position-y: -300px;
+                        display: block;
+                        border-radius: 21px;
+                    }
+                    .zutom-bg{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -270px;
+                        background-position-y: -404px;
+                        display: block;
+                        border-radius: 21px;
+                    }
+                    .img-game1{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -400px;
+                        background-position-y: -300px;
+                        display: none;
+                        border-radius: 21px;
+                    }
+                    .img-game2{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -400px;
+                        background-position-y: -280px;
+                        display: block;
+                        border-radius: 21px;
+                    }
+                    .img-game3{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -270px;
+                        background-position-y: -404px;
+                        display: none;
+                        border-radius: 21px;
+                    }
+                    .img-game4{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -270px;
+                        background-position-y: -404px;
+                        display: none;
+                        border-radius: 21px;
+                    }
+                    .img-game5{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -400px;
+                        background-position-y: -300px;
+                        display: block;
+                        border-radius: 21px;
+                    }
+                    .img-game6{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -270px;
+                        background-position-y: -404px;
+                        display: none;
+                        border-radius: 21px;
+                    }
+                    .img-game7{
+                        background: url('../../public/image/unknown.png') center no-repeat;
+                        width: 100%;
+                        height: 100%;
+                        background-position-x: -270px;
+                        background-position-y: -404px;
+                        display: none;
+                        border-radius: 21px;
+                    }
+                }
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* formulaire général */
+
+    .input-form{
+        margin-bottom: 10%;
+    }
+
+    .btn-validation{
+        width: 90%;
+        margin-bottom: 10%;
+    }
+
+    /*----------------------------------------*/
+
+    /* page inscription */
+
+    #inscription-user{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        #inscription-form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .input-inscription{
+                margin-bottom: 10%;
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page connexion */
+
+    #connexion-user{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        #connexion-form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .input-connexion{
+                margin-bottom: 10%;
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page compte utilisateur */
+
+    #compte-user{
+        .col-left{
+            width: 17%;
+            padding: 1%;
+            a{
+                text-decoration: none;
+                color: $color-text-default;
+                font-style: $font-style-italic;
+                font-size: $font-menu-responsive;
+                margin-top: 1%;
+                &:hover{
+                    color: $color-secondary;
+                }
+            }
+        }
+        .col-center{
+            h2{
+                margin: 0;
+                font-size: $font-menu-responsive;
+            }
+            .gerer-ressources{
+                .ressources{
+                    border: 1px solid;
+                    width: -webkit-fill-available;
+                    margin-top: 1%;
+                    padding: 1%;
+                    .header-ressource{
+                        margin-bottom: 2%;
+                        h2{
+                            margin-bottom: 0;
+                            font-size: $font-menu-responsive;
+                        }
+                        hr{
+                            margin: 0px;
+                        }
+                        h3{
+                            margin: 1% 2% 1% 0;
+                            font-size: 8px;
+                        }
+                    }
+                    #contentRessource{
+                        width: 100%;
+                    }
+                    .footer-ressource{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        .vue-like{
+                            display: flex;
+                            justify-content: space-evenly;
+                            width: 100%;
+                            height: fit-content;
+                            flex-wrap: wrap;
+                            font-size: 10px;
+                            p{
+                                margin: 0;
+                                height: fit-content;
+                            }
+                            .lire-suite{
+                                height: fit-content;
+                                text-decoration: none;
+                                color: $color-text-default;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                        }
+                        .group-btn-footer{
+                            display: flex;
+                            width: 100%;
+                            justify-content: end;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            line-height: 30px;
+                            #IdEtat{
+                                font-size: 8px;
+                            }
+                            p{
+                                margin: 0 7px;
+                            }
+                            .btn-footer{
+                                text-decoration: none;
+                                color: $color-text-default;
+                                font-style: $font-style-italic;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                            .crud-share{
+                                color: $color-text-default;
+                                background-color: transparent;
+                                margin: 0 1%;
+                                border-radius: 10px;
+                                margin-bottom: 1%;
+                                width: 26%;
+                                font-size: 8px;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                            /* Positionnez la forme Popup */
+                            .login-popup {
+                                position: relative;
+                                text-align: center;
+                                width: 100%;
+                                /* Masquez la forme Popup */
+                                .form-popup {
+                                    display: none;
+                                    position: fixed;
+                                    left: 45%;
+                                    top: 27%;
+                                    transform: translate(-45%, 5%);
+                                    border: 2px solid #666;
+                                    z-index: 9;
+
+                                    /* Styles pour le conteneur de la forme */
+                                    .form-container {
+                                        max-width: 300px;
+                                        padding: 20px;
+                                        background-color: #fff;
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        h2{
+                                            margin-bottom: 5%;
+                                            font-size: $font-menu-responsive;
+                                        }
+
+                                        .user-relation{
+                                            margin-bottom: 5%;
+                                            line-height: 20px;
+                                        }
+
+                                        .confirmation-share{
+                                            /* Stylez le bouton de connexion */
+                                            .btn-share {
+                                                background-color: $color-primary;
+                                                color: $color-secondary;
+                                                padding: 10px;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 50%;
+                                                margin-bottom: 10px;
+                                                opacity: 0.8;
+                                                border-radius: 10px;
+                                                height: fit-content;
+                                                font-style: italic;
+                                                opacity: 0.6;
+                                                &:hover{
+                                                    opacity: 1;
+                                                }
+                                            }
+                                            /* Stylez le bouton pour annuler */
+                                            .btn-cancel {
+                                                background-color: #cc0000;
+                                                color: $color-secondary;
+                                                padding: 10px;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 50%;
+                                                margin-bottom: 10px;
+                                                opacity: 0.8;
+                                                border-radius: 10px;
+                                                height: fit-content;
+                                                font-style: italic;
+                                                opacity: 0.6;
+                                                &:hover{
+                                                    opacity: 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .col-right{
+            font-size: 8px;
+            h1{
+                margin: 0;
+                font-size: 8px;
+                margin-bottom: 4%;
+            }
+            p{
+                margin: 1% 0;
+            }
+            a{
+                margin: 5% 0;
+                color: $color-tertiary;
+                font-size: 6px;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+            #adresse-mail{
+                font-size: 4px;
+            }
+            .form-deconnexion{
+                margin: 10% 0;
+                button{
+                    border-radius: 10px;
+                    background-color: transparent;
+                    font-size: 6px;
+                    &:hover{
+                        color: $color-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page creation de ressource */
+
+    #creer-ressource{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        padding: 2% 2%;
+        background-color: $color-secondary;
+        .form-main{
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            flex-direction: column;
+            .form-left{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 1%;
+                align-items: center;
+                .form-select{
+                    display: flex;
+                    margin-bottom: 3%;
+                    justify-content: space-evenly;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                    #cat-select{
+                        width: 52%;
+                        margin: 0 0 1% 0;
+                        font-size: 9px;
+                        height: fit-content;
+                    }
+                    #type-select{
+                        width: 52%;
+                        height: fit-content;
+                        font-size: 10px;
+                    }
+                }
+                #titre{
+                    margin-bottom: 3%;
+                    width: 50%;
+                    height: fit-content;
+                    font-size: 10px;
+                }
+                #url{
+                    margin-bottom: 3%;
+                    width: 50%;
+                    height: fit-content;
+                    font-size: 10px;
+                }
+                #file{
+                    font-size: 10px;
+                }
+            }
+            .form-right{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                #content{
+                    height: 73%;
+                    margin-bottom: 3%;
+                    font-size: 10px;
+                }
+                #btn-creer-ressource{
+                    width: 40%;
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page modification de ressource */
+
+    #modif-ressource{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        padding: 2% 2%;
+        background-color: $color-secondary;
+        .form-main{
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            .form-left{
+                display: flex;
+                flex-direction: column;
+                width: 49%;
+                .form-select{
+                    display: flex;
+                    margin-bottom: 3%;
+                    justify-content: space-evenly;
+                    height: 30px;
+                    #cat-select{
+                        width: 51%;
+                        margin-right: 1%;
+                    }
+                    #type-select{
+                        width: 46%;
+                    }
+                }
+                #titre{
+                    margin-bottom: 3%;
+                    width: 50%;
+                    height: 68%;
+                    height: 30px;
+                }
+                #url{
+                    margin-bottom: 3%;
+                    width: 50%;
+                    height: 87%;
+                    height: 30px;
+                }
+            }
+            .form-right{
+                display: flex;
+                flex-direction: column;
+                width: 49%;
+                #content{
+                    height: 73%;
+                    margin-bottom: 3%;
+                }
+                #btn-modif-ressource{
+                    width: 40%;
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page zoom de ressource */
+
+    #zoom-ressource{
+        .ressources{
+            border: 1px solid;
+            width: -webkit-fill-available;
+            margin-top: 1%;
+            padding: 1%;
+            .header-ressource{
+                margin-bottom: 2%;
+                h2{
+                    margin-bottom: 0;
+                    font-size: $font-menu-responsive;
+                }
+                hr{
+                    margin: 0px;
+                }
+                h3{
+                    margin: 1% 2% 1% 0;
+                    font-size: 8px;
+                }
+            }
+            #contentRessource{
+                width: 100%;
+            }
+        }
+        .commentaires{
+            .inputCom{
+                width: 33%;
+            }
+            .comUser{
+                flex-direction: column;
+                margin-top: 3%;
+                border: 1px solid $color-text-default;
+                padding: 1%;
+                .comHeader{
+                    display: flex;
+                    h3{
+                        margin: 0 1% 0 0;
+                    }
+                }
+                .comContent{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    #contentCom{
+                        width: 75%;
+                    }
+                    .suppCom{
+                        height: fit-content;
+                    }
+                }
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page relation utilisateur */
+
+    #user-relation{
+        .col-left{
+            width: 20%;
+            padding: 1%;
+            a{
+                text-decoration: none;
+                color: $color-text-default;
+                font-style: $font-style-italic;
+                font-size: $font-menu-responsive;
+                margin-top: 1%;
+                &:hover{
+                    color: $color-secondary;
+                }
+            }
+        }
+        .col-center{
+            h2{
+                margin: 0;
+                font-size: $font-menu-responsive;
+            }
+            .gerer-ressources{
+                .ressources{
+                    border: 1px solid;
+                    width: -webkit-fill-available;
+                    margin-top: 1%;
+                    padding: 1%;
+                    .header-ressource{
+                        margin-bottom: 2%;
+                        h2{
+                            margin-bottom: 0;
+                            font-size: $font-menu-responsive;
+                        }
+                        hr{
+                            margin: 0px;
+                        }
+                        h3{
+                            margin: 1% 2% 1% 0;
+                            font-size: 8px;
+                        }
+                    }
+                    #contentRessource{
+                        width: 100%;
+                    }
+                    .footer-ressource{
+                        display: flex;
+                        justify-content: space-between;
+                        .vue-like{
+                            display: flex;
+                            justify-content: space-evenly;
+                            width: 15%;
+                            height: fit-content;
+                            flex-wrap: wrap;
+                            p{
+                                margin: 0;
+                                height: fit-content;
+                            }
+                            .lire-suite{
+                                height: fit-content;
+                            }
+                        }
+                    }
+                    .group-btn-footer{
+                        display: flex;
+                        width: 60%;
+                        justify-content: end;
+                        align-items: center;
+                        p{
+                            margin: 0 7px;
+                        }
+                        .btn-footer{
+                            text-decoration: none;
+                            color: $color-text-default;
+                            font-style: $font-style-italic;
+                            &:hover{
+                                color: $color-primary;
+                            }
+                        }
+                        .crud-share{
+                            color: $color-text-default;
+                            background-color: transparent;
+                            margin: 0 1%;
+                            border-radius: 10px;
+                            width: 37%;
+                            margin-bottom: 1%;
+                            &:hover{
+                                color: $color-primary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .col-right{
+            h1{
+                margin: 0;
+                font-size: 21px;
+                margin-bottom: 4%;
+            }
+            p{
+                margin: 1% 0;
+            }
+            a{
+                margin: 5% 0;
+                color: $color-tertiary;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+            .form-deconnexion{
+                margin: 10% 0;
+                button{
+                    border-radius: 10px;
+                    background-color: transparent;
+                    &:hover{
+                        color: $color-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    /*----------------------------------------*/
+
+    /* page de validation de ressource */
+
+    #ressource-validation{
+        .col-left{
+            width: 17%;
+            padding: 1%;
+            a{
+                text-decoration: none;
+                color: $color-text-default;
+                font-style: $font-style-italic;
+                font-size: $font-menu-responsive;
+                margin-top: 1%;
+                &:hover{
+                    color: $color-secondary;
+                }
+            }
+        }
+        .col-center{
+            h2{
+                margin: 0;
+                font-size: $font-menu-responsive;
+            }
+            .gerer-ressources{
+                .ressources{
+                    border: 1px solid;
+                    width: -webkit-fill-available;
+                    margin-top: 1%;
+                    padding: 1%;
+                    .header-ressource{
+                        margin-bottom: 2%;
+                        h2{
+                            margin-bottom: 0;
+                            font-size: $font-menu-responsive;
+                        }
+                        hr{
+                            margin: 0px;
+                        }
+                        h3{
+                            margin: 1% 2% 1% 0;
+                            font-size: 8px;
+                        }
+                    }
+                    #contentRessource{
+                        width: 100%;
+                    }
+                    .footer-ressource{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        .vue-like{
+                            display: flex;
+                            justify-content: start;
+                            width: 100%;
+                            height: fit-content;
+                            flex-wrap: wrap;
+                            font-size: 10px;
+                            p{
+                                margin: 0;
+                                height: fit-content;
+                                margin-right: 3%;
+                            }
+                            .lire-suite{
+                                height: fit-content;
+                                text-decoration: none;
+                                color: $color-text-default;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                        }
+                        .group-btn-footer{
+                            display: flex;
+                            width: 100%;
+                            justify-content: end;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            line-height: 30px;
+                            #IdEtat{
+                                font-size: 8px;
+                            }
+                            p{
+                                margin: 0 7px;
+                            }
+                            .btn-footer{
+                                text-decoration: none;
+                                color: $color-text-default;
+                                font-style: $font-style-italic;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                            .crud-share{
+                                color: $color-text-default;
+                                background-color: transparent;
+                                margin: 0 1%;
+                                border-radius: 10px;
+                                margin-bottom: 1%;
+                                width: 37%;
+                                font-size: 7px;
+                                &:hover{
+                                    color: $color-primary;
+                                }
+                            }
+                            /* Positionnez la forme Popup */
+                            .login-popup {
+                                position: relative;
+                                text-align: center;
+                                width: 100%;
+                                /* Masquez la forme Popup */
+                                .form-popup {
+                                    display: none;
+                                    position: fixed;
+                                    left: 45%;
+                                    top: 27%;
+                                    transform: translate(-45%, 5%);
+                                    border: 2px solid #666;
+                                    z-index: 9;
+
+                                    /* Styles pour le conteneur de la forme */
+                                    .form-container {
+                                        max-width: 300px;
+                                        padding: 20px;
+                                        background-color: #fff;
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        h2{
+                                            margin-bottom: 5%;
+                                            font-size: $font-menu-responsive;
+                                        }
+
+                                        .user-relation{
+                                            margin-bottom: 5%;
+                                            line-height: 20px;
+                                        }
+
+                                        .confirmation-share{
+                                            /* Stylez le bouton de connexion */
+                                            .btn-share {
+                                                background-color: $color-primary;
+                                                color: $color-secondary;
+                                                padding: 10px;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 50%;
+                                                margin-bottom: 10px;
+                                                opacity: 0.8;
+                                                border-radius: 10px;
+                                                height: fit-content;
+                                                font-style: italic;
+                                                opacity: 0.6;
+                                                &:hover{
+                                                    opacity: 1;
+                                                }
+                                            }
+                                            /* Stylez le bouton pour annuler */
+                                            .btn-cancel {
+                                                background-color: #cc0000;
+                                                color: $color-secondary;
+                                                padding: 10px;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 50%;
+                                                margin-bottom: 10px;
+                                                opacity: 0.8;
+                                                border-radius: 10px;
+                                                height: fit-content;
+                                                font-style: italic;
+                                                opacity: 0.6;
+                                                &:hover{
+                                                    opacity: 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .col-right{
+            font-size: 8px;
+            h1{
+                margin: 0;
+                font-size: 8px;
+                margin-bottom: 4%;
+            }
+            p{
+                margin: 1% 0;
+            }
+            a{
+                margin: 5% 0;
+                color: $color-tertiary;
+                font-size: 6px;
+                &:hover{
+                    color: $color-primary;
+                }
+            }
+            #adresse-mail{
+                font-size: 4px;
+            }
+            .form-deconnexion{
+                margin: 10% 0;
+                button{
+                    border-radius: 10px;
+                    background-color: transparent;
+                    font-size: 6px;
+                    &:hover{
+                        color: $color-primary;
+                    }
+                }
+            }
+        }
+    }
+}

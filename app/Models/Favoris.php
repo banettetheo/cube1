@@ -24,4 +24,8 @@ class Favoris extends Model
      public function Ressources() {
        return $this->hasMany('App\Models\Ressources', 'IdRessource');
      }
+
+     public function Type() {
+      return $this->hasOne('App\Models\Type_ressource', 'Types_favoris_id');
+    }
 }

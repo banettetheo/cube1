@@ -1,31 +1,46 @@
 <x-app-layout>
 
-
     <section id="zoom-ressource" class="">
         <div class="ressources">
-            <!--le titre de la ressource-->
-            <h2 id="titreRessource"></h2>
-            <!--le nom de l'utilisateur qui l'a partagé-->
-            <h3 id="userRessource"></h3>
+            <div class="header-ressource">
+                <!--le titre de la ressource-->
+                <h2 id="titreRessource">{{ $ressource['titre'] }}</h2>
+                <div class="flex">
+                    <!--le nom prenom de l'utilisateur-->
+                    <h3 id="userNom">{{ $ressource['utilisateur']['name'] }}</h3>
+                    <h3 id="userPrenom">{{ $ressource['utilisateur']['Prenom'] }}</h3>
+                </div>
+                <hr>
+            </div>
+            
             <!--le contenu text de la ressource (description ou article)-->
-            <textarea id="contentRessource"></textarea>
-            <!--affichage du nombre de commentaire-->
-            <input id="footerRessourceCom"> </input>
-            <!--affichage du nombre de like-->
-            <input id="footerRessourceLike"> </input>
-        </div>
-        <div class="commentaires">
-            <h3> Liste des commentaires</h3><br>
-            <textarea type="text"></textarea>
-            <button>ajouter votre commentaire</button>
-            <div>
-                <h3 id="userCom"></h3>
-                <div>
-                    <textarea id="contentCom"></textarea>
-                    <button>répondre à ce commentaire</button>
-                    <button>supprimer le commentaire</button>
+            <p id="contentRessource">{{ $ressource['contenu'] }}</p>
+
+            <div class="footer-ressource">
+                <div class="vue-like">
+                    <!--affichage du nombre de commentaire-->
+                    <p id="footerRessourceVue">vu {{ $ressource['nbVue'] }}</p>
+                    <!--affichage du nombre de like-->
+                    <p id="footerRessourceLike">aimé {{ $ressource['nbLike'] }}</p>
                 </div>
             </div>
+        </div>
+        <div class="commentaires">
+            <input type="text" class="inputCom" name="Contenue" placeholder="écrire votre commentaire"></imput>
+            <button>ajouter votre commentaire</button>
+            <h3> Liste des commentaires</h3><br>
+            @foreach ($ressource['commentaires'] as $commentaire)
+                <div class="flex comUser">
+                    <div class="comHeader">
+                        <h3 id="userNom">{{ $commentaire['utilisateur']['name'] }}</h3>
+                        <h3 id="userPrenom">{{ $commentaire['utilisateur']['Prenom'] }}</h3>
+                    </div>
+                    <div class="comContent">
+                        <p id="contentCom">{{ $commentaire['contenu'] }}</p>
+                        <button class="suppCom">supprimer le commentaire</button>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </section>
 

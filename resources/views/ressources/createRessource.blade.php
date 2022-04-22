@@ -1,37 +1,41 @@
 <x-app-layout>
-    <section id="creer-ressource" class="">
-        <form action="" class="" method="post">
 
-            <label for="nom">le titre de votre ressource </label>
-            <input type="text" id="titre" value="titre" />
+    <section id="creer-ressource">
+        <form action="{{ route('ressources.store') }}" method="POST" class="form-main">
+            @csrf
+            <div class="form-left">
 
-            <label for="cat-select">selectionner la catégorie de votre ressource</label><br>
-            <!--une liste de catégorie récupérer sur la bdd-->
-            <select name="categorie" id="cat-select">
-                <option value="" selected>selectionner la catégorie de votre ressource</option>
-                <option value="exemple">exemple</option>
-                <option value="exemple">exemple</option>
-            </select>
+                <input type="text" id="titre" value="" name="Titre" placeholder="le titre de votre ressource"/>
+                <div class="form-select">
+                    <!--une liste de catégorie récupérer sur la bdd-->
+                    <select name="IdCategorie" id="cat-select">
+                        <option value="" selected>selectionner la catégorie</option>
+                        @foreach($categories as $categorie)
+                            <option value="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</option>
+                        @endforeach
+                    </select>
 
-            <label for="type-select">selectionner le type de votre ressource</label><br>
-            <!--une liste de type récupérer sur la bdd-->
-            <select name="type" id="type-select">
-                <option value="" selected>selectionner le type de votre ressource</option>
-                <option value="exemple">exemple</option>
-                <option value="exemple">exemple</option>
-            </select>
+                    <!--une liste de type récupérer sur la bdd-->
+                    <select name="IdType" id="type-select">
+                        <option value="" selected>selectionner le type</option>
+                        @foreach($typesRessources as $typesRessource)
+                            <option value="{{ $typesRessource['id'] }}">{{ $typesRessource['nom'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <label for="content">insérer une description de votre ressource ou le contenu</label>
-            <textarea id="content" row="5" cols="33"></textarea>
+                <input type="url" id="url" placeholder="ajouter une url à votre ressource" name="Lien_ressources"/>
 
-            <label for="url">ajouter une url à votre ressource</label>
-            <input type="url" id="url" placeholder="ajout une url" />
+                <input type="file" id="file" name="file" placeholder="ajouter un firchier à votre ressource"/>
 
-            <label for="file">ajouter un firchier à votre ressource</label>
-            <input type="file" id="file" name="file" />
+            </div>
 
-            <input type="submit" value="Valider" />
+            <div class="form-right">
 
+                <textarea id="content" row="5" cols="33" name="Contenue" placeholder="insérer une description de votre ressource ou le contenu"></textarea>
+
+                <input id="btn-creer-ressource" type="submit" value="créer votre ressource"/>
+            </div>
         </form>
     </section>
 </x-app-layout>

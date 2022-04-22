@@ -16,9 +16,8 @@
             <x-input id="email" name="email" type="email" class="input-connexion" placeholder="email" :value="old('email')" required autofocus />
 
             <x-input id="password" type="password" name="password" class="input-connexion" placeholder="mot de passe" required autocomplete="current-password" />
-            <a class="" href="{{ route('register') }}">{{ __('Pas encore inscrit ?') }}</a>
             <x-button class="btn-validation">{{ __('Connexion') }}</x-button>
-
+            <a class="" href="{{ route('register') }}">{{ __('Pas encore inscrit ?') }}</a>
         </form>
 
     </section>

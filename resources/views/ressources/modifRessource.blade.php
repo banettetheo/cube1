@@ -1,42 +1,41 @@
 <x-app-layout>
+    <section id="modif-ressource">
+        <form action="{{route('ressources.update, $ressource['id']')}}" method="POST" class="form-main">
+            @csrf
+            @method('PUT')
+            <div class="form-left">
 
-    <section id="modif-ressource" class="">
-        <form action="" class="" method="post">
+                <input type="text" id="titre" value="" name="Titre" placeholder="le titre de votre ressource"/>
+                <div class="form-select">
+                    <!--une liste de catégorie récupérer sur la bdd-->
+                    <select name="Idcategorie" id="cat-select">
+                        <option value="" selected>selectionner la catégorie de votre ressource</option>
+                        @foreach($typesRessources as $typesRessource)
+                            <option value="{{ $typesRessource['id'] }}">{{ $typesRessource['nom'] }}</option>
+                        @endforeach
+                    </select>
 
-            <label for="nom">le titre de votre ressource </label>
-            <input type="text" id="titre" value="titre" />
+                    <!--une liste de type récupérer sur la bdd-->
+                    <select name="Idtype" id="type-select">
+                        <option value="" selected>selectionner le type de votre ressource</option>
+                        @foreach($categories as $categorie)
+                            <option value="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <div class="flex">
-                <label for="cat-select">selectionner la catégorie de votre ressource</label>
-                <!--une liste de catégorie récupérer sur la bdd-->
-                <select name="categorie" id="cat-select">
-                    <option value="" selected>selectionner la catégorie de votre ressource</option>
-                    <option value="exemple">exemple</option>
-                    <option value="exemple">exemple</option>
-                </select>
+                <input type="url" id="url" placeholder="ajouter une url à votre ressource" name="Lien_ressources"/>
+
+                <input type="file" id="file" name="file" placeholder="ajouter un firchier à votre ressource"/>
+
             </div>
-            <div class="flex">
-                <label for="type-select">selectionner le type de votre ressource</label>
-                <!--une liste de type récupérer sur la bdd-->
-                <select name="type" id="type-select">
-                    <option value="" selected>selectionner le type de votre ressource</option>
-                    <option value="exemple">exemple</option>
-                    <option value="exemple">exemple</option>
-                </select>
+
+            <div class="form-right">
+
+                <textarea id="content" row="5" cols="33" name="Contenue" placeholder="insérer une description de votre ressource ou le contenu"></textarea>
+
+                <input id="btn-modif-ressource" type="submit" value="modifier votre ressource"/>
             </div>
-
-            <label for="content">insérer une description de votre ressource ou le contenu</label><br>
-            <textarea id="content" row="5" cols="33"></textarea>
-
-            <label for="url">ajouter une url à votre ressource</label>
-            <input type="url" id="url" placeholder="ajout une url" />
-
-            <label for="file">ajouter un firchier à votre ressource</label>
-            <input type="file" id="file" name="file" />
-
-            <input type="submit" value="Valider" />
-
         </form>
     </section>
-
 </x-app-layout>

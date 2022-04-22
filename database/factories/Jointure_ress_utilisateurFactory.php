@@ -13,9 +13,10 @@ class Jointure_ress_utilisateurFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'IdUtilisateur' => $this->faker->numberBetween(1,50),
-            'IdRessource' => $this->faker->numberBetween(1,200)
+            'IdRessource' => $this->faker->numberBetween(1,180)
         ];
     }
 }
