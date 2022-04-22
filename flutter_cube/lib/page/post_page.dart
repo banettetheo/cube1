@@ -23,12 +23,38 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   final urlPosts = "http://10.0.2.2:8000/api/mon-compte/ressources";
+  final urlFav = "http://10.0.2.2:8000/api/mon-compte/ressources?favoris=true";
+  final urlSide = "http://10.0.2.2:8000/api/mon-compte/ressources?mise_de_cote=true";
   Color mainBlue = const Color(0xff03989e);
   Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
 
   Future<List> fetchPosts() async {
     late final List jsonData;
     final response = await get(Uri.parse(urlPosts), headers: {
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "Accept": "application/json",
+      "Authorization": "Bearer ${widget.token}"
+    }).then((value) {
+      jsonData = jsonDecode(value.body);
+    });
+    return jsonData;
+  }
+
+  Future<List> fetchFavorites() async {
+    late final List jsonData;
+    final response = await get(Uri.parse(urlFav), headers: {
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "Accept": "application/json",
+      "Authorization": "Bearer ${widget.token}"
+    }).then((value) {
+      jsonData = jsonDecode(value.body);
+    });
+    return jsonData;
+  }
+
+  Future<List> fetchSidePost() async {
+    late final List jsonData;
+    final response = await get(Uri.parse(urlSide), headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       "Accept": "application/json",
       "Authorization": "Bearer ${widget.token}"
@@ -45,14 +71,26 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List>(future: fetchPosts(), builder: (context, snapshot) {
-      if (snapshot.hasData) {
-        return Scaffold(
+    return DefaultTabController(
+        initialIndex: 1,
+        length: 3,
+        child : Scaffold(
           backgroundColor: bgBlue,
           appBar: AppBar(
             title: const Text('Mes publications'),
             centerTitle: true,
             backgroundColor: mainBlue,
+            bottom: const TabBar(tabs: [
+              Tab(
+                icon: Icon(Icons.thumb_up),
+              ),
+              Tab(
+                icon: Icon(Icons.article),
+              ),
+              Tab(
+                icon: Icon(Icons.anchor),
+              ),
+            ]),
             actions: [
               IconButton(
                   onPressed: () {
@@ -66,17 +104,50 @@ class _PostPageState extends State<PostPage> {
                   icon: const Icon(Icons.add))
             ],
           ),
-          body: SingleChildScrollView(
-              child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      for (var post in snapshot.data!) FeedBox(ressource: post)
-                    ],
-                  ))),
-        );
-      }
-      return Scaffold(
+          body: TabBarView(children: [
+            FutureBuilder<List>(future: fetchFavorites(), builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            for (var post in snapshot.data!) FeedBox(ressource: post)
+                          ],
+                        )));
+              }
+              return const Center(child: CircularProgressIndicator(),);
+            }),
+            FutureBuilder<List>(future: fetchPosts(), builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            for (var post in snapshot.data!) FeedBox(ressource: post)
+                          ],
+                        )));
+              }
+              return const Center(child: CircularProgressIndicator(),);
+            }),
+            FutureBuilder<List>(future: fetchSidePost(), builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            for (var post in snapshot.data!) FeedBox(ressource: post)
+                          ],
+                        )));
+              }
+              return const Center(child: CircularProgressIndicator(),);
+            }),
+          ])
+        )
+
+      /*return Scaffold(
           backgroundColor: bgBlue,
           appBar: AppBar(
             title: const Text('Mes publications'),
@@ -84,7 +155,7 @@ class _PostPageState extends State<PostPage> {
             backgroundColor: mainBlue,
           ),
           body: const Center(child: CircularProgressIndicator(),)
-      );
-    });
+      );*/
+    );
   }
 }
