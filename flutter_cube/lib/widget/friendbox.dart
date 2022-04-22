@@ -1,12 +1,23 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cube/widget/comment_widget.dart';
+import 'package:flutter_cube/page/friends_page.dart';
+import 'package:http/http.dart';
 import 'actionbtn.dart';
 
 class FriendBox extends StatelessWidget {
   final relation;
-  const FriendBox({Key? key, required this.relation}) : super(key: key);
+  final String token;
+  const FriendBox({Key? key, required this.relation, required this.token}) : super(key: key);
+
+  Future<void> deleteFriend() async {
+    String url = "http://10.0.2.2:8000/api/relations/${relation["id"]}";
+    var response = await delete(Uri.parse(url), headers: {
+      "Accept": "application/json",
+      "Authorization": "Bearer ${token}"
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,34 +35,35 @@ class FriendBox extends StatelessWidget {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(relation["name"],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w600,
-                              )),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                        ],
-                      ))
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        relation["utilisateur"]["name"],
+                        style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        relation["utilisateur"]["Prenom"],
+                        style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    children: [
+                      Text("Relation : ${relation["typeRelation"]["Nom"]}", style: const TextStyle(color: Colors.white, fontSize: 16.0),)
+                    ],
+                  )
                 ],
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-                Text(
-                  relation["Prenom"],
-                  style: const TextStyle(color: Colors.white, fontSize: 16.0),
-                ),
-              const SizedBox(
-                height: 10.0,
               ),
               const Divider(
                 thickness: 1.5,
@@ -59,13 +71,19 @@ class FriendBox extends StatelessWidget {
               ),
               Row(
                 children: [
-                  actionButton(Icons.remove, "Supprimer", const Color(0xFF505050),
+                  actionButton(Icons.delete, "Supprimer", const Color(0xFF505050),
                           () {
-                        inspect("jij");
+                        deleteFriend();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute (
+                            builder: (BuildContext context) => FriendPage(token: token),
+                          ),
+                        );
                       }),
-                  actionButton(Icons.circle_rounded, "Afficher", const Color(0xFF505050),
+                  actionButton(Icons.account_box, "Afficher", const Color(0xFF505050),
                           () {
-                        inspect("jij");
+                        print("jouj");
                       }),
                 ],
               )

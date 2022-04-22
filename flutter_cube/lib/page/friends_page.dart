@@ -16,20 +16,17 @@ class _FriendPageState extends State<FriendPage> {
   Color mainBlue = const Color(0xff03989e);
   Color bgBlue = const Color.fromARGB(255, 41, 218, 224);
   var friends = [];
-  String url = 'http://10.0.2.2/api/relations';
+  String url = "http://10.0.2.2:8000/api/relations";
 
-  Future<void> fetchFriends() async {
+  Future<List> fetchFriends() async {
+    late final List jsonData;
     var response = await get(Uri.parse(url), headers: {
-      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       "Accept": "application/json",
-      'Authorization': 'Bearer ${widget.token}',
+      "Authorization": "Bearer ${widget.token}"
     }).then((value) {
-      setState(() {
-        print(widget.token);
-        friends = jsonDecode(value.body);
-        print(friends);
-      });
+      jsonData = json.decode(value.body);
     });
+    return jsonData;
   }
 
   @override
@@ -57,14 +54,20 @@ class _FriendPageState extends State<FriendPage> {
               icon: const Icon(Icons.add))
         ],*/
       ),
-      body: SingleChildScrollView(
-          child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  for (var friend in friends) FriendBox(relation: friend,)
-                ],
-              ))),
+      body: FutureBuilder<List>(future: fetchFriends(), builder: (context, snapshot) {
+        if(snapshot.hasData) {
+          print(snapshot.data);
+          return SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      for (var friend in snapshot.data!) FriendBox(relation: friend, token: widget.token)
+                    ],
+                  )));
+        }
+        return const Center(child: CircularProgressIndicator(),);
+      })
     );
   }
 }
