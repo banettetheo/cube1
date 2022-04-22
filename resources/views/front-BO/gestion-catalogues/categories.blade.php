@@ -39,6 +39,8 @@
                                                 @csrf
                                                 <button class="btn btn-warning">Mettre à jour</button>
                                             </form> -->
+                                            @if ($categorie['deleted_at'] == "/")
+
                                             <form method="POST" id="myForm" action="{{ route('administration.gestion-catalogues.categories.update', $categorie['id']) }}" class="form-deconnexion nav-link">
                                                 @csrf
                                                 @method('PUT')
@@ -72,13 +74,22 @@
                                                     </div>
                                                 </div>
                                             </form>
-
+                                        @endif
                                         </div>
                                         <div class="col-3">
+                                            @if ($categorie['deleted_at'] == "/")
                                             <form method="POST" action="{{ route('administration.gestion-catalogues.categories.destroy', $categorie['id']) }}" class="form-deconnexion nav-link">
                                                 @csrf
-                                                <button class="btn btn-danger">Supprimer</button>
+                                                @method('DELETE')
+                                                <button class="btn btn-danger">Désactiver</button>
+                                            </form>    
+                                            @else 
+                                            <form method="POST" action="{{ route('administration.gestion-catalogues.categories.destroy', $categorie['id']) }}" class="form-deconnexion nav-link">
+                                                @csrf
+                                                @method('UPDATE')
+                                                <button class="btn btn-danger">Restaurer</button>
                                             </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

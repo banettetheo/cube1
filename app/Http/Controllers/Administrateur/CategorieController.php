@@ -16,7 +16,10 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $lesCategories = Categorie::all()->map(
+        //dd(Categorie::all());
+        // $lesCategories = Categorie::all()->map(
+        $lesCategories = Categorie::withTrashed()->get()
+        ->map(
             function ($uneCategorie) {
                 $categ = [
                     'id' => $uneCategorie['id'],
@@ -24,6 +27,8 @@ class CategorieController extends Controller
                 ];
                 $updatedAt = $uneCategorie['updated_at'];
                 $deletedAt = $uneCategorie['deleted_at'];
+
+                
 
                 $update = (!empty($updatedAt)?$updatedAt:"/");
                 $delete = (!empty($deletedAt)?$deletedAt:"/");
@@ -80,6 +85,8 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $laCateg = Categorie::find($id);
+        $laCateg->delete();
+        return redirect()->route('administration.gestion-catalogues.categories.index');
     }
 }
