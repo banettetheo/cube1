@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth;
 
 class ConnexionTest extends TestCase
 {
@@ -22,7 +23,5 @@ class ConnexionTest extends TestCase
         else{
             $this->assertTrue(false);
         }
-
-       
     }
 }
