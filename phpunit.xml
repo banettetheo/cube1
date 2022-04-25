@@ -23,8 +23,8 @@
         <server name="CACHE_DRIVER" value="array"/>
         <server name="DB_HOST" value="127.0.0.1" />
         <server name="DB_USER" value="root" />
-        <server name="DB_PASSWD" value="mysql" />
-        <server name="DB_DBNAME" value="cube" />
+        <server name="DB_PASSWD" value="mysql"/>
+        <server name="DB_DBNAME" value="cube"/>
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
