@@ -12,14 +12,14 @@ class RegistrationTest extends TestCase
 
     public function test_registration_screen_can_be_rendered()
     {
-        $response = $this->get('/register');
+        $response = $this->get('/inscription');
 
         $response->assertStatus(200);
     }
 
-    public function test_new_users_can_register()
+    public function test_new_users_can_inscription()
     {
-        $response = $this->post('/register', [
+        $response = $this->post('/inscription', [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
