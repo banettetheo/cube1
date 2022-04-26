@@ -38,16 +38,16 @@ class UserTest extends TestCase
 
     public function test_deleteUser()
     {
-        $this->assertTrue(false);
+        User::find(1)->delete();
     }
 
     public function test_updateUser()
     {
-  
+        $this->assertTrue(false);
     }
 
     public function test_readUser()
     {
-      
+        $this->assertTrue(false);
     }
 }
