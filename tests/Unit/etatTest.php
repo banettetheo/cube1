@@ -13,7 +13,6 @@ use RuntimeException;
 
 class etatTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     /**
