@@ -80,4 +80,22 @@ class UserTest extends TestCase
             $this->assertTrue(false);
         }
     }
+
+    public function test_deleteUser_v()
+    {
+    
+        $user = User::factory(['id' => 9999])->create();
+        $user->save();
+
+        try
+        {
+            User::find(9999)->delete();
+            $this->assertTrue(true);
+        }
+        catch(RuntimeException $e)
+        {
+            $this->assertTrue(false);
+        }
+    }
+
 }
