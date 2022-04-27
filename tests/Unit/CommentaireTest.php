@@ -1,34 +1,32 @@
 <?php
 
 namespace Tests\Unit;
-
-use App\Models\Commentaire;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
-use App\Models\User;
+use App\Models\Commentaire;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth;
 use RuntimeException;
 
-class UserTest extends TestCase
+class CommentaireTest extends TestCase
 {
 
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function test_createUser()
+    public function test_createCommentaire()
     {
        try
        {
-        $user = User::factory()->create();
-        $user->save();
+        $comm = Commentaire::factory()->create();
+        $comm->save();
         $this->assertTrue(true);
        }
        catch(RuntimeException $e)
@@ -38,10 +36,10 @@ class UserTest extends TestCase
        }
     }
 
-    public function test_readUser()
+    public function test_readCommentaire()
     {
 
-        if(User::find(19))
+        if(Commentaire::find(35))
         {
             $this->assertTrue(true);
         }
@@ -51,43 +49,32 @@ class UserTest extends TestCase
         }
     }
 
-    public function test_deleteUser()
+    public function test_deleteCommentaire()
     {
         try
         {
-            echo "ok";
-            $test = Commentaire::where('IdUser',5);
-            foreach($test as $value)
-            {
-                echo "marche";
-                $value->delete();
-            }
-            echo "ok2";
-            User::find(5)->delete();
+            Commentaire::find(3)->delete();
             $this->assertTrue(true);
         }
         catch(RuntimeException $e)
         {
-            //echo $e;
             $this->assertTrue(false);
         }
     }
 
-    public function test_updateUser()
+    public function test_updateCommentaire()
     {
 
         try
         {
-            $user = User::find(4);
+            $user = Commentaire::find(5);
 
-            $user->name = "test";
-            $user->email = "test@gmail.com";
-            $user->Prenom = "Prenom_test";
+            $user->Contenue = "test_contenue";
 
             $user->save();
-            $user = User::find(4);
+            $user = Commentaire::find(5);
 
-           if($user->name == "test" && $user->email == "test@gmail.com" && $user->Prenom == "Prenom_test")
+           if($user->Contenue == "test_contenue")
            {
             $this->assertTrue(true);
            }
