@@ -51,28 +51,6 @@ class UserTest extends TestCase
         }
     }
 
-    public function test_deleteUser()
-    {
-        try
-        {
-            echo "ok";
-            $test = Commentaire::where('IdUser',5);
-            foreach($test as $value)
-            {
-                echo "marche";
-                $value->delete();
-            }
-            echo "ok2";
-            User::find(5)->delete();
-            $this->assertTrue(true);
-        }
-        catch(RuntimeException $e)
-        {
-            //echo $e;
-            $this->assertTrue(false);
-        }
-    }
-
     public function test_updateUser()
     {
 

@@ -5,13 +5,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
-use App\Models\Commentaire;
+use App\Models\Categorie;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth;
 use RuntimeException;
 
-class CommentaireTest extends TestCase
+class CategorieTest extends TestCase
 {
 
     use DatabaseTransactions;
@@ -21,12 +21,12 @@ class CommentaireTest extends TestCase
      *
      * @return void
      */
-    public function test_createCommentaire()
+    public function test_createCategorie()
     {
        try
        {
-        $comm = Commentaire::factory()->create();
-        $comm->save();
+        $Cat = Categorie::factory()->create();
+        $Cat->save();
         $this->assertTrue(true);
        }
        catch(RuntimeException $e)
@@ -36,10 +36,10 @@ class CommentaireTest extends TestCase
        }
     }
 
-    public function test_readCommentaire()
+    public function test_readCategorie()
     {
 
-        if(Commentaire::find(35))
+        if(Categorie::find(3))
         {
             $this->assertTrue(true);
         }
@@ -49,11 +49,11 @@ class CommentaireTest extends TestCase
         }
     }
 
-    public function test_deleteCommentaire()
+    public function test_deleteCategorie()
     {
         try
         {
-            Commentaire::find(3)->delete();
+            Categorie::find(1)->delete();
             $this->assertTrue(true);
         }
         catch(RuntimeException $e)
@@ -62,19 +62,19 @@ class CommentaireTest extends TestCase
         }
     }
 
-    public function test_updateCommentaire()
+    public function test_updateCategorie()
     {
 
         try
         {
-            $Comm = Commentaire::find(5);
+            $Cat = Categorie::find(2);
 
-            $Comm->Contenue = "test_contenue";
+            $Cat->Nom = "test_nom_cat";
 
-            $Comm->save();
-            $Comm = Commentaire::find(5);
+            $Cat->save();
+            $Comm = Categorie::find(2);
 
-           if($Comm->Contenue == "test_contenue")
+           if($Comm->Nom == "test_nom_cat")
            {
             $this->assertTrue(true);
            }
