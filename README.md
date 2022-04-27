@@ -68,6 +68,39 @@ Les ressources
 ```
 Consulter      <base URL>/api/ressources/{id}
 ```
+## Test
+Installation de XDebug :
+
+Se rendre sur la page de Xdebug
+```
+https://xdebug.org/wizard
+```
+
+Copier sa config
+```
+http://localhost/?q=info
+ou
+php -i
+```
+
+Valider et suivre les instructions de Xdebug
+
+Ajouter dans php.ini de son server web, la variable : 
+```
+xdebug.mode=coverage
+```
+
+Redemarrer son server web
+
+Utilisation :
+Dans la console, taper la commande : 
+```
+vendor\bin\phpunit --coverage-html .reports\
+```
+
+Rechercher dans son arborescence de fichier : 
+...\cube1\reports
+Ouvrez index.html
 
 ## Contribution
 Le projet cube1 est un projet a titre éducatif. Toute modification ne sera acceptée. 
