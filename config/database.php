@@ -63,17 +63,29 @@ return [
             ]) : [],
         ],
 
-        'mysql_testing' => [
+        'cube_recette' => [
             'driver' => 'mysql',
-            'host' => env('TESTING_DB_HOST', 'localhost'),
-            'database' => env('TESTING_DB_DATABASE', 'forge'),
-            'username' => env('TESTING_DB_USERNAME', 'forge'),
-            'password' => env('TESTING_DB_PASSWORD', ''),
+            'host' => env('recette_DB_HOST', 'localhost'),
+            'database' => env('recette_DB_DATABASE', 'cube_recette'),
+            'username' => env('recette_DB_USERNAME', 'root'),
+            'password' => env('recette_DB_PASSWORD', 'mysql'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'strict' => false,
             ],
+
+            'cube_dev' => [
+                'driver' => 'mysql',
+                'host' => env('recette_DB_HOST', 'localhost'),
+                'database' => env('recette_DB_DATABASE', 'cube_dev'),
+                'username' => env('recette_DB_USERNAME', 'root'),
+                'password' => env('recette_DB_PASSWORD', 'mysql'),
+                'charset' => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix' => '',
+                'strict' => false,
+                ],
 
         'pgsql' => [
             'driver' => 'pgsql',
