@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CommentWidget extends StatefulWidget {
-  var comment;
-  CommentWidget({
+  final comment;
+  const CommentWidget({
     Key? key,
     required this.comment,
   }) : super(key: key);
@@ -42,7 +42,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(widget.comment["utilisateur"]["Prenom"],
+                  Text(widget.comment["utilisateur"]["name"],
                       style:
                           const TextStyle(color: Colors.black, fontSize: 15)),
                   const SizedBox(

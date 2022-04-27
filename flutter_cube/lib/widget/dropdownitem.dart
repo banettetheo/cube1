@@ -25,6 +25,7 @@ class _DropdownItemState extends State<DropdownItemWidget> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
+      hint: Text("Cliquez pour choisir"),
       menuMaxHeight: 200.0,
       value: selectedValue,
       items: [

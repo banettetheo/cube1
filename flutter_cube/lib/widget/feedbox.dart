@@ -64,14 +64,18 @@ class FeedBox extends StatelessWidget {
                 color: Color(0xFF505050),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  actionButton(
-                      Icons.thumb_up, "Aimer", const Color(0xFF505050), () {}),
-                  actionButton(
-                      Icons.comment,
-                      "Comment",
-                      const Color(0xFF505050),
-                      () => showGeneralDialog(
+                  ActionButton(
+                      icon: Icons.thumb_up,
+                      actionTitle: "Aimer",
+                      iconColor: const Color(0xFF505050),
+                      onClicked: () {}),
+                  ActionButton(
+                      icon: Icons.comment,
+                      actionTitle: "Comment",
+                      iconColor: const Color(0xFF505050),
+                      onClicked: () => showGeneralDialog(
                           context: context,
                           pageBuilder: (bc, ania, anis) {
                             return Container(
@@ -95,10 +99,11 @@ class FeedBox extends StatelessWidget {
                               ),
                             );
                           })),
-                  actionButton(Icons.share, "Partager", const Color(0xFF505050),
-                      () {
-                    inspect("jij");
-                  }),
+                  ActionButton(
+                      icon: Icons.share,
+                      actionTitle: "Partager",
+                      iconColor: const Color(0xFF505050),
+                      onClicked: () {}),
                 ],
               )
             ],

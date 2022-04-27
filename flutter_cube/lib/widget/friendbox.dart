@@ -71,8 +71,8 @@ class FriendBox extends StatelessWidget {
               ),
               Row(
                 children: [
-                  actionButton(Icons.delete, "Supprimer", const Color(0xFF505050),
-                          () {
+                  ActionButton(icon: Icons.delete, actionTitle: "Supprimer", iconColor: const Color(0xFF505050),
+                          onClicked: () {
                         deleteFriend();
                         Navigator.pushReplacement(
                           context,
@@ -81,8 +81,8 @@ class FriendBox extends StatelessWidget {
                           ),
                         );
                       }),
-                  actionButton(Icons.account_box, "Afficher", const Color(0xFF505050),
-                          () {
+                  ActionButton(icon: Icons.account_box, actionTitle: "Afficher", iconColor: const Color(0xFF505050),
+                          onClicked: () {
                         print("jouj");
                       }),
                 ],
