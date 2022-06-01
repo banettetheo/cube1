@@ -7,7 +7,7 @@ class CreateJointureRessUtilisateurTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('jointure_Ress_Utilisateur', function(Blueprint $table) {
+		Schema::create('jointure_ress_utilisateur', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
