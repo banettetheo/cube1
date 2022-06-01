@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
-use App\Models\etat;
+use App\Models\Etat;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth;
