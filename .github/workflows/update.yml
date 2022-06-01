@@ -36,3 +36,8 @@ jobs:
         run: ssh projetcube 'cd /var/www/html/cube1/ && composer update'
       - name: npm update
         run: ssh projetcube 'cd /var/www/html/cube1/ && npm update'
+      - name: test bdd
+        run: |
+          ssh projetcube 'cd /var/www/html/cube1/ && php artisan test'
+      - name: test back
+      - name: test flutter
