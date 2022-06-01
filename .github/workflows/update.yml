@@ -39,5 +39,5 @@ jobs:
       - name: test bdd
         run: |
           ssh projetcube 'cd /var/www/html/cube1/ && php artisan test'
-      - name: test back
-      - name: test flutter
+      #- name: test back
+      #- name: test flutter
