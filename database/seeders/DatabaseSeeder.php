@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call([
 						//here you need the seeder class, not the model class
-			CategorieSeeder::class ,
+			/*CategorieSeeder::class ,
 			EtatSeeder::class,
 			Type_favorisSeeder::class,
 			Type_ressourceSeeder::class,
@@ -25,7 +25,19 @@ class DatabaseSeeder extends Seeder {
 			FavorisSeeder::class,
 			//CommentaireSeeder::class,
 			//RelationSeeder::class,
-			PresentationSeeder::class,
+			PresentationSeeder::class,*/
+			
+			CategorieSeeder::class ,
+			EtatSeeder::class,
+			Type_favorisSeeder::class,
+			Type_ressourceSeeder::class,
+			UserSeeder::class,
+			Type_RelationSeeder::class,
+			RessourcesSeeder::class,
+			Jointure_ress_utilisateurSeeder::class,
+			FavorisSeeder::class,
+			CommentaireSeeder::class,
+			RelationSeeder::class,
 		 ]);
 	}
 }

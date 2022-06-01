@@ -1,0 +1,38 @@
+name: actualisation du serve
+
+on:
+  push:
+    branches: [ Dev ]
+
+jobs:
+
+  # Création du porteclé SSH
+  create_ssh:
+    name: "Création du SSH"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Create private SSH key"
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/id_rsa.key
+          chmod 600 ~/.ssh/id_rsa.key
+          cat >>~/.ssh/config <<END
+            Host projetcube
+              HostName $SSH_HOST
+              User $SSH_USER
+              IdentityFile ~/.ssh/id_rsa.key
+              StrictHostKeyChecking no
+          END
+      - name: "Connexion au serveur de prod"
+        run: |
+          ssh projetcube 'cd /var/www/html/cube1/ && git fetch && git pull'
+      - name: composer update
+        run: ssh projetcube 'cd /var/www/html/cube1/ && composer update'
+      - name: npm update
+        run: ssh projetcube 'cd /var/www/html/cube1/ && npm update'

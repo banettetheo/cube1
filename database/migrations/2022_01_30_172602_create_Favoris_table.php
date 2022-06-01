@@ -7,7 +7,7 @@ class CreateFavorisTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('Favoris', function(Blueprint $table) {
+		Schema::create('favoris', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -19,6 +19,6 @@ class CreateFavorisTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Favoris');
+		Schema::drop('favoris');
 	}
 }
