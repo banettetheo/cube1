@@ -7,7 +7,7 @@ class CreateRessourcesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('Ressources', function(Blueprint $table) {
+		Schema::create('ressources', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -25,6 +25,6 @@ class CreateRessourcesTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Ressources');
+		Schema::drop('ressources');
 	}
 }
