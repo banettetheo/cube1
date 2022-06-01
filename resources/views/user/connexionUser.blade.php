@@ -9,7 +9,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 
-        <h1>Connexion</h1>
+        <h1>Connexion, hello !</h1>
 
         <form id="connexion-form" method="POST" action="{{ route('login') }}">
             @csrf
