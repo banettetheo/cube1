@@ -7,7 +7,7 @@ class CreateJointureRessUtilisateurTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('Jointure_Ress_Utilisateur', function(Blueprint $table) {
+		Schema::create('jointure_Ress_Utilisateur', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -18,6 +18,6 @@ class CreateJointureRessUtilisateurTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Jointure_Ress_Utilisateur');
+		Schema::drop('jointure_Ress_Utilisateur');
 	}
 }

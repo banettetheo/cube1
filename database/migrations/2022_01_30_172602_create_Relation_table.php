@@ -7,7 +7,7 @@ class CreateRelationTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('Relation', function(Blueprint $table) {
+		Schema::create('relation', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -19,6 +19,6 @@ class CreateRelationTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Relation');
+		Schema::drop('relation');
 	}
 }
