@@ -2,7 +2,7 @@ name: actualisation du serve
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ Dev ]
 
 jobs:
 
