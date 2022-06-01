@@ -9,7 +9,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 
-        <h1>Connexion_batpiste_crève_en_enfer_espèce_de_CON</h1>
+        <h1>Connexion_baptiste_crève_en_enfer_espèce_de_CON,Théo X anatole arrive</h1>
 
         <form id="connexion-form" method="POST" action="{{ route('login') }}">
             @csrf
