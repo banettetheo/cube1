@@ -18,6 +18,6 @@ class CreateJointureRessUtilisateurTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('jointure_Ress_Utilisateur');
+		Schema::drop('jointure_ress_utilisateur');
 	}
 }

@@ -68,12 +68,12 @@ class CreateForeignKeys extends Migration {
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
-		Schema::table('jointure_Ress_Utilisateur', function(Blueprint $table) {
+		Schema::table('jointure_ress_utilisateur', function(Blueprint $table) {
 			$table->foreign('IdUtilisateur')->references('id')->on('users')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
-		Schema::table('jointure_Ress_Utilisateur', function(Blueprint $table) {
+		Schema::table('jointure_ress_utilisateur', function(Blueprint $table) {
 			$table->foreign('IdRessource')->references('id')->on('ressources')
 						->onDelete('restrict')
 						->onUpdate('restrict');
@@ -109,10 +109,10 @@ class CreateForeignKeys extends Migration {
 		Schema::table('relation', function(Blueprint $table) {
 			$table->dropForeign('Ressources_IdCategorie_foreign');
 		});
-		Schema::table('jointure_Ress_Utilisateur', function(Blueprint $table) {
+		Schema::table('jointure_ress_utilisateur', function(Blueprint $table) {
 			$table->dropForeign('Jointure_Ress_Utilisateur_IdUtilisateur_foreign');
 		});
-		Schema::table('jointure_Ress_Utilisateur', function(Blueprint $table) {
+		Schema::table('jointure_ress_utilisateur', function(Blueprint $table) {
 			$table->dropForeign('Jointure_Ress_Utilisateur_IdRessource_foreign');
 		});
 	}
