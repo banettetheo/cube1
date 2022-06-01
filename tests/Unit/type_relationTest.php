@@ -30,7 +30,7 @@ class type_relationTest extends TestCase
             'created_at' => now()
         ];
 
-         DB::table('Type_relation')->insert($Cat);
+         DB::table('type_relation')->insert($Cat);
         $this->assertTrue(true);
        }
        catch(RuntimeException $e)
@@ -63,7 +63,7 @@ class type_relationTest extends TestCase
                 'created_at' => now()
             ];
     
-             DB::table('Type_relation')->insert($Cat);
+             DB::table('type_relation')->insert($Cat);
 
              Type_Relation::find(30)->delete();
             $this->assertTrue(true);

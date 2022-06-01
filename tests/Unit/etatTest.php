@@ -33,7 +33,7 @@ class etatTest extends TestCase
         DB::table('etat')->insert($element);
         
 
-         etat::find(10)->delete();
+         Etat::find(10)->delete();
         $this->assertTrue(true);
        }
        catch(RuntimeException $e)
@@ -46,7 +46,7 @@ class etatTest extends TestCase
     public function test_readEtat()
     {
 
-        if(etat::find(2))
+        if(Etat::find(2))
         {
             $this->assertTrue(true);
         }
@@ -67,7 +67,7 @@ class etatTest extends TestCase
             ];
             DB::table('etat')->insert($element);
 
-            etat::find(10)->delete();
+            Etat::find(10)->delete();
             $this->assertTrue(true);
         }
         catch(RuntimeException $e)
@@ -88,12 +88,12 @@ class etatTest extends TestCase
 
             DB::table('etat')->insert($element);
 
-            $Comm = etat::find(10);
+            $Comm = Etat::find(10);
 
             $Comm->Nom = "test";
 
             $Comm->save();
-            $Comm = etat::find(10);
+            $Comm = Etat::find(10);
 
            if($Comm->Nom == "test")
            {
