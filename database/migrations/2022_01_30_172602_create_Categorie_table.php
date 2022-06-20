@@ -7,7 +7,7 @@ class CreateCategorieTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('Categorie', function(Blueprint $table) {
+		Schema::create('categorie', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
 			$table->softDeletes();
@@ -17,6 +17,6 @@ class CreateCategorieTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Categorie');
+		Schema::drop('categorie');
 	}
 }

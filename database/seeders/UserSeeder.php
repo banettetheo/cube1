@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Guillot',
             'Prenom' => 'Paul',
-            'email' => 'paul@moderateur.com',
+            'email' => 'moderateur@mod.fr',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'Moderateur' => 1,
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Cart',
             'Prenom' => 'Nicolas',
-            'email' => 'nicolas@administrateur.com',
+            'email' => 'administrateur@admin.fr',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'Admin' => 1,
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Rolland',
             'Prenom' => 'Fanny',
-            'email' => 'fanny@super-administrateur.com',
+            'email' => 'super-administrateur@super-admin.fr',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'SuperAdmin' => 1,

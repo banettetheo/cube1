@@ -28,9 +28,12 @@ use App\Http\Controllers\Auth\ChangerMdpController;
 |
 */
 
+//For all
+Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+
+
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
     route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 });
@@ -40,7 +43,6 @@ Route::middleware('guest')->group(function () {
 
 // Route::middleware('auth')->group(function () {
 Route::group(['middleware' => ['auth', 'user.confirm']], function () {
-    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
     route::get('utilisateurs/{id}', [RelationController::class, 'show'])->name('utilisateur.consulter');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
     //Ressources
