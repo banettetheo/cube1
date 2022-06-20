@@ -6,7 +6,10 @@ namespace App\Providers;
 use App\Http\ViewComposers\CategorieComposer;
 use App\Http\ViewComposers\TypeRessourceComposer;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +29,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        // View()->composer(['ressources.createRessource', 'accueil'], CategorieComposer::class);
-        // View()->composer(['ressources.createRessource', 'accueil'], TypeRessourceComposer::class);
+    {       
+            URL::forceScheme('https');
     }
 }
