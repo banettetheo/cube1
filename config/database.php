@@ -80,7 +80,7 @@ return [
                 'host' => env('recette_DB_HOST', 'localhost'),
                 'database' => env('recette_DB_DATABASE', 'cube_dev'),
                 'username' => env('recette_DB_USERNAME', 'root'),
-                'password' => env('recette_DB_PASSWORD', 'mysql'),
+                'password' => env('recette_DB_PASSWORD', ''),
                 'charset' => 'utf8',
                 'collation' => 'utf8_unicode_ci',
                 'prefix' => '',

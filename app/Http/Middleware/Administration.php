@@ -21,6 +21,7 @@ class Administration
     {
 
         if(!auth()->user()->Admin && !auth()->user()->SuperAdmin){
+            dd("here3");
             return redirect(RouteServiceProvider::HOME);
         }
 

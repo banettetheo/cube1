@@ -95,7 +95,6 @@ class CompteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**

@@ -35,7 +35,12 @@
                                 <td>
                                     <form method="POST" action="{{ route('administration.gestion-comptes.update', $utilisateur['id']) }}" class="form-deconnexion nav-link">
                                         @csrf
+                                        @method('PUT')
+                                        @if($utilisateur['ban']==1)
+                                        <button class="btn btn-primary">Activer</button>
+                                        @else
                                         <button class="btn btn-warning">Désactiver</button>
+                                        @endif
                                     </form>
 
 

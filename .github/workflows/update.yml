@@ -2,6 +2,12 @@ name: actualisation du serve
 
 on:
   push:
+<<<<<<< HEAD
+    branches: [ dev ]
+
+jobs:
+  actualisation:
+=======
     branches: [ Dev ]
 
 jobs:
@@ -9,10 +15,19 @@ jobs:
   # Création du porteclé SSH
   create_ssh:
     name: "Création du SSH"
+>>>>>>> 366aee88679ac351da742c552bacb6c82df488c5
 
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
+    - name: pull
+      run: git pull origin dev
+    - name: composer update
+      run: composer update
+    - name: npm update
+      run: npm update
+=======
       - name: "Create private SSH key"
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
@@ -41,3 +56,4 @@ jobs:
           ssh projetcube 'cd /var/www/html/cube1/ && php artisan test'
       #- name: test back
       #- name: test flutter
+>>>>>>> 366aee88679ac351da742c552bacb6c82df488c5
