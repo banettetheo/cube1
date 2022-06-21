@@ -54,9 +54,12 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategorieRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $laCateg = new Categorie($validated);
+        $laCateg->save();
+        return redirect()->route('administration.gestion-catalogues.categories.index');
     }
 
 
@@ -87,6 +90,13 @@ class CategorieController extends Controller
     {
         $laCateg = Categorie::find($id);
         $laCateg->delete();
+        return redirect()->route('administration.gestion-catalogues.categories.index');
+    }
+
+    public function restore($id)
+    {
+        $laCateg = Categorie::onlyTrashed()->where('id',$id)->first();
+        $laCateg->restore();
         return redirect()->route('administration.gestion-catalogues.categories.index');
     }
 }

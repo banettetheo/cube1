@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'Prenom' => 'Paul',
             'email' => 'moderateur@mod.fr',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('azerty'),
             'Moderateur' => 1,
             'remember_token' => 'ugUlI0znbQJcl1amGfcVofsBYCl4wkZSPp8njxk57f427jr7dYDoASlW4tCe',
         ]);
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'Prenom' => 'Nicolas',
             'email' => 'administrateur@admin.fr',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('azerty'),
             'Admin' => 1,
             'remember_token' => 'ugUlI0znbQJcl1amGfcVofsBYCl4wkZSPp8njxk57f427jr7dYDoASlW4tCe',
         ]);
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             'Prenom' => 'Fanny',
             'email' => 'super-administrateur@super-admin.fr',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('azerty'),
             'SuperAdmin' => 1,
             'remember_token' => 'ugUlI0znbQJcl1amGfcVofsBYCl4wkZSPp8njxk57f427jr7dYDoASlW4tCe',
         ]);
