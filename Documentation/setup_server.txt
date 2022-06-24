@@ -1,0 +1,86 @@
+#utiliser avant lancement du script
+#chmod u+x setup_server
+#bash setup_server
+
+######################
+
+#installation des packages necessaires
+
+sudo apt update
+sudo apt upgrade
+sudo apt update
+
+#git
+sudo apt install git
+
+#zsh
+sudo apt install zsh
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+chsh
+
+#php
+sudo apt install php-curl php-gd php-intl php-json php-mbstring php-xml php-zip php-cli -y
+sudo apt install php-mbstring php-xml php-bcmath-y
+sudo apt install php-fpm php-mysql -y
+
+#composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php -y
+
+#ajout de composer dans le path
+sudo mv composer.phar /usr/local/bin/composer
+
+#update composer
+composer self-update -y
+
+#mysql
+sudo apt install mysql-server -y
+sudo apt install mysql-common -y
+
+#update (encore)
+sudo apt update -y
+
+
+#mariaDB
+sudo apt install mariadb-server -y
+
+#nodejs et npm
+sudo apt install nodejs npm -y
+
+######################
+
+#création de la clé ssh
+ssh-keygen
+
+ssh-copy-id -i ~/.ssh/id_rsa_group1.pub debian@prod.liliwol.fr
+82ztp2YzqSQx
+
+#clonage du repo git
+sudo git clone git@github.com:banettetheo/cube1.git
+
+cd cube1
+
+#màj composer à cause d'un problème vendor
+rm -r vendor
+composer update 
+
+#installation de npm et update
+npm i
+npm update
+
+#création de la DB cube
+create database cube;
+
+#modif mdp root
+sudo mysqld_safe --skip-grant-tables &
+sudo mysql -u root
+SET PASSWORD FOR'root'@'localhost' = PASSWORD('mysql');
+FLUSH PRIVILEGES;
+
+exit
+
+#création et seeding de la DB
+php artisan migrate:fresh --seed
+
+#lancement de l'app
+#php artisan serve
