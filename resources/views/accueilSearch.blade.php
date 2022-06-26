@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-front-layout>
     <section id="accueilSearch" class="main-flex">
     {{ var_dump($utilisateur) }}
         <div class="col-center">
@@ -58,4 +58,4 @@
         </div>
 
     </section>
-</x-guest-layout>
+</x-front-layout>

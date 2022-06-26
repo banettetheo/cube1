@@ -1,5 +1,4 @@
-<x-guest-layout>
-
+<x-front-layout>
     <section id="connexion-user" class="">
 
         <!-- Session Status -->
@@ -22,4 +21,4 @@
 
     </section>
 
-</x-guest-layout>
+    </x-front-layout>

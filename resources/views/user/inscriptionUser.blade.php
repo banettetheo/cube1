@@ -1,5 +1,4 @@
-<x-guest-layout>
-
+<x-front-layout>
     <section id="inscription-user" class="">
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -19,4 +18,4 @@
         </form>
 
     </section>
-</x-guest-layout>
+    </x-front-layout>

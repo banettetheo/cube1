@@ -54,4 +54,19 @@ class AccueilController extends Controller
             'utilisateurs' => $lesUtilisateurs,
         ]);
     }
+
+    public function utilisateurs(){
+        $lesUtilisateurs = User::all()
+        ->map(function ($utilisateur) {
+            return [
+                'id' => $utilisateur->id,
+                'name' => $utilisateur->name,
+                'Prenom' => $utilisateur->Prenom
+            ];
+        });
+        return view('accueilUtilisateurs', [
+            'utilisateurs' => $lesUtilisateurs,
+        ]);
+    }
+
 }

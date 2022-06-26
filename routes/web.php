@@ -34,6 +34,7 @@ use App\Models\Categorie;
 
 //For all
 Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+Route::get('/utilisateurs', [AccueilController::class, 'utilisateurs'])->name('accueil-utilisateurs');
 
 
 

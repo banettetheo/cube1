@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-front-layout>
 
     <section id="creer-ressource">
         <form action="{{ route('ressources.store') }}" method="POST" class="form-main">
@@ -38,4 +38,4 @@
             </div>
         </form>
     </section>
-</x-app-layout>
+</x-front-layout>

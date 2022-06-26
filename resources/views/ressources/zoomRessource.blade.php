@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-front-layout>
 
     <section id="zoom-ressource" class="">
         <div class="ressources">
@@ -44,4 +44,4 @@
         </div>
     </section>
 
-</x-app-layout>
+</x-front-layout>

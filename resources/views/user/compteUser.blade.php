@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-front-layout>
 
     <section id="compte-user" class="main-flex">
         <!-- si on accède au compte utilisateur avec un id dans l'url différent de celui de la session de l'utilisateur qui s'est connecté,
@@ -118,4 +118,4 @@
         document.getElementById("popupForm").style.display = "none";
       }
     </script>
-</x-app-layout>
+</x-front-layout>

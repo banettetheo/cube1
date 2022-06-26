@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-front-layout>
 
     <section id="ressource-validation" class="main-flex">
         <!-- si on accède au compte utilisateur avec un id dans l'url différent de celui de la session de l'utilisateur qui s'est connecté,
@@ -66,4 +66,4 @@
         </div>
     </section>
 
-</x-app-layout>
+</x-front-layout>
