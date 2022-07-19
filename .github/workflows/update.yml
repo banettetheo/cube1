@@ -1,4 +1,4 @@
-name: actualisation du serve
+name: actualisation du projet sur serveur de dev
 
 on:
   push:
@@ -6,14 +6,14 @@ on:
 
 jobs:
 
-  # Création du porteclé SSH
-  create_ssh:
-    name: "Création du SSH"
+  # Création de l'environnement virtuel
+  creation_ssh:
+    name: "Création de l'environnement virtuel pour la connexion en SSH avec le serveur"
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Create private SSH key"
+      - name: "Configuration SSH de la machine virtuelle"
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
@@ -29,6 +29,14 @@ jobs:
               IdentityFile ~/.ssh/id_rsa.key
               StrictHostKeyChecking no
           END
+  
+  # Mise à jour des données présentes sur le serveur de développement
+  maj_serveur:
+    name: "Connexion au serveur et actualisation des données"
+
+    runs-on: ubuntu-latest
+
+    steps:
       - name: "Connexion au serveur de prod et git pull"
         run: |
           ssh projetcube 'cd /var/www/html/cube1 && git fetch && git pull'
