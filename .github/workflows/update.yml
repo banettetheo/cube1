@@ -31,6 +31,6 @@ jobs:
           END
       - name: "Connexion au serveur de prod et git pull"
         run: |
-          ssh projetcube 'cd /var/www/html/cube1 && git fetch && git pull && sudo systemctl restart apache2'
+          ssh projetcube 'cd /var/www/html/cube1 && git fetch && git pull && sudo -s systemctl restart apache2'
       #- name: test back
       #- name: test flutter
