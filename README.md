@@ -1,4 +1,4 @@
-# Projet cube - Groupe 1
+# Projet cubee - Groupe 1
 
 Le Ministère des Solidarités et de la Santé souhaite une application mobile et un site web afin de proposer des ressources et outils pour à la fois créer, renforcer et enrichir les relations des citoyens en accord avec les autres ministères. 
 
