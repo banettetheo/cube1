@@ -13,6 +13,7 @@ import 'package:http/http.dart';
 import 'model/user.dart';
 
 void main() {
+  //WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
