@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrateur;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Repositories\EtatRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -90,7 +91,15 @@ class UtilisateurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $current_user = User::where('id',$id)->first();
+        if($current_user->Compte_ban==1){
+            $current_user->Compte_ban = 0;
+        }else{
+            $current_user->Compte_ban = 1;
+        }
+        $current_user->save();
+
+        return redirect()->route('administration.gestion-comptes.index');
     }
 
     /**

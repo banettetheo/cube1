@@ -28,7 +28,8 @@ class User extends Authenticatable
         'password',
         'Moderateur',
         'Admin',
-        'SuperAdmin'
+        'SuperAdmin',
+        'Compte_ban'
     ];
 
     /**

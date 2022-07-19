@@ -15,7 +15,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h6 class="card-title">Toutes ressources confondues:</h6>
-                            <p class="card-text blue-text"><i class="fa-solid fa-bowl-rice fa-3x pr-3 pl-3"></i><span class="ml-2" style="font-size: 30px;">{{$nbRessources}}</span></p>
+                            <p class="card-text blue-text"><i class="fa-solid fa-pen-nib fa-3x pr-3 pl-3"></i><span class="ml-2" style="font-size: 30px;">{{$nbRessources}}</span></p>
                         </div>
                     </div>
                     <div class="card mb-4">

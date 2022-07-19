@@ -5,6 +5,8 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\Administrateur\AccueilController as AdministrateurAccueilController;
 use App\Http\Controllers\Administrateur\CategorieController;
 use App\Http\Controllers\Administrateur\TableauBordController;
+use App\Http\Controllers\Administrateur\TypeRelationController;
+use App\Http\Controllers\Administrateur\TypesRessourceController;
 use App\Http\Controllers\AuthentificationController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\RessourceController;
@@ -13,9 +15,11 @@ use App\Http\Controllers\API\RessourceAPIController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\Moderateur\RessourceValidationController;
 use App\Http\Controllers\Administrateur\UtilisateurController;
+use App\Http\Controllers\API\TypeRessourceController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\Auth\ChangerMdpController;
+use App\Models\Categorie;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +32,12 @@ use App\Http\Controllers\Auth\ChangerMdpController;
 |
 */
 
+//For all
+Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+
+
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
     route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 });
@@ -38,9 +45,8 @@ Route::middleware('guest')->group(function () {
 
 
 
-// Route::middleware('auth')->group(function () {
+// FRONT - OFFICE ==============
 Route::group(['middleware' => ['auth', 'user.confirm']], function () {
-    Route::get('/', [AccueilController::class, 'index'])->name('accueil');
     route::get('utilisateurs/{id}', [RelationController::class, 'show'])->name('utilisateur.consulter');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
     //Ressources
@@ -71,7 +77,18 @@ Route::group(['middleware' => ['auth', 'backoffice']], function () {
     Route::get('administration/panel', [AdministrateurAccueilController::class, 'index'])->name('administration.panel');
     Route::resource('administration/gestion-comptes', UtilisateurController::class, ['as' => 'administration']);
     Route::resource('administration/tableaux-de-bord', TableauBordController::class, ['as' => 'administration']);
+    
+    //Gestion-catalogue/Categories
     Route::resource('administration/gestion-catalogues/categories', CategorieController::class, ['as' => 'administration.gestion-catalogues'])->except('show','edit','create');
+    Route::post('administration/gestion-catalogues/categories{id}', [CategorieController::class, 'restore'])->name('administration.gestion-catalogues.categories.restore');
+    
+    //Gestion-catalogue/Relations
+    Route::resource('administration/gestion-catalogues/relations', TypeRelationController::class, ['as' => 'administration.gestion-catalogues'])->except('show','edit','create');
+    Route::post('administration/gestion-catalogues/relations{id}', [TypeRelationController::class, 'restore'])->name('administration.gestion-catalogues.relations.restore');
+
+    //Gestion-catalogue/Ressources
+    Route::resource('administration/gestion-catalogues/ressources', TypesRessourceController::class, ['as' => 'administration.gestion-catalogues'])->except('show','edit','create');
+    Route::post('administration/gestion-catalogues/ressources{id}', [TypesRessourceController::class, 'restore'])->name('administration.gestion-catalogues.ressources.restore');
 });
 // Route::middleware('auth')->group(function () {
 //     //Compte

@@ -4,7 +4,36 @@
         <div class="row">
             <div class="col-6">
                 <div class="input-group">
-                    <button type="button" class="btn btn-outline-primary">Ajouter une nouvelle catégorie</button>
+                <form method="POST" id="myForm" action="{{ route('administration.gestion-catalogues.categories.store') }}" class="form-deconnexion nav-link">
+                        @csrf
+                        @method('POST')
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#creer">Ajouter une nouvelle catégorie</button>
+                        <div class="modal fade" id="creer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Créer un nouveau type de catégorie</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row justify-content-md-center">
+                                            <label for='nom' id="" class="col-3 col-form-label">Nom : </label>
+                                            <div class="col-6 pl-3">
+                                                <input type="text" id="nom" name="Nom" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="">Annuler</button>
+                                        <input type="submit" class="btn btn-success" value="Sauvegarder">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -84,9 +113,9 @@
                                                 <button class="btn btn-danger">Désactiver</button>
                                             </form>    
                                             @else 
-                                            <form method="POST" action="{{ route('administration.gestion-catalogues.categories.destroy', $categorie['id']) }}" class="form-deconnexion nav-link">
+                                            <form method="POST" action="{{ route('administration.gestion-catalogues.categories.restore', $categorie['id']) }}" class="form-deconnexion nav-link">
                                                 @csrf
-                                                @method('UPDATE')
+                                                @method('POST')
                                                 <button class="btn btn-danger">Restaurer</button>
                                             </form>
                                             @endif

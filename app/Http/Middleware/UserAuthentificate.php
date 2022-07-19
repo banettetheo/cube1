@@ -23,8 +23,13 @@ class UserAuthentificate
         if(auth()->user()->Admin || auth()->user()->SuperAdmin){
             return redirect()->route('administration.panel');
         }
+        if(auth()->user()->Compte_ban){
+           auth()->logout();
+           return redirect()->route('accueil');
+        }else{
+            return $next($request);
+        }
 
-        return $next($request);
     
     }
 }
