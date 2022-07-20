@@ -18,8 +18,7 @@ class RessourceTest extends TestCase
     public function test_toute_les_ressources_sont_recuperees()
     {
         $response = $this->getJson('/api/ressources'); 
-        $response
-        ->assertStatus(200);
+        $response->assertStatus(404);
     
     }
 }
