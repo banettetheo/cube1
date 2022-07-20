@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-front-layout>
 
     <section id="inscription-user" class="">
 
@@ -22,4 +22,4 @@
             </div>
         </form>
 </section>
-</x-guest-layout>
+</x-front-layout>

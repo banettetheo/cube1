@@ -210,7 +210,7 @@
   background-color: #f1f9f9;
 }
 #accueil .col-right .list-game a .snake-bg {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -351px;
@@ -220,7 +220,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .zutom-bg {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -282px;
@@ -230,7 +230,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game1 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -351px;
@@ -240,7 +240,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game2 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -282px;
@@ -250,7 +250,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game3 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -351px;
@@ -260,7 +260,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game4 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -282px;
@@ -270,7 +270,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game5 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -142px;
@@ -280,7 +280,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game6 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -213px;
@@ -290,7 +290,7 @@
   border-radius: 21px;
 }
 #accueil .col-right .list-game a .img-game7 {
-  background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+  background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
   width: 100%;
   height: 100%;
   background-position-x: -351px;
@@ -988,35 +988,29 @@
     background-color: #03989e;
     width: 100%;
   }
-
   .main-flex {
     display: flex;
     justify-content: start;
     min-height: 100%;
   }
-
   .flex {
     display: flex;
   }
-
   .column {
     flex-direction: column;
   }
-
   .col-center {
     width: 65%;
     height: auto;
     background-color: #f1f9f9;
     padding: 1%;
   }
-
   .col-right {
     width: 11%;
     background-color: #f1f9f9;
     max-height: 16em;
     padding: 1%;
   }
-
   /*----------------------------------------*/
   /*le titre de la page et le logo*/
   .header-menu {
@@ -1053,7 +1047,6 @@
     font-size: 10px;
     color: #f1f9f9;
   }
-
   /*----------------------------------------*/
   /* page d'accueil */
   #accueil .col-center {
@@ -1210,7 +1203,7 @@
     background-color: #f1f9f9;
   }
   #accueil .col-right .list-game a .snake-bg {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -380px;
@@ -1219,7 +1212,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .zutom-bg {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -270px;
@@ -1228,7 +1221,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game1 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -400px;
@@ -1237,7 +1230,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game2 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -400px;
@@ -1246,7 +1239,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game3 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -270px;
@@ -1255,7 +1248,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game4 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -270px;
@@ -1264,7 +1257,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game5 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -400px;
@@ -1273,7 +1266,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game6 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -270px;
@@ -1282,7 +1275,7 @@
     border-radius: 21px;
   }
   #accueil .col-right .list-game a .img-game7 {
-    background: url(/images/unknown.png?bcc1bd8e16bbd2b58a996b8efcc9e6b4) center no-repeat;
+    background: url(/images/unknown.png?907e3787a950aeac389edf95cdd0493d) center no-repeat;
     width: 100%;
     height: 100%;
     background-position-x: -270px;
@@ -1290,18 +1283,15 @@
     display: none;
     border-radius: 21px;
   }
-
   /*----------------------------------------*/
   /* formulaire général */
   .input-form {
     margin-bottom: 10%;
   }
-
   .btn-validation {
     width: 90%;
     margin-bottom: 10%;
   }
-
   /*----------------------------------------*/
   /* page inscription */
   #inscription-user {
@@ -1318,7 +1308,6 @@
   #inscription-user #inscription-form .input-inscription {
     margin-bottom: 10%;
   }
-
   /*----------------------------------------*/
   /* page connexion */
   #connexion-user {
@@ -1335,7 +1324,6 @@
   #connexion-user #connexion-form .input-connexion {
     margin-bottom: 10%;
   }
-
   /*----------------------------------------*/
   /* page compte utilisateur */
   #compte-user .col-left {
@@ -1551,7 +1539,6 @@
   #compte-user .col-right .form-deconnexion button:hover {
     color: #03989e;
   }
-
   /*----------------------------------------*/
   /* page creation de ressource */
   #creer-ressource {
@@ -1631,7 +1618,6 @@
     width: 40%;
     margin: auto;
   }
-
   /*----------------------------------------*/
   /* page modification de ressource */
   #modif-ressource {
@@ -1690,7 +1676,6 @@
     width: 40%;
     margin: auto;
   }
-
   /*----------------------------------------*/
   /* page zoom de ressource */
   #zoom-ressource .ressources {
@@ -1744,7 +1729,6 @@
     height: -moz-fit-content;
     height: fit-content;
   }
-
   /*----------------------------------------*/
   /* page relation utilisateur */
   #user-relation .col-left {
@@ -1865,7 +1849,6 @@
   #user-relation .col-right .form-deconnexion button:hover {
     color: #03989e;
   }
-
   /*----------------------------------------*/
   /* page de validation de ressource */
   #ressource-validation .col-left {

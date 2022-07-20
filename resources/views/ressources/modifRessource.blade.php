@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-front-layout>
     <section id="modif-ressource">
         <form action="{{route('ressources.update, $ressource['id']')}}" method="POST" class="form-main">
             @csrf
@@ -38,4 +38,4 @@
             </div>
         </form>
     </section>
-</x-app-layout>
+</x-front-layout>

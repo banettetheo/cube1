@@ -34,11 +34,13 @@ use App\Models\Categorie;
 
 //For all
 Route::get('/', [AccueilController::class, 'index'])->name('accueil');
+route::get('ressources/publique/{id}', [RessourceController::class, 'showPublique'])->name('ressources.show.publique');
 
 
 
 Route::middleware('guest')->group(function () {
     route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
+    Route::get('/utilisateurs', [AccueilController::class, 'utilisateurs'])->name('accueil-utilisateurs');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 });
 //Accueil
@@ -52,6 +54,14 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
     Route::resource('mon-compte/ressources', RessourceController::class)->except(['index', "show"]);
+    route::get('ressources/like/{id}', [RessourceController::class, 'like'])->name('ressources.like');
+    route::get('ressources/mettre-de-cote/{id}', [RessourceController::class, 'mettreDeCote'])->name('ressources.mettre-de-cote');
+    route::get('ressources/ajouter-au-favoris/{id}', [RessourceController::class, 'ajoutAuxFavoris'])->name('ressources.ajout-aux-favoris');
+    //Suppression
+    route::get('ressources/retirer-mise-de-cote/{id}', [RessourceController::class, 'retirerMiseDeCote'])->name('ressources.mettre-de-cote.destroy');
+    route::get('ressources/retirer-favoris/{id}', [RessourceController::class, 'retirerFavoris'])->name('ressources.ajout-aux-favoris.destroy');
+
+
 
     //Compte
     Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte');

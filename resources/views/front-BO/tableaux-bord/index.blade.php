@@ -21,13 +21,13 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h6 class="card-title">Nombre de j'aimes: </h6>
-                            <p class="card-text red-text"><i class="fas fa-thumbs-up fa-3x pr-3 pl-3"></i></i><span class="ml-2" style="font-size: 30px;">{{$nbJaimes}}</span></p>
+                            <p class="card-text red-text"><i class="fas fa-thumbs-up fa-3x pr-3 pl-3"></i><span class="ml-2" style="font-size: 30px;">{{$nbJaimes}}</span></p>
                         </div>
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">
                             <h6 class="card-title">Nombre de vues: </h6>
-                            <p class="card-text red-text"><i class="fas fa-eye fa-3x pr-3 pl-3"></i></i><span class="ml-2" style="font-size: 30px;">{{$nbVues}}</span></p>
+                            <p class="card-text red-text"><i class="fas fa-eye fa-3x pr-3 pl-3"></i><span class="ml-2" style="font-size: 30px;">{{$nbVues}}</span></p>
                         </div>
                     </div>
                 </div>
