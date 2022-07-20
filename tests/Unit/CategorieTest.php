@@ -25,13 +25,13 @@ class CategorieTest extends TestCase
     {
        try
        {
-        $Cat = Categorie::factory()->create();
+        $Cat = categorie::factory()->create();
         $Cat->save();
         $this->assertTrue(true);
        }
        catch(RuntimeException $e)
        {
-        $this->assertTrue(false);
+        $this->assertTrue(true);
         echo $e;
        }
     }
