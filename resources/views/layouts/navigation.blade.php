@@ -14,13 +14,16 @@
                 <a href="{{ route('accueil')}}" class="nav-link text-white">Accueil</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('monCompte')}}" class="nav-link text-white">Mon compte</a>
-            </li>
-            <li class="nav-item">
                 <a href="{{ route('ressources.create')}}" class="nav-link text-white">Créer une ressource</a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('accueil-utilisateurs')}}" class="nav-link text-white">Utilisateurs</a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('relations.index')}}" class="nav-link text-white">Mes relations</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('monCompte')}}" class="nav-link text-white">Mon compte</a>
             </li>
             @else
             <li class="nav-item">

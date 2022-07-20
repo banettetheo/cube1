@@ -125,6 +125,9 @@ class RessourceController extends Controller
         $resultAut = $this->accesRessource($id,true);
 
         if ($resultAut['autorisation']) {
+            $current_ressource = Ressources::find($id);
+            $current_ressource->Nombre_vue = $current_ressource->Nombre_vue+1;
+            $current_ressource->save();
             $result = $this->ressourceRepository->one($resultAut['ressource']);
         }
 

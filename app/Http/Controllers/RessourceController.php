@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ressources;
 use App\Http\Requests\Ressource\StoreUpdateRessourceRequest;
+use App\Models\Favoris;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\RessourceRepository;
 use Exception;
@@ -72,9 +73,9 @@ class RessourceController extends Controller
     // if ($request->validator->fails()) {
     //   return Redirect::back()->withErrors($validated);
     // } else {
-      $request = Request::create('/api/ressources', 'POST', []);
-      $responseTypesRessources = Route::dispatch($request)->getContent();
-      return redirect()->intended(RouteServiceProvider::HOME);
+    $request = Request::create('/api/ressources', 'POST', []);
+    $responseTypesRessources = Route::dispatch($request)->getContent();
+    return redirect()->intended(RouteServiceProvider::HOME);
     // }
   }
 
@@ -106,6 +107,152 @@ class RessourceController extends Controller
       ]);
     }
   }
+
+
+
+
+
+  public function like($id)
+  {
+    $ressource = Ressources::find($id);
+    $ressource->Nombre_like = $ressource->Nombre_like + 1;
+    $ressource->save();
+    return redirect()->route('ressources.show.publique', $id);
+  }
+
+
+  public function showPublique($id)
+  {
+    $request = Request::create('/api/ressources/' . $id, 'GET', []);
+    $responseRessources = Route::dispatch($request)->getContent();
+    $laRessource = json_decode($responseRessources, true);
+    // dd($laRessource);
+
+    if ($laRessource != null) {
+      if (array_key_exists('message', $laRessource)) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+      } else {
+        $cote = false;
+        $favoris = false;
+
+        $mettreDeCote = Favoris::where([
+          ['Utilisateur_id', "=", Auth()->id()],
+          ['IdRessources', "=", $id],
+          ['Type_favoris_id', "=", 2],
+        ])->get()->toArray();
+        if ($mettreDeCote != null) {
+          $cote = true;
+        }
+        $mettreEnFavoris = Favoris::where([
+          ['Utilisateur_id', "=", Auth()->id()],
+          ['IdRessources', "=", $id],
+          ['Type_favoris_id', "=", 1],
+        ])->get()->toArray();
+        if ($mettreEnFavoris != null) {
+          $favoris = true;
+        }
+        return view('ressources/zoomRessource', [
+          'ressource' => $laRessource,
+          'cote' => $cote,
+          'favoris' => $favoris,
+        ]);
+      }
+    } else {
+      return redirect()->intended(RouteServiceProvider::HOME);
+      return view('ressources/zoomRessource', [
+        'ressource' => $laRessource
+      ]);
+    }
+  }
+
+
+
+  public function mettreDeCote($id)
+  {
+    $request = Request::create('/api/ressources/' . $id, 'GET', []);
+    $responseRessources = Route::dispatch($request)->getContent();
+    $laRessource = json_decode($responseRessources, true);
+    // dd($laRessource);
+
+    if ($laRessource != null) {
+      if (array_key_exists('message', $laRessource)) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+      } else {
+        $params = [
+          'Utilisateur_id' => Auth()->id(),
+          'IdRessources' => $id,
+          'Type_favoris_id' => 2,
+        ];
+        $favoris = new Favoris($params);
+        $favoris->save();
+        return redirect()->route('ressources.show.publique', $id);
+      }
+    } else {
+      return redirect()->intended(RouteServiceProvider::HOME);
+      return view('ressources/zoomRessource', [
+        'ressource' => $laRessource
+      ]);
+    }
+  }
+
+  public function ajoutAuxFavoris($id)
+  {
+    $request = Request::create('/api/ressources/' . $id, 'GET', []);
+    $responseRessources = Route::dispatch($request)->getContent();
+    $laRessource = json_decode($responseRessources, true);
+    // dd($laRessource);
+
+    if ($laRessource != null) {
+      if (array_key_exists('message', $laRessource)) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+      } else {
+        $params = [
+          'Utilisateur_id' => Auth()->id(),
+          'IdRessources' => $id,
+          'Type_favoris_id' => 1,
+        ];
+        $favoris = new Favoris($params);
+        $favoris->save();
+        return redirect()->route('ressources.show.publique', $id);
+      }
+    } else {
+      return redirect()->intended(RouteServiceProvider::HOME);
+      return view('ressources/zoomRessource', [
+        'ressource' => $laRessource
+      ]);
+    }
+  }
+
+
+
+  public function retirerFavoris($id)
+  {
+    $mettreEnFavoris = Favoris::where([
+      ['Utilisateur_id', "=", Auth()->id()],
+      ['IdRessources', "=", $id],
+      ['Type_favoris_id', "=", 1],
+    ])->get()->first();
+    if ($mettreEnFavoris->toArray() != null) {
+      $mettreEnFavoris->delete();
+    }
+    return redirect()->route('ressources.show.publique',$id);
+  }
+
+  public function retirerMiseDeCote($id)
+  {
+    $miseDeCote = Favoris::where([
+      ['Utilisateur_id', "=", Auth()->id()],
+      ['IdRessources', "=", $id],
+      ['Type_favoris_id', "=", 2],
+    ])->get()->first();
+    if ($miseDeCote->toArray() != null) {
+      $miseDeCote->delete();
+    }
+    return redirect()->route('ressources.show.publique',$id);
+  }
+
+
+
 
   /**
    * Show the form for editing the specified resource.
@@ -162,7 +309,7 @@ class RessourceController extends Controller
     } else {
       $request = Request::create('/api/ressources/' . $id, 'PUT', []);
       Route::dispatch($request);
-      return redirect()->route('ressources.show',$id);
+      return redirect()->route('ressources.show', $id);
     }
     // return redirect()->intended(RouteServiceProvider::HOME);
 

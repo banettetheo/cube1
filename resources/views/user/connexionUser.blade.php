@@ -8,17 +8,34 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 
-        <h1>Connexion</h1>
+        <h1 class="display-6 mb-3">Connexion</h1>
 
-        <form id="connexion-form" method="POST" action="{{ route('login') }}">
+        <!-- <form id="connexion-form" method="POST" action="{{ route('login') }}">
             @csrf
             <x-input id="email" name="email" type="email" class="input-connexion" placeholder="email" :value="old('email')" required autofocus />
 
             <x-input id="password" type="password" name="password" class="input-connexion" placeholder="mot de passe" required autocomplete="current-password" />
             <x-button class="btn-validation">{{ __('Connexion') }}</x-button>
             <a class="" href="{{ route('register') }}">{{ __('Pas encore inscrit ?') }}</a>
+        </form> -->
+
+        <form id="connexion-form" method="POST" action="{{ route('login') }}">
+        @csrf
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Adresse mail</label>
+                <input type="email" class="form-control" name="email" placeholder="email" :value="old('email')" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="mot de passe" required autocomplete="current-password">
+            </div>
+            <div class="mb-3">
+            </div>
+            <button type="submit" class="btn btn-outline-light">Se connecter</button>
+            <a href="{{ route('register') }}" class="btn btn-primary btn-sm mt-4">{{ __('Pas encore inscrit ?') }}</a>
         </form>
 
     </section>
 
-    </x-front-layout>
+</x-front-layout>

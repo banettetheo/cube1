@@ -12,7 +12,7 @@ class Favoris extends Model
     protected $fillable= [
       'Utilisateur_id',
       'IdRessources',
-      'Types_favoris_id'
+      'Type_favoris_id'
     ];
     
     use HasFactory;

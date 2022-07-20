@@ -2,39 +2,8 @@
     <section id="accueil" class="main-flex">
         <div class="row">
             <div class="col-lg-10 col-md-12 bg-light p-2">
-                <div class="row g-0">
-                    <!-- <div class="flex filter"> -->
-                    <div class="col-lg-5 col-md-12 bg-light p-2">
-                        <!-- <div class="filtre-ressource"> -->
-                        <label for="cat-select">Sélectionner la catégorie de votre ressource</label><br>
-                        <!--une liste de catégorie récupérer sur la bdd-->
-                        <select name="Idcategorie" id="cat-select" class="filtre-select">
-                            <option selected>Choisir...</option>
-                            @foreach($categories as $categorie)
-                            <option value="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</option>
-                            @endforeach
-                        </select>
-                        <!-- </div> -->
-                    </div>
 
-                    <div class="col-lg-5 col-md-12 bg-light p-2">
-                        <!-- <div class="filtre-ressource"> -->
-                        <label for="type-select">Sélectionner le type de votre ressource</label><br>
-                        <!--une liste de type récupérer sur la bdd-->
-                        <select name="Idtype" id="type-select" class="filtre-select">
-                            <option value="" selected>Choisir...</option>
-                            @foreach($typesRessources as $typesRessource)
-                            <option value="{{ $typesRessource['id'] }}">{{ $typesRessource['nom'] }}</option>
-                            @endforeach
-                        </select>
-                        <!-- </div> -->
-                    </div>
-                    <div class="col-lg-2 col-md-12 bg-light p-2">
-                        <button class="valid-filtre">filtrer</button>
-                    </div>
-                    <!-- </div> -->
-                </div>
-                @livewire('rechercher', ['ressources' => $ressources])
+                @livewire('rechercher', ['ressources' => $ressources, 'categories' => $categories, 'typesRessources'=>$typesRessources])
 
             </div>
             <div class="col-lg-2 col-md-12">
