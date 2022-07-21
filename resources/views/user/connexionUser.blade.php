@@ -23,12 +23,10 @@
         @csrf
 
             <div class="mb-3">
-                <label for="email" class="form-label">Adresse mail</label>
-                <input type="email" class="form-control" name="email" placeholder="email" :value="old('email')" required autofocus>
+                <input type="email" class="form-control" name="email" placeholder="Email" :value="old('email')" required autofocus>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="mot de passe" required autocomplete="current-password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required autocomplete="current-password">
             </div>
             <div class="mb-3">
             </div>

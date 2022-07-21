@@ -12,7 +12,7 @@
             <x-input type="email" id="email" name="email" class="input-inscription" placeholder="Email" placeholder="email" :value="old('email')" required />
             <x-input id="password" class="input-inscription" type="password" name="password" placeholder="Mot de passe" required autocomplete="new-password" />
             <x-input id="password_confirmation" class="input-inscription" type="password" placeholder="Confirmer mot de passe" name="password_confirmation" required />
-            <x-button class="btn-validation">{{ __("S'inscrire") }}</x-button>
+            <x-button class="btn btn-outline-white">{{ __("S'inscrire") }}</x-button>
             <a class="" href="{{ route('login') }}">{{ __('Déjà inscrit ?') }}</a>
 
         </form>
