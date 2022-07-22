@@ -19,6 +19,7 @@ use App\Http\Controllers\API\TypeRessourceController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\Auth\ChangerMdpController;
+use App\Http\Controllers\GestionRessources;
 use App\Models\Categorie;
 
 /*
@@ -35,12 +36,12 @@ use App\Models\Categorie;
 //For all
 Route::get('/', [AccueilController::class, 'index'])->name('accueil');
 route::get('ressources/publique/{id}', [RessourceController::class, 'showPublique'])->name('ressources.show.publique');
+Route::get('/utilisateurs', [AccueilController::class, 'utilisateurs'])->name('accueil-utilisateurs');
 
 
 
 Route::middleware('guest')->group(function () {
     route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
-    Route::get('/utilisateurs', [AccueilController::class, 'utilisateurs'])->name('accueil-utilisateurs');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 });
 //Accueil
@@ -50,6 +51,7 @@ Route::middleware('guest')->group(function () {
 // FRONT - OFFICE ==============
 Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     route::get('utilisateurs/{id}', [RelationController::class, 'show'])->name('utilisateur.consulter');
+
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
@@ -61,10 +63,15 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     route::get('ressources/retirer-mise-de-cote/{id}', [RessourceController::class, 'retirerMiseDeCote'])->name('ressources.mettre-de-cote.destroy');
     route::get('ressources/retirer-favoris/{id}', [RessourceController::class, 'retirerFavoris'])->name('ressources.ajout-aux-favoris.destroy');
 
+    //Gestion des ressources (Visibilite)
+    route::get('mon-compte/ressources-mises-de-cote', [GestionRessources::class, 'getMisesDeCote'])->name('mon-compte.mis-de-cote');
+    route::get('mon-compte/ressources-favoris', [GestionRessources::class, 'getFavoris'])->name('mon-compte.favoris');
+    route::get('mon-compte/mes-relations', [RelationController::class, 'getMesRelations'])->name('relations.mes-relations');
 
 
     //Compte
-    Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte');
+    Route::get('mon-compte/consulter', [CompteController::class, 'index'])->name('monCompte.index');
+    Route::get('mon-compte/ressources/publier/{id}', [RessourceValidationController::class, 'publier'])->name('monCompte.publier');
 
     //Commentaires
     route::post('ressources/{id}', [CommentaireController::class, 'store'])->name('commentaires.store');
@@ -72,11 +79,15 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
 
 
     //Modération
-    Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
+    Route::get('mon-compte/moderateur/ressources-a-valider', [RessourceValidationController::class, 'index'])->name('mon-compte.moderateur.ressources-a-valider.index');
+    Route::get('mon-compte/moderateur/ressources-a-valider/lire/{id}', [RessourceValidationController::class, 'show'])->name('mon-compte.moderateur.ressources-a-valider.show');
+    Route::get('mon-compte/moderateur/ressources-a-valider/valider/{id}', [RessourceValidationController::class, 'valider'])->name('mon-compte.moderateur.ressources-a-valider.valider');
+    Route::get('mon-compte/moderateur/ressources-a-valider/refuser/{id}', [RessourceValidationController::class, 'refuser'])->name('mon-compte.moderateur.ressources-a-valider.refuser');
 
     //Relations
-    route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
+    route::post('utilisateurs/ajouter/{id}', [RelationController::class, 'ajouter'])->name('relations.ajouter');
     Route::resource('mon-compte/relations', RelationController::class)->except(['create', 'store']);
+    // route::get('utilisateurs/ajouter/{id}',[RelationController::class, 'store']->name(relations.))
 });
 
 

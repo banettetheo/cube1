@@ -1,5 +1,9 @@
 <x-front-layout>
+    @if(Route::is('mon-compte.moderateur.ressources-a-valider.show'))
+    <a href="{{route('mon-compte.moderateur.ressources-a-valider.index')}}" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i>&nbsp;Retour aux ressources à valider</a>
+    @else
     <a href="{{route('accueil')}}" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i>&nbsp;Retour aux ressources</a>
+    @endif
     <section id="zoom-ressource" class="">
         <div class="ressources">
             <div class="header-ressource">
@@ -32,6 +36,14 @@
 
                     <div class="col-auto">
                         <div class="row g-0">
+                            @if(Route::is('mon-compte.moderateur.ressources-a-valider.show'))
+                            <div class="col-auto offset-lg-1 offset-md-1 offset-sm-1 mx-2">
+                                <a href="{{route('mon-compte.moderateur.ressources-a-valider.valider',$ressource['id'])}}" class="btn btn-success">Valider</i></a>
+                            </div>
+                            <div class="col-auto offset-lg-1 offset-md-1 offset-sm-1 mx-2">
+                                <a href="{{route('mon-compte.moderateur.ressources-a-valider.refuser',$ressource['id'])}}" class="btn btn-danger">Refuser</i></a>
+                            </div>
+                            @else
                             <div class="col-auto offset-lg-1 offset-md-1 offset-sm-1 mx-2">
                                 <a href="{{route('ressources.like',$ressource['id'])}}" class="btn btn-primary">J'aime&nbsp;<i class="fas fa-thumbs-up fa-1x pr-3 pl-3"></i></a>
                             </div>
@@ -49,6 +61,7 @@
                                 <a href="{{route('ressources.ajout-aux-favoris.destroy',$ressource['id'])}}" class="btn btn-warning">Retirer des favoris</a>
                                 @endif
                             </div>
+                            @endif
                         </div>
                     </div>
                     @endif

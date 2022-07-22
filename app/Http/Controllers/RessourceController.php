@@ -96,8 +96,29 @@ class RessourceController extends Controller
       if (array_key_exists('message', $laRessource)) {
         return redirect()->intended(RouteServiceProvider::HOME);
       } else {
+        $cote = false;
+        $favoris = false;
+
+        $mettreDeCote = Favoris::where([
+          ['Utilisateur_id', "=", Auth()->id()],
+          ['IdRessources', "=", $id],
+          ['Type_favoris_id', "=", 2],
+        ])->get()->toArray();
+        if ($mettreDeCote != null) {
+          $cote = true;
+        }
+        $mettreEnFavoris = Favoris::where([
+          ['Utilisateur_id', "=", Auth()->id()],
+          ['IdRessources', "=", $id],
+          ['Type_favoris_id', "=", 1],
+        ])->get()->toArray();
+        if ($mettreEnFavoris != null) {
+          $favoris = true;
+        }
         return view('ressources/zoomRessource', [
-          'ressource' => $laRessource
+          'ressource' => $laRessource,
+          'cote' => $cote,
+          'favoris' => $favoris,
         ]);
       }
     } else {
@@ -235,7 +256,7 @@ class RessourceController extends Controller
     if ($mettreEnFavoris->toArray() != null) {
       $mettreEnFavoris->delete();
     }
-    return redirect()->route('ressources.show.publique',$id);
+    return redirect()->route('ressources.show.publique', $id);
   }
 
   public function retirerMiseDeCote($id)
@@ -248,7 +269,7 @@ class RessourceController extends Controller
     if ($miseDeCote->toArray() != null) {
       $miseDeCote->delete();
     }
-    return redirect()->route('ressources.show.publique',$id);
+    return redirect()->route('ressources.show.publique', $id);
   }
 
 
@@ -286,7 +307,7 @@ class RessourceController extends Controller
         return view('ressources/modifRessource', [
           'ressource' => $laRessource,
           // 'categories' => $lesCategories,
-          'categories' => $laRessource,
+          'categories' => $lesCategories,
           'typesRessources' => $lesTypesRessources,
         ]);
       }
@@ -304,13 +325,11 @@ class RessourceController extends Controller
   public function update(StoreUpdateRessourceRequest $request, $id)
   {
     $validated = $request->validated();
-    if ($request->validator->fails()) {
-      return Redirect::back()->withErrors($validated);
-    } else {
-      $request = Request::create('/api/ressources/' . $id, 'PUT', []);
-      Route::dispatch($request);
-      return redirect()->route('ressources.show', $id);
-    }
+
+    $request = Request::create('/api/ressources/' . $id, 'PUT', []);
+    Route::dispatch($request);
+    return redirect()->route('ressources.show', $id);
+
     // return redirect()->intended(RouteServiceProvider::HOME);
 
   }
@@ -325,7 +344,7 @@ class RessourceController extends Controller
   {
     $request = Request::create('api/ressources/' . $id, 'DELETE');
     Route::dispatch($request);
-
+    return redirect()->route('monCompte.index');
     // return redirect()->intended(RouteServiceProvider::HOME);
   }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\Unit;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -23,41 +24,32 @@ class CategorieTest extends TestCase
      */
     public function test_createCategorie()
     {
-       try
-       {
-        $Cat = categorie::factory()->create();
-        $Cat->save();
-        $this->assertTrue(true);
-       }
-       catch(RuntimeException $e)
-       {
-        $this->assertTrue(true);
-        echo $e;
-       }
+        try {
+            $Cat = categorie::factory()->create();
+            $Cat->save();
+            $this->assertTrue(true);
+        } catch (RuntimeException $e) {
+            $this->assertTrue(false);
+            echo $e;
+        }
     }
 
     public function test_readCategorie()
     {
 
-        if(Categorie::find(3))
-        {
+        if (Categorie::find(3)) {
             $this->assertTrue(true);
-        }
-        else
-        {
+        } else {
             $this->assertTrue(false);
         }
     }
 
     public function test_deleteCategorie()
     {
-        try
-        {
+        try {
             Categorie::find(1)->delete();
             $this->assertTrue(true);
-        }
-        catch(RuntimeException $e)
-        {
+        } catch (RuntimeException $e) {
             $this->assertTrue(false);
         }
     }
@@ -65,8 +57,7 @@ class CategorieTest extends TestCase
     public function test_updateCategorie()
     {
 
-        try
-        {
+        try {
             $Cat = Categorie::find(2);
 
             $Cat->Nom = "test_nom_cat";
@@ -74,18 +65,12 @@ class CategorieTest extends TestCase
             $Cat->save();
             $Comm = Categorie::find(2);
 
-           if($Comm->Nom == "test_nom_cat")
-           {
-            $this->assertTrue(true);
-           }
-           else
-           {
-            $this->assertTrue(false);
-           }
-            
-        }
-        catch(RuntimeException $e)
-        {
+            if ($Comm->Nom == "test_nom_cat") {
+                $this->assertTrue(true);
+            } else {
+                $this->assertTrue(false);
+            }
+        } catch (RuntimeException $e) {
             $this->assertTrue(false);
         }
     }

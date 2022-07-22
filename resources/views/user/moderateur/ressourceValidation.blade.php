@@ -9,7 +9,7 @@
             <a href="" class="button-menu">-Vos ressources mise de côté</a><br><br>
             <a href="" class="button-menu">-Vos ressources favorites</a><br><br>
             @if ( Auth::user()->Moderateur)
-            <a href="{{ route('ressources-a-valider.index') }}" class="button-menu">-Valider des ressources</a>
+            <a href="{{ route('mon-compte.moderateur.ressources-a-valider.index') }}" class="button-menu">-Valider des ressources</a>
             @endif
             @endauth
         </div>

@@ -12,7 +12,7 @@
                 <a href="" class="btn btn-outline-light">Mes ressources mise de côté</a><br><br>
                 <a href="" class="btn btn-outline-light">Mes ressources favorites</a><br><br>
                 @if ( Auth::user()->Moderateur)
-                <a href="{{ route('ressources-a-valider.index') }}" class="btn btn-outline-warning">Valider des ressources</a>
+                <a href="{{ route('mon-compte.moderateur.ressources-a-valider.index') }}" class="btn btn-outline-warning">Valider des ressources</a>
                 @endif
                 @endif
                 @endauth

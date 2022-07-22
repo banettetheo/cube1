@@ -9,6 +9,7 @@ class RechercheUtilisateur extends Component
     public $current_init = false;
     public $utilisateurs;
     public $utilisateurs_tries;
+    public $typesRelation;
 
 
     protected $listeners = [
