@@ -49,7 +49,39 @@
                             <input type=submit class="btn btn-danger" value="Supprimer">
                         </form>
                         <a href="{{route('monCompte.publier', $ressource['id'])}}" class="btn btn-primary">Publier</a>
-                        <button id="modifRessource" class="btn btn-primary">Partager</button>
+                        <form method="POST" id="myForm" action="" class="form-deconnexion nav-link">
+                                @csrf
+                                @method('POST')
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#partager">Partager</button>
+                                <div class="modal fade" id="partager" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Partager sa ressource</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row justify-content-md-center">
+                                                    <label for='nom' id="" class="col-auto col-form-label">Partager avec : </label>
+                                                    <div class="col-auto pl-3">
+                                                        <select name="relation_select" id="relation-select">
+                                                            <option value="0" selected></option>
+                                                            <option value="" selected></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="">Annuler</button>
+                                                <input type="submit" class="btn btn-success" value="Sauvegarder">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         @endif
                     </li>
                 </ul>

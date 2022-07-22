@@ -51,7 +51,6 @@ Route::middleware('guest')->group(function () {
 // FRONT - OFFICE ==============
 Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     route::get('utilisateurs/{id}', [RelationController::class, 'show'])->name('utilisateur.consulter');
-    route::get('utilisateurs/zjouter/{id}', [RelationController::class, 'show'])->name('utilisateur.ajouter');
 
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
     //Ressources
@@ -67,6 +66,7 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     //Gestion des ressources (Visibilite)
     route::get('mon-compte/ressources-mises-de-cote', [GestionRessources::class, 'getMisesDeCote'])->name('mon-compte.mis-de-cote');
     route::get('mon-compte/ressources-favoris', [GestionRessources::class, 'getFavoris'])->name('mon-compte.favoris');
+    route::get('mon-compte/mes-relations', [RelationController::class, 'getMesRelations'])->name('relations.mes-relations');
 
 
     //Compte
@@ -85,8 +85,9 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     Route::get('mon-compte/moderateur/ressources-a-valider/refuser/{id}', [RessourceValidationController::class, 'refuser'])->name('mon-compte.moderateur.ressources-a-valider.refuser');
 
     //Relations
-    route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
+    route::post('utilisateurs/ajouter/{id}', [RelationController::class, 'ajouter'])->name('relations.ajouter');
     Route::resource('mon-compte/relations', RelationController::class)->except(['create', 'store']);
+    // route::get('utilisateurs/ajouter/{id}',[RelationController::class, 'store']->name(relations.))
 });
 
 

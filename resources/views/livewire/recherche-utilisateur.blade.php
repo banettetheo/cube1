@@ -40,7 +40,7 @@
                         <div class="col-auto align-self-end my-auto">
                             @if(auth()->check() == true)
                             <!-- <a href="" class="btn btn-primary"> Ajouter </a> -->
-                            <form method="POST" id="myForm" action="{{ route('utilisateur.ajouter', $utilisateur['id']) }}" class="form-deconnexion nav-link">
+                            <form method="POST" id="myForm" action="{{ route('relations.ajouter', $utilisateur['id']) }}" class="form-deconnexion nav-link">
                                 @csrf
                                 @method('POST')
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#creer">Ajouter</button>
@@ -57,7 +57,7 @@
                                                 <div class="row justify-content-md-center">
                                                     <label for='nom' id="" class="col-3 col-form-label">Type de relation : </label>
                                                     <div class="col-6 pl-3">
-                                                        <select name="type" id="relation-select">
+                                                        <select name="relation_select" id="relation-select">
                                                             <option value="0" selected>Sélectionner le type de relation</option>
                                                             @foreach($typesRelation as $type)
                                                             <option value="{{$type['id']}}" selected>{{$type['Nom']}}</option>
