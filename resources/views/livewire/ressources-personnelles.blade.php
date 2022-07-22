@@ -3,8 +3,8 @@
         <div class="col-lg-2 col-md-12 py-4">
             @auth
             @if ($monCompte==true)
-            <button type="button" class="btn btn-outline-light" wire:click="$emitTo('ressources-personnelles','cotes')">Mes ressources mise de côté</button><br><br>
-            <a href="" class="btn btn-outline-light">Mes ressources favorites</a><br><br>
+            <a href="{{route('mon-compte.mis-de-cote')}}" class="btn btn-outline-light">Mes ressources mise de côté</a><br><br>
+            <a href="{{route('mon-compte.favoris')}}" class="btn btn-outline-light">Mes ressources favorites</a><br><br>
             @if ( Auth::user()->Moderateur)
             <a href="{{ route('ressources-a-valider.index') }}" class="btn btn-outline-warning">Valider des ressources</a>
             @endif
@@ -32,11 +32,19 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"> {{ $ressource['utilisateur']['name'] }}&nbsp;{{ $ressource['utilisateur']['Prenom'] }}</li>
                     <li class="list-group-item">
-                        <button class="btn btn-primary">Lire</button>
+                        <a href="{{route('ressources.show',$ressource['id'])}}" class="btn btn-primary">Lire</a>
+                        @if(Route::is('monCompte.index'))
                         <button id="modifRessource" class="btn btn-primary">Modifier</button>
                         <button id="supprRessource" class="btn btn-danger">Supprimer</button>&nbsp;/
                         <button id="publiRessource" class="btn btn-primary">Publier</button>
                         <button id="modifRessource" class="btn btn-primary">Partager</button>
+                        @endif
+                        @if(Route::is('mon-compte.mis-de-cote'))
+                        <a href="{{route('ressources.mettre-de-cote.destroy', $ressource['id'])}}" class="btn btn-warning">Retirer la mise de côté</a>
+                        @endif
+                        @if(Route::is('mon-compte.favoris'))
+                        <a href="{{route('ressources.ajout-aux-favoris.destroy', $ressource['id'])}}" class="btn btn-warning">Retirer des favoris</a>
+                        @endif
                     </li>
                 </ul>
             </div>
@@ -86,3 +94,4 @@
         </div>
 
     </div>
+</div>

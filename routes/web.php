@@ -19,6 +19,7 @@ use App\Http\Controllers\API\TypeRessourceController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\Auth\ChangerMdpController;
+use App\Http\Controllers\GestionRessources;
 use App\Models\Categorie;
 
 /*
@@ -61,10 +62,13 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     route::get('ressources/retirer-mise-de-cote/{id}', [RessourceController::class, 'retirerMiseDeCote'])->name('ressources.mettre-de-cote.destroy');
     route::get('ressources/retirer-favoris/{id}', [RessourceController::class, 'retirerFavoris'])->name('ressources.ajout-aux-favoris.destroy');
 
+    //Gestion des ressources (Visibilite)
+    route::get('mon-compte/ressources-mises-de-cote', [GestionRessources::class, 'getMisesDeCote'])->name('mon-compte.mis-de-cote');
+    route::get('mon-compte/ressources-favoris', [GestionRessources::class, 'getFavoris'])->name('mon-compte.favoris');
 
 
     //Compte
-    Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte');
+    Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte.index');
 
     //Commentaires
     route::post('ressources/{id}', [CommentaireController::class, 'store'])->name('commentaires.store');

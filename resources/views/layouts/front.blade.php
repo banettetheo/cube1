@@ -39,7 +39,7 @@
             @auth
             <a href="{{ route('accueil') }}" class="button-menu">accueil</a>
             <p>/</p>
-            <a href="{{ route('monCompte') }}" class="button-menu">Mon compte</a>
+            <a href="{{ route('monCompte.index') }}" class="button-menu">Mon compte</a>
             <p>/</p>
             <a href="{{ route('ressources.create') }}" class="button-menu">Créer une ressource</a>
             <p>/</p>

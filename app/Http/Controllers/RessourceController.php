@@ -96,8 +96,29 @@ class RessourceController extends Controller
       if (array_key_exists('message', $laRessource)) {
         return redirect()->intended(RouteServiceProvider::HOME);
       } else {
+        $cote = false;
+        $favoris = false;
+
+        $mettreDeCote = Favoris::where([
+          ['Utilisateur_id', "=", Auth()->id()],
+          ['IdRessources', "=", $id],
+          ['Type_favoris_id', "=", 2],
+        ])->get()->toArray();
+        if ($mettreDeCote != null) {
+          $cote = true;
+        }
+        $mettreEnFavoris = Favoris::where([
+          ['Utilisateur_id', "=", Auth()->id()],
+          ['IdRessources', "=", $id],
+          ['Type_favoris_id', "=", 1],
+        ])->get()->toArray();
+        if ($mettreEnFavoris != null) {
+          $favoris = true;
+        }
         return view('ressources/zoomRessource', [
-          'ressource' => $laRessource
+          'ressource' => $laRessource,
+          'cote' => $cote,
+          'favoris' => $favoris,
         ]);
       }
     } else {

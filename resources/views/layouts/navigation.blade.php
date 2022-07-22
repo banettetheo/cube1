@@ -23,7 +23,7 @@
                 <a href="{{ route('relations.index')}}" class="nav-link text-white">Mes relations</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('monCompte')}}" class="nav-link text-white">Mon compte</a>
+                <a href="{{ route('monCompte.index')}}" class="nav-link text-white">Mon compte</a>
             </li>
             @else
             <li class="nav-item">

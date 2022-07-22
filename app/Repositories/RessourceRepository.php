@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Models\Commentaire;
+use App\Models\Favoris;
 use App\Models\Ressources;
 
 class RessourceRepository
@@ -16,7 +17,7 @@ class RessourceRepository
             ->map(function ($ressource) {
                 return $this->one($ressource);
             });
-            
+
         return $lesRessources;
     }
 
@@ -59,6 +60,27 @@ class RessourceRepository
         }
         return $ressourcesTriees;
     }
+
+    public function findAllFavoris($userId)
+    {
+        $FavorisTriees = array();
+        $lesFavoris = Favoris::where("Utilisateur_id", $userId)->get();
+        return $lesFavoris;
+    }
+
+    public function FindByTypeFavoris($idUser, $idType)
+    {
+        $ressourcesTriees = array();
+        $lesFavoris = $this->findAllFavoris($idUser);
+        foreach($lesFavoris as $unFavoris){
+            if($unFavoris->Type_favoris_id==$idType){
+                $uneRessource = $this->findById($unFavoris->IdRessources);
+                array_push($ressourcesTriees, $uneRessource);
+            }
+        }
+        return $ressourcesTriees;
+    }
+
 
 
 
@@ -175,7 +197,7 @@ class RessourceRepository
                     return [
                         'id' => $commentaire->id,
                         //'dateCreation' => $Commentaire->id,
-                        'utilisateur' => $commentaire->Utilisateur->only('id','name', 'Prenom'),
+                        'utilisateur' => $commentaire->Utilisateur->only('id', 'name', 'Prenom'),
                         'contenu' => $commentaire->Contenue
                     ];
                 }),
@@ -183,5 +205,4 @@ class RessourceRepository
             'nbVue' => $ressource->Nombre_vue
         ];
     }
-
 }
