@@ -144,7 +144,7 @@ class RelationController extends Controller
         return [
           "id" => $relation->id,
           "nom" => $relation->user2->name,
-          "prenom" => $relation->user1->Prenom,
+          "prenom" => $relation->user2->Prenom,
           "relation" => $relation->IdRelation->Nom,
         ];
       }
