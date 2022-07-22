@@ -55,10 +55,10 @@ class FeedBox extends StatelessWidget {
                 height: 10.0,
               ),
               if (ressource["lienRessource"] != "")
-                Image.network(ressource["lienRessource"]),
-              const SizedBox(
-                height: 10.0,
-              ),
+                //Image.network(ressource["lienRessource"]),
+                const SizedBox(
+                  height: 10.0,
+                ),
               const Divider(
                 thickness: 1.5,
                 color: Color(0xFF505050),

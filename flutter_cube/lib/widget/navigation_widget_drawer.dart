@@ -106,9 +106,7 @@ class _NavigationDrawer extends State<NavigationDrawer> {
           child: ListView(
             padding: padding,
             children: [
-              const Image(
-                  image: NetworkImage(
-                      "https://cdn.discordapp.com/attachments/870209678192304169/948980643285577738/unknown.png")),
+              Image.asset("assets/ressources.png", fit: BoxFit.cover),
               const SizedBox(height: 20.0),
               const Text(
                 "Vous n'êtes actuellement pas connecté. Afin d'utiliser au mieux les ressources de notre application, veuillez vous connecter.",
@@ -186,13 +184,16 @@ class _NavigationDrawer extends State<NavigationDrawer> {
   void selectedItem(BuildContext context, int i) {
     switch (i) {
       case 0:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FriendPage(token: widget.data["token"]),
-        )).then((_) => setState);
+        Navigator.of(context)
+            .push(MaterialPageRoute(
+              builder: (context) => FriendPage(token: widget.data["token"]),
+            ))
+            .then((_) => setState);
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PostPage(token: widget.data["token"], userId: user!.id),
+          builder: (context) =>
+              PostPage(token: widget.data["token"], userId: user!.id),
         ));
         break;
       case 2:
@@ -215,14 +216,15 @@ class _NavigationDrawer extends State<NavigationDrawer> {
             actions: [
               FlatButton(
                   onPressed: () async {
-                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
                     prefs.setString('usernameCube', '');
                     prefs.setString('passwordCube', '');
                     Navigator.pushReplacement(
                       context,
-                        MaterialPageRoute (
-                          builder: (BuildContext context) => const LoginScreen(),
-                        ),
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginScreen(),
+                      ),
                     );
                     /*Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const LoginScreen(),
