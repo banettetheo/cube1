@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Administrateur\TypeRelationController;
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use App\Models\Ressources;
+use App\Models\Type_Relation;
 use App\Models\Type_ressource;
 use App\Models\User;
 use App\Repositories\RessourceRepository;
@@ -36,7 +38,6 @@ class AccueilController extends Controller
         $lesCategories = json_decode($responseCategories, true);
 
 
-
         $lesUtilisateurs = User::all()
             ->map(function ($utilisateur) {
                 return [
@@ -56,6 +57,8 @@ class AccueilController extends Controller
     }
 
     public function utilisateurs(){
+        $typesRelation = Type_Relation::all()->toArray();
+
         $lesUtilisateurs = User::all()
         ->map(function ($utilisateur) {
             return [
@@ -66,6 +69,7 @@ class AccueilController extends Controller
         });
         return view('accueilUtilisateurs', [
             'utilisateurs' => $lesUtilisateurs,
+            'typesRelation' => $typesRelation,
         ]);
     }
 

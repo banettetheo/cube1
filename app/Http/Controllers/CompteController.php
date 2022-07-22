@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Relation;
 use App\Repositories\EtatRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,11 @@ class CompteController extends Controller
         
         $lesEtats = $this->etatRepository->getEtatAccesModifUtilisateur();
 
+        $lesRelations = Relation::where('IdUser1', Auth()->id())->get();
+
+        // foreach($lesRelations as $uneRelation){
+        // }
+
         return view(
             'user/compteUser',
             [
@@ -42,6 +48,8 @@ class CompteController extends Controller
             ]
         );
     }
+
+
 
     /**
      * Show the form for creating a new resource.
