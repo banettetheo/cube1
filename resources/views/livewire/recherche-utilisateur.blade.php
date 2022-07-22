@@ -38,16 +38,51 @@
                     <div class="row g-0 h-100">
                         <!-- accède au compteUser de l'utilisateur (suite dans le fichier compteUser.blade.php le commentaire sous la section)-->
                         <div class="col-auto align-self-end my-auto">
-                            <a href="" class="btn btn-primary"> Consulter </a>
                             @if(auth()->check() == true)
-                            <a href="" class="btn btn-primary"> Ajouter </a>
-                            @endif
+                            <!-- <a href="" class="btn btn-primary"> Ajouter </a> -->
+                            <form method="POST" id="myForm" action="{{ route('utilisateur.ajouter', $utilisateur['id']) }}" class="form-deconnexion nav-link">
+                                @csrf
+                                @method('POST')
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#creer">Ajouter</button>
+                                <div class="modal fade" id="creer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Ajouter une relation</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row justify-content-md-center">
+                                                    <label for='nom' id="" class="col-3 col-form-label">Type de relation : </label>
+                                                    <div class="col-6 pl-3">
+                                                        <select name="type" id="relation-select">
+                                                            <option value="0" selected>Sélectionner le type de relation</option>
+                                                            @foreach($typesRelation as $type)
+                                                            <option value="{{$type['id']}}" selected>{{$type['Nom']}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="">Annuler</button>
+                                                <input type="submit" class="btn btn-success" value="Sauvegarder">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
-        @endforeach
     </div>
+    <hr>
+    @endforeach
+</div>
 </div>

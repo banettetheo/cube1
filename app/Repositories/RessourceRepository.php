@@ -179,6 +179,26 @@ class RessourceRepository
         return $idCreateur;
     }
 
+    public function checkEtat($id, $id_etat){
+        $result = false;
+        $ressource = $this->findById($id);
+        if($ressource['etat']['id']==$id_etat){
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function findAValider()
+    {
+        $ressourcesTries = Ressources::where('IdEtat', 3)
+            ->get()
+            ->map(function ($ressource) {
+                return $this->one($ressource);
+            });
+
+        return $ressourcesTries;
+    }
+
 
     public function one($ressource)
     {

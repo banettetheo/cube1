@@ -256,7 +256,7 @@ class RessourceController extends Controller
     if ($mettreEnFavoris->toArray() != null) {
       $mettreEnFavoris->delete();
     }
-    return redirect()->route('ressources.show.publique',$id);
+    return redirect()->route('ressources.show.publique', $id);
   }
 
   public function retirerMiseDeCote($id)
@@ -269,7 +269,7 @@ class RessourceController extends Controller
     if ($miseDeCote->toArray() != null) {
       $miseDeCote->delete();
     }
-    return redirect()->route('ressources.show.publique',$id);
+    return redirect()->route('ressources.show.publique', $id);
   }
 
 
@@ -307,7 +307,7 @@ class RessourceController extends Controller
         return view('ressources/modifRessource', [
           'ressource' => $laRessource,
           // 'categories' => $lesCategories,
-          'categories' => $laRessource,
+          'categories' => $lesCategories,
           'typesRessources' => $lesTypesRessources,
         ]);
       }
@@ -325,13 +325,11 @@ class RessourceController extends Controller
   public function update(StoreUpdateRessourceRequest $request, $id)
   {
     $validated = $request->validated();
-    if ($request->validator->fails()) {
-      return Redirect::back()->withErrors($validated);
-    } else {
-      $request = Request::create('/api/ressources/' . $id, 'PUT', []);
-      Route::dispatch($request);
-      return redirect()->route('ressources.show', $id);
-    }
+
+    $request = Request::create('/api/ressources/' . $id, 'PUT', []);
+    Route::dispatch($request);
+    return redirect()->route('ressources.show', $id);
+
     // return redirect()->intended(RouteServiceProvider::HOME);
 
   }
@@ -346,7 +344,7 @@ class RessourceController extends Controller
   {
     $request = Request::create('api/ressources/' . $id, 'DELETE');
     Route::dispatch($request);
-
+    return redirect()->route('monCompte.index');
     // return redirect()->intended(RouteServiceProvider::HOME);
   }
 }

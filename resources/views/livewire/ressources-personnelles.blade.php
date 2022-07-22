@@ -6,7 +6,7 @@
             <a href="{{route('mon-compte.mis-de-cote')}}" class="btn btn-outline-light">Mes ressources mise de côté</a><br><br>
             <a href="{{route('mon-compte.favoris')}}" class="btn btn-outline-light">Mes ressources favorites</a><br><br>
             @if ( Auth::user()->Moderateur)
-            <a href="{{ route('ressources-a-valider.index') }}" class="btn btn-outline-warning">Valider des ressources</a>
+            <a href="{{ route('mon-compte.moderateur.ressources-a-valider.index') }}" class="btn btn-outline-warning">Valider des ressources</a>
             @endif
             @endif
             @endauth
@@ -32,18 +32,24 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"> {{ $ressource['utilisateur']['name'] }}&nbsp;{{ $ressource['utilisateur']['Prenom'] }}</li>
                     <li class="list-group-item">
+                        @if(Route::is('mon-compte.moderateur.ressources-a-valider.index'))
+                        <a href="{{route('mon-compte.moderateur.ressources-a-valider.show',$ressource['id'])}}" class="btn btn-primary">Consulter</a>
+                        @else
                         <a href="{{route('ressources.show',$ressource['id'])}}" class="btn btn-primary">Lire</a>
-                        @if(Route::is('monCompte.index'))
-                        <button id="modifRessource" class="btn btn-primary">Modifier</button>
-                        <button id="supprRessource" class="btn btn-danger">Supprimer</button>&nbsp;/
-                        <button id="publiRessource" class="btn btn-primary">Publier</button>
-                        <button id="modifRessource" class="btn btn-primary">Partager</button>
                         @endif
                         @if(Route::is('mon-compte.mis-de-cote'))
                         <a href="{{route('ressources.mettre-de-cote.destroy', $ressource['id'])}}" class="btn btn-warning">Retirer la mise de côté</a>
-                        @endif
-                        @if(Route::is('mon-compte.favoris'))
+                        @elseif(Route::is('mon-compte.favoris'))
                         <a href="{{route('ressources.ajout-aux-favoris.destroy', $ressource['id'])}}" class="btn btn-warning">Retirer des favoris</a>
+                        @elseif(!Route::is('mon-compte.moderateur.ressources-a-valider.index'))
+                        <a href="{{route('ressources.edit', $ressource['id'])}}" id="modifRessource" class="btn btn-primary">Modifier</a>
+                        <form method="POST" action="{{route('ressources.destroy', $ressource['id'])}}">
+                            @csrf
+                            @method('DELETE')
+                            <input type=submit class="btn btn-danger" value="Supprimer">
+                        </form>
+                        <a href="{{route('monCompte.publier', $ressource['id'])}}" class="btn btn-primary">Publier</a>
+                        <button id="modifRessource" class="btn btn-primary">Partager</button>
                         @endif
                     </li>
                 </ul>

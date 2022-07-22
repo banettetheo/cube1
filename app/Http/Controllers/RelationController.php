@@ -27,6 +27,9 @@ class RelationController extends Controller
     return view('user/mesRelations', ['relations' => $lesRelations]);
   }
 
+  public function ajouter($id){
+      
+  }
   /**
    * Show the form for creating a new resource.
    *

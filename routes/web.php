@@ -36,12 +36,12 @@ use App\Models\Categorie;
 //For all
 Route::get('/', [AccueilController::class, 'index'])->name('accueil');
 route::get('ressources/publique/{id}', [RessourceController::class, 'showPublique'])->name('ressources.show.publique');
+Route::get('/utilisateurs', [AccueilController::class, 'utilisateurs'])->name('accueil-utilisateurs');
 
 
 
 Route::middleware('guest')->group(function () {
     route::get('utilisateurs/{id}', [RelationController::class, 'create'])->name('utilisateur.consulter');
-    Route::get('/utilisateurs', [AccueilController::class, 'utilisateurs'])->name('accueil-utilisateurs');
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
 });
 //Accueil
@@ -51,6 +51,8 @@ Route::middleware('guest')->group(function () {
 // FRONT - OFFICE ==============
 Route::group(['middleware' => ['auth', 'user.confirm']], function () {
     route::get('utilisateurs/{id}', [RelationController::class, 'show'])->name('utilisateur.consulter');
+    route::get('utilisateurs/zjouter/{id}', [RelationController::class, 'show'])->name('utilisateur.ajouter');
+
     route::get('ressources/{id}', [RessourceController::class, 'show'])->name('ressources.show');
     //Ressources
     // Route::post('/', [RessourceController::class, 'store'])->name('ressources.store');
@@ -68,7 +70,8 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
 
 
     //Compte
-    Route::get('mon-compte', [CompteController::class, 'index'])->name('monCompte.index');
+    Route::get('mon-compte/consulter', [CompteController::class, 'index'])->name('monCompte.index');
+    Route::get('mon-compte/ressources/publier/{id}', [RessourceValidationController::class, 'publier'])->name('monCompte.publier');
 
     //Commentaires
     route::post('ressources/{id}', [CommentaireController::class, 'store'])->name('commentaires.store');
@@ -76,7 +79,10 @@ Route::group(['middleware' => ['auth', 'user.confirm']], function () {
 
 
     //Modération
-    Route::resource('moderateur/ressources-a-valider', RessourceValidationController::class);
+    Route::get('mon-compte/moderateur/ressources-a-valider', [RessourceValidationController::class, 'index'])->name('mon-compte.moderateur.ressources-a-valider.index');
+    Route::get('mon-compte/moderateur/ressources-a-valider/lire/{id}', [RessourceValidationController::class, 'show'])->name('mon-compte.moderateur.ressources-a-valider.show');
+    Route::get('mon-compte/moderateur/ressources-a-valider/valider/{id}', [RessourceValidationController::class, 'valider'])->name('mon-compte.moderateur.ressources-a-valider.valider');
+    Route::get('mon-compte/moderateur/ressources-a-valider/refuser/{id}', [RessourceValidationController::class, 'refuser'])->name('mon-compte.moderateur.ressources-a-valider.refuser');
 
     //Relations
     route::post('utilisateurs/{id}', [RelationController::class, 'store'])->name('relations.store');
